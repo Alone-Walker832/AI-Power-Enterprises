@@ -19,6 +19,7 @@ import {
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { Navbar } from "@/components/Navbar";
+import { TopHeader } from "@/components/TopHeader";
 import { Footer } from "@/components/Footer";
 import { WhatsAppBtn } from "@/components/WhatsAppBtn";
 import { AIChatbot } from "@/components/AIChatbot";
@@ -374,6 +375,7 @@ function RootComponent() {
   return (
     <QueryClientProvider client={queryClient}>
       <div className="flex min-h-screen flex-col relative">
+        <TopHeader />
         <Navbar />
         <main id="main-content" className="flex-1 relative">
           {/* Premium Page Transition Wrapper */}
@@ -403,7 +405,7 @@ function RootComponent() {
         </main>
         <Footer />
         <WhatsAppBtn />
-        <AIChatbot />
+        {/* <AIChatbot /> */}
       </div>
     </QueryClientProvider>
   );

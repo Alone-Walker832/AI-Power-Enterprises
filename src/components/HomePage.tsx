@@ -36,9 +36,20 @@ import {
   Lightbulb,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import heroImage from "@/assets/hero-datacenter.jpg";
 
-// ─── Partner Logos (Actual Images) ───
+// ─── Hero Image Imports ──────────────────────────────────────────
+// ✅ Yahan apni images import karein (pehle se available hain assets main)
+import heroImage from "@/assets/hero-datacenter.jpg"; // Default/fallback
+// Ab service-specific images import karein (aap inhe assets mein rakhenge)
+// For example:
+import slaImage from "@/assets/hero-sla.jpg?url";         // SLA Support
+import serversImage from "@/assets/hero-servers.jpg?url"; // Servers
+import storageImage from "@/assets/hero-storage.jpg?url"; // Storage
+import networkingImage from "@/assets/hero-networking.jpg?url"; // Networking
+import cctvImage from "@/assets/hero-cctv.jpg?url";       // CCTV
+import managedImage from "@/assets/hero-managed.jpg?url"; // Managed Services
+
+// ─── Partner Logos ──────────────────────────────────────────────
 import ciscoLogo from "@/assets/partners/cisco.png?url";
 import dellLogo from "@/assets/partners/dell.png?url";
 import hpLogo from "@/assets/partners/hp.png?url";
@@ -54,7 +65,17 @@ import {
   metrics,
 } from "@/data/companyData";
 
-// ─── Animated Counter ──────────────────────────────────────────────
+// ─── Service List for Typewriter & Image Mapping ──────────────
+const serviceWords = [
+  { label: "SLA Support", image: slaImage },
+  { label: "Servers", image: serversImage },
+  { label: "Storage", image: storageImage },
+  { label: "Networking", image: networkingImage },
+  { label: "CCTV", image: cctvImage },
+  { label: "Managed Services", image: managedImage },
+];
+
+// ─── Animated Counter ────────────────────────────────────────────
 const AnimatedCounter = ({ value, label }: { value: string; label: string }) => {
   const ref = useRef<HTMLDivElement>(null);
   const inView = useInView(ref, { once: true, margin: "-40px" });
@@ -86,11 +107,17 @@ const AnimatedCounter = ({ value, label }: { value: string; label: string }) => 
   );
 };
 
-// ─── Typewriter Hook ──────────────────────────────────────────────
-const useTypewriter = (words: string[], speed = 80, pause = 2000) => {
+// ─── Typewriter Hook (with image change callback) ──────────────
+const useTypewriter = (
+  words: string[],
+  onWordChange?: (word: string) => void,
+  speed = 80,
+  pause = 2000
+) => {
   const [text, setText] = useState("");
   const [index, setIndex] = useState(0);
   const [isDeleting, setIsDeleting] = useState(false);
+  const [currentWord, setCurrentWord] = useState(words[0] || "");
 
   useEffect(() => {
     const current = words[index % words.length];
@@ -99,8 +126,11 @@ const useTypewriter = (words: string[], speed = 80, pause = 2000) => {
     const timeout = setTimeout(
       () => {
         if (!isDeleting) {
-          setText(current.slice(0, text.length + 1));
-          if (text.length === current.length) {
+          const newText = current.slice(0, text.length + 1);
+          setText(newText);
+          if (newText === current) {
+            setCurrentWord(current);
+            if (onWordChange) onWordChange(current);
             setTimeout(() => setIsDeleting(true), pause);
           }
         } else {
@@ -114,9 +144,9 @@ const useTypewriter = (words: string[], speed = 80, pause = 2000) => {
       isDeleting ? speed / 2 : speed
     );
     return () => clearTimeout(timeout);
-  }, [text, isDeleting, index, words, speed, pause]);
+  }, [text, isDeleting, index, words, speed, pause, onWordChange]);
 
-  return text;
+  return { text, currentWord };
 };
 
 // ─── Service Cards Data ──────────────────────────────────────────
@@ -182,9 +212,18 @@ export default function HomePage() {
   const imageScale = useTransform(scrollYProgress, [0, 1], [1, 0.95]);
   const contentY = useTransform(scrollYProgress, [0, 1], [0, -60]);
 
-  // Typewriter ONLY on third line
-  const servicesList = ["SLA Support", "Servers", "Storage", "Networking", "CCTV", "Managed Services"];
-  const typedServices = useTypewriter(servicesList, 70, 1500);
+  // ─── State for current service image ──────────────────────────
+  const [currentServiceImage, setCurrentServiceImage] = useState(serviceWords[0]?.image || heroImage);
+
+  // ─── Typewriter ONLY on third line, with image change ────────
+  const words = serviceWords.map((w) => w.label);
+  const { text: typedServices } = useTypewriter(words, (word) => {
+    // 🔥 Jab word change ho, uska image set karein
+    const matched = serviceWords.find((w) => w.label === word);
+    if (matched) {
+      setCurrentServiceImage(matched.image);
+    }
+  }, 70, 1500);
 
   return (
     <>
@@ -249,7 +288,6 @@ export default function HomePage() {
                 id="hero-heading"
                 className="mt-4 font-display text-2xl font-bold leading-tight tracking-tight text-foreground sm:text-3xl lg:text-4xl xl:text-5xl"
               >
-                {/* All lines now use the same text-foreground – no gradient */}
                 <span>Enterprise IT Infrastructure,</span>
                 <br />
                 <span>Managed Services &amp; 24/7</span>
@@ -291,7 +329,6 @@ export default function HomePage() {
                 transition={{ delay: 0.6, duration: 0.5 }}
                 className="mt-8 w-full"
               >
-                {/* Stars + Text */}
                 <div className="flex items-center gap-3 mb-4">
                   <div className="flex gap-0.5">
                     {[...Array(5)].map((_, i) => (
@@ -310,7 +347,6 @@ export default function HomePage() {
                   </span>
                 </div>
 
-                {/* Partner Logos */}
                 <div className="flex flex-wrap items-center gap-4 md:gap-5">
                   {partnerBadges.map((partner) => (
                     <div key={partner.name} className="flex flex-col items-center gap-1.5">
@@ -344,21 +380,18 @@ export default function HomePage() {
                   style={{ scale: imageScale }}
                   className="relative w-full overflow-hidden rounded-2xl border border-border/50 shadow-2xl"
                   whileHover={{ scale: 1.02, transition: { duration: 0.3 } }}
-                  animate={{ y: [0, -6, 0] }}
-                  transition={{
-                    duration: 4,
-                    repeat: Infinity,
-                    ease: "easeInOut",
-                  }}
                 >
-                  <img
-                    src={heroImage}
-                    alt="Enterprise data centre corridor with blade servers"
-                    width={1280}
-                    height={1280}
+                  {/* 🔥 Image with fade transition */}
+                  <motion.img
+                    key={currentServiceImage}
+                    src={currentServiceImage}
+                    alt="Enterprise IT Service"
                     className="h-auto w-full max-h-[40vh] sm:max-h-[45vh] lg:max-h-[50vh] object-cover object-center"
-                    loading="eager"
+                    loading="lazy"
                     decoding="async"
+                    initial={{ opacity: 0, scale: 0.98 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ duration: 0.6, ease: "easeInOut" }}
                   />
                 </motion.div>
 
@@ -432,6 +465,11 @@ export default function HomePage() {
           />
         </motion.div>
       </section>
+
+
+
+
+      
 
       {/* ─── 2. CORE PILLARS ─── */}
       <section className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8 lg:py-20" aria-labelledby="pillars-heading">

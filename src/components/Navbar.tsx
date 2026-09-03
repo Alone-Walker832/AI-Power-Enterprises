@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef, useCallback, memo } from "react";
+import { useState, useEffect, useRef, memo } from "react";
 import { Link, useRouterState } from "@tanstack/react-router";
 import {
   ArrowRight,
@@ -91,13 +91,12 @@ function Hamburger({ open }: { open: boolean }) {
   );
 }
 
-// ─── Services Dropdown (with keyboard support) ──────────────────
+// ─── Services Dropdown ──────────────────────────────────────────
 function ServicesDropdown({ pathname }: { pathname: string }) {
   const [isOpen, setIsOpen] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
   const triggerRef = useRef<HTMLButtonElement>(null);
 
-  // Close on escape key
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === "Escape" && isOpen) {
@@ -109,7 +108,6 @@ function ServicesDropdown({ pathname }: { pathname: string }) {
     return () => document.removeEventListener("keydown", handleKeyDown);
   }, [isOpen]);
 
-  // Close on click outside
   useEffect(() => {
     const handleClickOutside = (e: MouseEvent) => {
       if (containerRef.current && !containerRef.current.contains(e.target as Node)) {
@@ -129,9 +127,9 @@ function ServicesDropdown({ pathname }: { pathname: string }) {
       <button
         ref={triggerRef}
         className={cn(
-          "flex items-center gap-1 rounded-full px-4 py-2 text-sm font-medium transition-all duration-300 hover:bg-sky/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky",
+          "flex items-center gap-1 rounded-lg px-4 py-2 text-sm font-medium transition-all duration-300 hover:bg-sky/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky",
           serviceLinks.some((link) => pathname === link.to)
-            ? "bg-gradient-to-r from-sky to-blue-400 text-white shadow-lg shadow-sky/30 hover:shadow-xl hover:shadow-sky/40"
+            ? "bg-sky/10 text-sky"
             : "text-muted-foreground hover:text-foreground"
         )}
         onClick={toggleDropdown}
@@ -173,7 +171,7 @@ function ServicesDropdown({ pathname }: { pathname: string }) {
                   className={cn(
                     "flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky",
                     isActive
-                      ? "bg-gradient-to-r from-sky to-blue-400 text-white shadow-md shadow-sky/20"
+                      ? "bg-sky/10 text-sky"
                       : "text-foreground hover:bg-sky/10 hover:text-sky"
                   )}
                   onClick={() => setIsOpen(false)}
@@ -181,7 +179,7 @@ function ServicesDropdown({ pathname }: { pathname: string }) {
                   <Icon className="size-4 shrink-0" />
                   {link.label}
                   {isActive && (
-                    <CheckCircle className="ml-auto size-4 text-white/80" />
+                    <CheckCircle className="ml-auto size-4 text-sky" />
                   )}
                 </Link>
               </li>
@@ -209,31 +207,30 @@ export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const pathname = useRouterState({ select: (s) => s.location.pathname });
 
-  // Scroll listener with passive flag and cleanup
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 10);
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // ─── Active link classes with premium background ──────────────
+  // ─── Active link classes ──────────────────────────────────────
   const linkClass = (to: string) => {
     const isActive = pathname === to;
     return cn(
-      "relative rounded-full px-4 py-2 text-sm font-medium transition-all duration-300 hover:scale-[1.02] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky",
+      "relative rounded-lg px-4 py-2 text-sm font-medium transition-all duration-200 hover:bg-sky/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky",
       isActive
-        ? "bg-gradient-to-r from-sky to-blue-400 text-white shadow-lg shadow-sky/30 hover:shadow-xl hover:shadow-sky/40"
-        : "text-muted-foreground hover:text-foreground hover:bg-sky/10"
+        ? "bg-sky/10 text-sky"
+        : "text-muted-foreground hover:text-foreground"
     );
   };
 
   const mobileLinkClass = (to: string) => {
     const isActive = pathname === to;
     return cn(
-      "group relative flex items-center gap-3 rounded-lg px-4 py-3 text-sm font-medium transition-all duration-200 hover:scale-[1.01] active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky",
+      "group relative flex items-center gap-3 rounded-lg px-4 py-3 text-sm font-medium transition-all duration-200 hover:bg-sky/10 active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky",
       isActive
-        ? "bg-gradient-to-r from-sky to-blue-400 text-white shadow-md shadow-sky/20"
-        : "text-foreground hover:bg-sky/20 hover:text-sky"
+        ? "bg-sky/10 text-sky"
+        : "text-foreground hover:text-sky"
     );
   };
 
@@ -246,7 +243,7 @@ export function Navbar() {
   return (
     <header
       className={cn(
-        "sticky top-0 z-50 w-full border-b transition-all duration-300",
+        "sticky top-8 z-40 w-full border-b transition-all duration-300", // ✅ top-8 match karta hai TopHeader ki h-8 (32px)
         scrolled
           ? "border-border/40 bg-background/85 backdrop-blur-xl shadow-lg shadow-sky/5"
           : "border-transparent bg-background/60 backdrop-blur-md"
@@ -297,7 +294,7 @@ export function Navbar() {
         <div className="flex items-center gap-2">
           <Button
             asChild
-            className="hidden sm:inline-flex bg-gradient-to-r from-sky to-blue-400 text-white shadow-md shadow-sky/30 hover:scale-105 hover:shadow-lg hover:shadow-sky/40 transition-all group"
+            className="hidden sm:inline-flex bg-gradient-to-r from-sky to-blue-400 text-white shadow-md shadow-sky/30 hover:scale-105 hover:shadow-lg hover:shadow-sky/40 transition-all group rounded-lg"
           >
             <Link to="/contact" hash="request">
               Request Quote
@@ -307,7 +304,7 @@ export function Navbar() {
 
           <ThemeToggle />
 
-          {/* ─── Mobile Menu (Sheet) ─── */}
+          {/* ─── Mobile Menu ─── */}
           <Sheet open={open} onOpenChange={setOpen}>
             <SheetTrigger asChild>
               <Button
@@ -362,11 +359,10 @@ export function Navbar() {
                         <Home className="size-4 shrink-0" />
                         Home
                         {pathname === "/" && (
-                          <Sparkles className="ml-auto size-4 text-white" />
+                          <Sparkles className="ml-auto size-4 text-sky" />
                         )}
                       </Link>
                     </li>
-
                     <li>
                       <Link
                         to="/sla"
@@ -377,11 +373,10 @@ export function Navbar() {
                         <ShieldCheck className="size-4 shrink-0" />
                         SLA Support
                         {pathname === "/sla" && (
-                          <Sparkles className="ml-auto size-4 text-white" />
+                          <Sparkles className="ml-auto size-4 text-sky" />
                         )}
                       </Link>
                     </li>
-
                     <li>
                       <p className="mt-2 text-[10px] font-semibold uppercase tracking-widest text-muted-foreground">
                         Our Services
@@ -398,14 +393,14 @@ export function Navbar() {
                                 className={cn(
                                   "flex items-center gap-3 rounded-lg px-4 py-2.5 text-sm font-medium transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky",
                                   isActive
-                                    ? "bg-gradient-to-r from-sky to-blue-400 text-white shadow-sm shadow-sky/20"
+                                    ? "bg-sky/10 text-sky"
                                     : "text-muted-foreground hover:bg-sky/10 hover:text-foreground"
                                 )}
                               >
                                 <Icon className="size-4 shrink-0" />
                                 {link.label}
                                 {isActive && (
-                                  <CheckCircle className="ml-auto size-4 text-white/80" />
+                                  <CheckCircle className="ml-auto size-4 text-sky" />
                                 )}
                               </Link>
                             </li>
@@ -420,7 +415,6 @@ export function Navbar() {
                         View All Services →
                       </Link>
                     </li>
-
                     {navItems.map((link) => {
                       let Icon = null;
                       if (link.label === "About") Icon = Info;
@@ -437,7 +431,7 @@ export function Navbar() {
                             {Icon && <Icon className="size-4 shrink-0" />}
                             {link.label}
                             {pathname === link.to && (
-                              <Sparkles className="ml-auto size-4 text-white" />
+                              <Sparkles className="ml-auto size-4 text-sky" />
                             )}
                           </Link>
                         </li>
@@ -458,10 +452,9 @@ export function Navbar() {
                       </p>
                     </div>
                   </div>
-
                   <Button
                     asChild
-                    className="w-full bg-gradient-to-r from-sky to-blue-400 text-white shadow-md shadow-sky/30 hover:shadow-lg hover:shadow-sky/40 transition-all group"
+                    className="w-full bg-gradient-to-r from-sky to-blue-400 text-white shadow-md shadow-sky/30 hover:shadow-lg hover:shadow-sky/40 transition-all group rounded-lg"
                   >
                     <Link
                       to="/contact"
@@ -472,7 +465,6 @@ export function Navbar() {
                       <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" />
                     </Link>
                   </Button>
-
                   <p className="text-center text-[10px] text-muted-foreground">
                     © {new Date().getFullYear()} AI Power Enterprises
                   </p>
