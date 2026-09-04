@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import { motion, useScroll, useTransform, useInView } from "motion/react";
+import { motion, useScroll, useTransform, useInView, AnimatePresence } from "motion/react";
 import { useRef, useState, useEffect } from "react";
 import {
   ArrowRight,
@@ -38,16 +38,13 @@ import {
 import { Button } from "@/components/ui/button";
 
 // ─── Hero Image Imports ──────────────────────────────────────────
-// ✅ Yahan apni images import karein (pehle se available hain assets main)
-import heroImage from "@/assets/hero-datacenter.jpg"; // Default/fallback
-// Ab service-specific images import karein (aap inhe assets mein rakhenge)
-// For example:
-import slaImage from "@/assets/hero-sla.jpg?url";         // SLA Support
-import serversImage from "@/assets/hero-servers.jpg?url"; // Servers
-import storageImage from "@/assets/hero-storage.jpg?url"; // Storage
-import networkingImage from "@/assets/hero-networking.jpg?url"; // Networking
-import cctvImage from "@/assets/hero-cctv.jpg?url";       // CCTV
-import managedImage from "@/assets/hero-managed.jpg?url"; // Managed Services
+import heroImage from "@/assets/hero-datacenter.jpg";
+import slaImage from "@/assets/hero-sla.jpg?url";
+import serversImage from "@/assets/hero-servers.jpg?url";
+import storageImage from "@/assets/hero-storage.jpg?url";
+import networkingImage from "@/assets/hero-networking.jpg?url";
+import cctvImage from "@/assets/hero-cctv.jpg?url";
+import managedImage from "@/assets/hero-managed.jpg?url";
 
 // ─── Partner Logos ──────────────────────────────────────────────
 import ciscoLogo from "@/assets/partners/cisco.png?url";
@@ -65,7 +62,7 @@ import {
   metrics,
 } from "@/data/companyData";
 
-// ─── Service List for Typewriter & Image Mapping ──────────────
+// ─── Service Words (label + image) ──────────────────────────────
 const serviceWords = [
   { label: "SLA Support", image: slaImage },
   { label: "Servers", image: serversImage },
@@ -107,17 +104,17 @@ const AnimatedCounter = ({ value, label }: { value: string; label: string }) => 
   );
 };
 
-// ─── Typewriter Hook (with image change callback) ──────────────
+// ─── Typewriter Hook (Premium: slow, smooth, with pause) ─────────
 const useTypewriter = (
   words: string[],
   onWordChange?: (word: string) => void,
-  speed = 80,
-  pause = 2000
+  typingSpeed = 60,
+  deletingSpeed = 30,
+  pauseDuration = 2500
 ) => {
   const [text, setText] = useState("");
   const [index, setIndex] = useState(0);
   const [isDeleting, setIsDeleting] = useState(false);
-  const [currentWord, setCurrentWord] = useState(words[0] || "");
 
   useEffect(() => {
     const current = words[index % words.length];
@@ -129,24 +126,25 @@ const useTypewriter = (
           const newText = current.slice(0, text.length + 1);
           setText(newText);
           if (newText === current) {
-            setCurrentWord(current);
+            // Word complete → pause → start deleting
             if (onWordChange) onWordChange(current);
-            setTimeout(() => setIsDeleting(true), pause);
+            setTimeout(() => setIsDeleting(true), pauseDuration);
           }
         } else {
-          setText(current.slice(0, text.length - 1));
-          if (text.length === 0) {
+          const newText = current.slice(0, text.length - 1);
+          setText(newText);
+          if (newText === "") {
             setIsDeleting(false);
             setIndex((prev) => prev + 1);
           }
         }
       },
-      isDeleting ? speed / 2 : speed
+      isDeleting ? deletingSpeed : typingSpeed
     );
     return () => clearTimeout(timeout);
-  }, [text, isDeleting, index, words, speed, pause, onWordChange]);
+  }, [text, isDeleting, index, words, typingSpeed, deletingSpeed, pauseDuration, onWordChange]);
 
-  return { text, currentWord };
+  return { text };
 };
 
 // ─── Service Cards Data ──────────────────────────────────────────
@@ -215,15 +213,18 @@ export default function HomePage() {
   // ─── State for current service image ──────────────────────────
   const [currentServiceImage, setCurrentServiceImage] = useState(serviceWords[0]?.image || heroImage);
 
-  // ─── Typewriter ONLY on third line, with image change ────────
+  // ─── Typewriter with image change ─────────────────────────────
   const words = serviceWords.map((w) => w.label);
-  const { text: typedServices } = useTypewriter(words, (word) => {
-    // 🔥 Jab word change ho, uska image set karein
-    const matched = serviceWords.find((w) => w.label === word);
-    if (matched) {
-      setCurrentServiceImage(matched.image);
-    }
-  }, 70, 1500);
+  const { text: typedServices } = useTypewriter(
+    words,
+    (word) => {
+      const matched = serviceWords.find((w) => w.label === word);
+      if (matched) setCurrentServiceImage(matched.image);
+    },
+    60,   // typing speed (ms per char)
+    30,   // deleting speed
+    2500  // pause after full word
+  );
 
   return (
     <>
@@ -381,18 +382,28 @@ export default function HomePage() {
                   className="relative w-full overflow-hidden rounded-2xl border border-border/50 shadow-2xl"
                   whileHover={{ scale: 1.02, transition: { duration: 0.3 } }}
                 >
-                  {/* 🔥 Image with fade transition */}
-                  <motion.img
-                    key={currentServiceImage}
-                    src={currentServiceImage}
-                    alt="Enterprise IT Service"
-                    className="h-auto w-full max-h-[40vh] sm:max-h-[45vh] lg:max-h-[50vh] object-cover object-center"
-                    loading="lazy"
-                    decoding="async"
-                    initial={{ opacity: 0, scale: 0.98 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ duration: 0.6, ease: "easeInOut" }}
-                  />
+                  {/* ─── IMAGE CONTAINER (fixed aspect ratio) ─── */}
+                  <div className="relative w-full pt-[75%] sm:pt-[66%] lg:pt-[56%]">
+                    <AnimatePresence mode="wait">
+                      <motion.img
+                        key={currentServiceImage}
+                        src={currentServiceImage}
+                        alt="Enterprise IT Service"
+                        className="absolute inset-0 w-full h-full object-cover object-center"
+                        initial={{ opacity: 0, scale: 0.96 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        exit={{ opacity: 0, scale: 0.96 }}
+                        transition={{
+                          opacity: { duration: 0.5, ease: "easeInOut" },
+                          scale: { duration: 0.5, ease: "easeInOut" },
+                        }}
+                        loading="lazy"
+                        decoding="async"
+                      />
+                    </AnimatePresence>
+                    {/* Subtle gradient overlay for depth */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/10 via-transparent to-transparent pointer-events-none" />
+                  </div>
                 </motion.div>
 
                 {/* Floating Badge 100+ */}
