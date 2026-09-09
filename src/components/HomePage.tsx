@@ -106,6 +106,7 @@ const AnimatedCounter = ({ value, label }: { value: string; label: string }) => 
 };
 
 // ─── Typewriter Hook (Premium: slow, smooth, with pause) ─────────
+// ─── Typewriter Hook (Premium: Image change on word START) ─────────
 const useTypewriter = (
   words: string[],
   onWordChange?: (word: string) => void,
@@ -116,10 +117,17 @@ const useTypewriter = (
   const [text, setText] = useState("");
   const [index, setIndex] = useState(0);
   const [isDeleting, setIsDeleting] = useState(false);
+  const [hasNotified, setHasNotified] = useState(false);
 
   useEffect(() => {
     const current = words[index % words.length];
     if (!current) return;
+
+    // ✅ Image change on word START (jese hi typing shuru ho)
+    if (!isDeleting && text.length === 0 && !hasNotified) {
+      if (onWordChange) onWordChange(current);
+      setHasNotified(true);
+    }
 
     const timeout = setTimeout(
       () => {
@@ -128,7 +136,6 @@ const useTypewriter = (
           setText(newText);
           if (newText === current) {
             // Word complete → pause → start deleting
-            if (onWordChange) onWordChange(current);
             setTimeout(() => setIsDeleting(true), pauseDuration);
           }
         } else {
@@ -136,6 +143,7 @@ const useTypewriter = (
           setText(newText);
           if (newText === "") {
             setIsDeleting(false);
+            setHasNotified(false); // ✅ Reset for next word
             setIndex((prev) => prev + 1);
           }
         }
@@ -143,7 +151,7 @@ const useTypewriter = (
       isDeleting ? deletingSpeed : typingSpeed
     );
     return () => clearTimeout(timeout);
-  }, [text, isDeleting, index, words, typingSpeed, deletingSpeed, pauseDuration, onWordChange]);
+  }, [text, isDeleting, index, words, typingSpeed, deletingSpeed, pauseDuration, onWordChange, hasNotified]);
 
   return { text };
 };
@@ -230,10 +238,10 @@ export default function HomePage() {
 
   return (
     <>
-      {/* ─── 1. HERO ─── */}
+{/* ─── 1. HERO (ADVANCED & PREMIUM) ─── */}
 <section
   ref={heroRef}
-  className="relative flex min-h-[92vh] w-full items-center overflow-hidden bg-gradient-to-br from-sky-100/60 via-sky-50/40 to-blue-100/40 dark:from-slate-950 dark:via-slate-900 dark:to-sky-950/20 select-none"
+  className="relative flex min-h-[90vh] w-full items-center overflow-hidden bg-gradient-to-br from-sky-100/60 via-sky-50/40 to-blue-100/40 dark:from-slate-950 dark:via-slate-900 dark:to-sky-950/20 select-none"
   aria-labelledby="hero-heading"
 >
   {/* Background elements */}
@@ -269,7 +277,7 @@ export default function HomePage() {
   <div className="relative mx-auto flex h-full w-full max-w-7xl items-center px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
     <motion.div
       style={{ y: contentY, opacity: useTransform(scrollYProgress, [0, 0.4], [1, 0.8]) }}
-      className="grid w-full items-center gap-4 lg:grid-cols-[1fr_0.9fr] lg:gap-8"
+      className="grid w-full items-center gap-6 lg:grid-cols-[1fr_1.1fr] lg:gap-10"
     >
       {/* ─── LEFT COLUMN ─── */}
       <motion.div
@@ -351,7 +359,6 @@ export default function HomePage() {
             </span>
           </div>
 
-          {/* Partner badges: overlapping stack with premium hover effect */}
           <div className="flex flex-wrap items-center justify-center lg:justify-start -space-x-2 sm:-space-x-3">
             {partnerBadges.map((partner, idx) => (
               <div
@@ -368,7 +375,6 @@ export default function HomePage() {
                     decoding="async"
                   />
                 </div>
-                {/* Tooltip on hover */}
                 <span className="absolute -bottom-6 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-[8px] font-semibold uppercase tracking-wider text-muted-foreground whitespace-nowrap">
                   {partner.name}
                 </span>
@@ -378,20 +384,21 @@ export default function HomePage() {
         </motion.div>
       </motion.div>
 
-      {/* ─── RIGHT COLUMN (Image + Floating Badges) ─── */}
+      {/* ─── RIGHT COLUMN (Image - PREMIUM WITH MORE HEIGHT) ─── */}
       <div className="relative flex flex-col items-center justify-center gap-3">
         <motion.div
           initial={{ opacity: 0, scale: 0.96 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.7, delay: 0.15, ease: "easeOut" }}
-          className="relative flex items-center justify-center w-full max-w-md lg:max-w-full"
+          className="relative flex items-center justify-center w-full lg:max-w-full"
         >
           <motion.div
             style={{ scale: imageScale }}
-            className="relative w-full overflow-hidden rounded-2xl border border-border/50 shadow-2xl"
+            className="relative w-full overflow-hidden rounded-2xl border-2 border-primary/20 shadow-2xl shadow-primary/20 transition-all duration-300 hover:shadow-primary/40 hover:border-primary/40"
             whileHover={{ scale: 1.02, transition: { duration: 0.3 } }}
           >
-            <div className="relative w-full pt-[75%] sm:pt-[66%] lg:pt-[56%]">
+            {/* ✅ INCREASED HEIGHT - image zada lambi aur clear */}
+            <div className="relative w-full pt-[55%] sm:pt-[45%] lg:pt-[40%]">
               <AnimatePresence mode="wait">
                 <motion.img
                   key={currentServiceImage}
@@ -402,18 +409,18 @@ export default function HomePage() {
                   animate={{ opacity: 1, scale: 1 }}
                   exit={{ opacity: 0, scale: 0.95 }}
                   transition={{
-                    opacity: { duration: 0.4, ease: "easeInOut" },
-                    scale: { duration: 0.4, ease: "easeInOut" },
+                    opacity: { duration: 0.3, ease: "easeInOut" },
+                    scale: { duration: 0.3, ease: "easeInOut" },
                   }}
                   loading="lazy"
                   decoding="async"
                 />
               </AnimatePresence>
-              <div className="absolute inset-0 bg-gradient-to-t from-black/10 via-transparent to-transparent pointer-events-none" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/5 via-transparent to-transparent pointer-events-none" />
             </div>
           </motion.div>
 
-          {/* Floating Badges */}
+          {/* Floating Badge 100+ */}
           <motion.div
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: [0, -8, 0] }}
@@ -421,7 +428,7 @@ export default function HomePage() {
               y: { duration: 3, repeat: Infinity, ease: "easeInOut" },
               opacity: { delay: 0.5, duration: 0.5 },
             }}
-            className="absolute -bottom-2 left-2 rounded-xl border border-border/60 bg-white/90 px-2.5 py-2 shadow-xl backdrop-blur-md dark:bg-slate-900/90 sm:-bottom-3 sm:left-3 sm:px-3 sm:py-2.5"
+            className="absolute -bottom-3 left-3 rounded-xl border border-border/60 bg-white/90 px-3 py-2 shadow-xl backdrop-blur-md dark:bg-slate-900/90 sm:-bottom-4 sm:left-4 sm:px-4 sm:py-2.5"
           >
             <p className="font-display text-base font-extrabold text-primary sm:text-lg leading-none">100+</p>
             <p className="mt-0.5 text-[8px] font-semibold uppercase tracking-widest text-muted-foreground sm:text-[9px]">
@@ -429,6 +436,7 @@ export default function HomePage() {
             </p>
           </motion.div>
 
+          {/* Floating Badge 30 min */}
           <motion.div
             initial={{ opacity: 0, x: -15 }}
             animate={{ opacity: 1, y: [0, 8, 0] }}
@@ -436,7 +444,7 @@ export default function HomePage() {
               y: { duration: 3.5, repeat: Infinity, ease: "easeInOut" },
               opacity: { delay: 0.7, duration: 0.5 },
             }}
-            className="absolute -top-2 right-2 rounded-xl border border-border/60 bg-white/90 px-2.5 py-2 shadow-xl backdrop-blur-md dark:bg-slate-900/90 sm:-top-3 sm:right-3 sm:px-3 sm:py-2.5"
+            className="absolute -top-3 right-3 rounded-xl border border-border/60 bg-white/90 px-3 py-2 shadow-xl backdrop-blur-md dark:bg-slate-900/90 sm:-top-4 sm:right-4 sm:px-4 sm:py-2.5"
           >
             <p className="font-display text-sm font-bold text-primary sm:text-base leading-none">30 min</p>
             <p className="mt-0.5 text-[7px] font-semibold uppercase tracking-widest text-muted-foreground sm:text-[8px]">
@@ -485,7 +493,7 @@ export default function HomePage() {
 
 
 
-{/* ─── 10. STRATEGIC PARTNERS (ADVANCED & PROFESSIONAL) ─── */}
+{/* ─── 10. STRATEGIC PARTNERS ─── */}
 <section className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8 lg:py-20" aria-labelledby="partners-heading">
   <div className="mx-auto max-w-2xl text-center">
     <span className="eyebrow text-xs font-semibold uppercase tracking-widest text-primary">Alliances</span>
@@ -497,21 +505,15 @@ export default function HomePage() {
     </p>
   </div>
 
-  {/* Marquee Container */}
+  {/* ─── Marquee ─── */}
   <div className="relative mt-8 overflow-hidden">
-    {/* Mask applied to inner wrapper so hovered items aren't clipped */}
     <div className="[mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)]">
       <div className="animate-marquee flex w-max gap-6 sm:gap-8 py-4">
-        {/* Triple loop for seamless marquee */}
         {[...partnerBadges, ...partnerBadges, ...partnerBadges].map((partner, index) => (
           <div
             key={`${partner.name}-${index}`}
             className="group relative flex h-16 w-28 sm:h-20 sm:w-32 lg:h-24 lg:w-36 flex-shrink-0 items-center justify-center rounded-xl border-2 border-border/40 bg-white/70 p-3 shadow-md backdrop-blur-sm transition-all duration-300 hover:z-20 hover:scale-110 hover:-translate-y-1 hover:border-primary/50 hover:shadow-2xl hover:shadow-primary/20 dark:bg-slate-800/70 dark:border-slate-700/50"
           >
-            {/* Glow effect on hover */}
-            <div className="absolute inset-0 rounded-xl bg-gradient-to-br from-primary/0 via-primary/0 to-primary/0 opacity-0 transition-all duration-500 group-hover:from-primary/10 group-hover:via-primary/20 group-hover:to-primary/10 group-hover:opacity-100" />
-            
-            {/* Partner Logo */}
             <img
               src={partner.logo}
               alt={`${partner.name} logo`}
@@ -519,8 +521,6 @@ export default function HomePage() {
               loading="lazy"
               decoding="async"
             />
-            
-            {/* Partner Name - Appears on Hover */}
             <div className="absolute -bottom-7 left-1/2 -translate-x-1/2 opacity-0 transition-all duration-300 group-hover:opacity-100 group-hover:-bottom-8">
               <span className="whitespace-nowrap text-[8px] font-semibold uppercase tracking-widest text-muted-foreground/80">
                 {partner.name}
@@ -532,7 +532,7 @@ export default function HomePage() {
     </div>
   </div>
 
-  {/* Static grid fallback for smaller screens (better touch experience) */}
+  {/* ─── Mobile Grid Fallback ─── */}
   <div className="mt-6 grid grid-cols-3 gap-3 sm:grid-cols-4 md:grid-cols-6 lg:hidden">
     {partnerBadges.map((partner) => (
       <div

@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef, memo } from "react";
+import { useState, useEffect, useRef, memo, useCallback } from "react";
 import { Link, useRouterState } from "@tanstack/react-router";
 import {
   ArrowRight,
@@ -16,6 +16,7 @@ import {
   CheckCircle,
   Info,
   X,
+  Headset,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
@@ -38,26 +39,26 @@ const serviceLinks = [
   { label: "Managed Services", to: "/managed-services", icon: Settings },
 ];
 
-// ─── Memoized Brand Mark ────────────────────────────────────────
+// ─── Memoized Brand Mark (Logo + Text) ─────────────────────────
 const BrandMark = memo(function BrandMark() {
   return (
     <Link
       to="/"
-      className="group flex items-center gap-3 transition-transform hover:scale-[1.02] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky"
+      className="group flex items-center gap-2 sm:gap-3 transition-all hover:scale-[1.02] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 rounded-lg"
       aria-label="AI Power Enterprises home"
     >
       <img
         src={logo}
         alt="AI Power Enterprises Logo"
-        className="h-12 w-auto object-contain"
+        className="h-9 w-auto object-contain sm:h-11 lg:h-12"
         loading="lazy"
         decoding="async"
       />
       <div className="leading-tight">
-        <div className="font-display text-sm font-bold tracking-tight text-foreground sm:text-base">
+        <div className="font-display text-[10px] font-bold tracking-tight text-foreground sm:text-sm lg:text-base whitespace-nowrap">
           AI POWER ENTERPRISES
         </div>
-        <div className="text-[10px] font-medium uppercase tracking-[0.22em] text-muted-foreground">
+        <div className="text-[7px] font-medium uppercase tracking-[0.2em] text-muted-foreground sm:text-[9px] lg:text-[10px] whitespace-nowrap">
           Enterprise IT Solutions
         </div>
       </div>
@@ -68,7 +69,7 @@ const BrandMark = memo(function BrandMark() {
 // ─── Animated Hamburger ──────────────────────────────────────────
 function Hamburger({ open }: { open: boolean }) {
   return (
-    <div className="relative h-6 w-6" aria-hidden="true">
+    <div className="relative h-5 w-5 sm:h-6 sm:w-6" aria-hidden="true">
       <span
         className={cn(
           "absolute left-0 top-0 h-0.5 w-full rounded-full bg-foreground transition-all duration-300 ease-out",
@@ -120,16 +121,16 @@ function ServicesDropdown({ pathname }: { pathname: string }) {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, [isOpen]);
 
-  const toggleDropdown = () => setIsOpen((prev) => !prev);
+  const toggleDropdown = useCallback(() => setIsOpen((prev) => !prev), []);
 
   return (
     <div className="relative" ref={containerRef}>
       <button
         ref={triggerRef}
         className={cn(
-          "flex items-center gap-1 rounded-lg px-4 py-2 text-sm font-medium transition-all duration-300 hover:bg-sky/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky",
+          "flex items-center gap-1 rounded-lg px-3 py-2 text-sm font-medium transition-all duration-300 hover:bg-primary/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50",
           serviceLinks.some((link) => pathname === link.to)
-            ? "bg-sky/10 text-sky"
+            ? "bg-primary/10 text-primary"
             : "text-muted-foreground hover:text-foreground"
         )}
         onClick={toggleDropdown}
@@ -142,7 +143,7 @@ function ServicesDropdown({ pathname }: { pathname: string }) {
         Services
         <ChevronDown
           className={cn(
-            "size-4 transition-transform duration-300",
+            "size-3.5 transition-transform duration-300",
             isOpen && "rotate-180"
           )}
         />
@@ -152,10 +153,10 @@ function ServicesDropdown({ pathname }: { pathname: string }) {
         id="services-dropdown"
         role="menu"
         className={cn(
-          "absolute left-0 top-full mt-1 w-64 origin-top-left rounded-xl border border-border/50 bg-background/95 p-2 shadow-2xl backdrop-blur-xl transition-all duration-200 ease-out",
+          "absolute left-0 top-full mt-1 w-64 origin-top-left rounded-xl border border-border/50 bg-background/95 p-2 shadow-2xl shadow-primary/5 backdrop-blur-xl transition-all duration-200 ease-out",
           isOpen
-            ? "pointer-events-auto opacity-100 scale-100"
-            : "pointer-events-none opacity-0 scale-95"
+            ? "pointer-events-auto opacity-100 scale-100 translate-y-0"
+            : "pointer-events-none opacity-0 scale-95 -translate-y-1"
         )}
         onMouseEnter={() => setIsOpen(true)}
         onMouseLeave={() => setIsOpen(false)}
@@ -169,17 +170,17 @@ function ServicesDropdown({ pathname }: { pathname: string }) {
                 <Link
                   to={link.to}
                   className={cn(
-                    "flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky",
+                    "flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50",
                     isActive
-                      ? "bg-sky/10 text-sky"
-                      : "text-foreground hover:bg-sky/10 hover:text-sky"
+                      ? "bg-primary/10 text-primary"
+                      : "text-foreground hover:bg-primary/10 hover:text-primary"
                   )}
                   onClick={() => setIsOpen(false)}
                 >
                   <Icon className="size-4 shrink-0" />
                   {link.label}
                   {isActive && (
-                    <CheckCircle className="ml-auto size-4 text-sky" />
+                    <CheckCircle className="ml-auto size-4 text-primary" />
                   )}
                 </Link>
               </li>
@@ -189,7 +190,7 @@ function ServicesDropdown({ pathname }: { pathname: string }) {
         <div className="mt-1 border-t border-border/50 pt-2">
           <Link
             to="/services"
-            className="flex items-center justify-between rounded-lg px-3 py-2 text-xs font-medium text-muted-foreground transition-colors hover:text-sky focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky"
+            className="flex items-center justify-between rounded-lg px-3 py-2 text-xs font-medium text-muted-foreground transition-colors hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50"
             onClick={() => setIsOpen(false)}
           >
             View All Services
@@ -207,30 +208,46 @@ export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const pathname = useRouterState({ select: (s) => s.location.pathname });
 
+  // Throttled scroll handler
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 10);
+    let ticking = false;
+    const handleScroll = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          setScrolled(window.scrollY > 10);
+          ticking = false;
+        });
+        ticking = true;
+      }
+    };
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // ─── Active link classes ──────────────────────────────────────
+  // ─── Active link classes with underline indicator ─────────────
   const linkClass = (to: string) => {
     const isActive = pathname === to;
     return cn(
-      "relative rounded-lg px-4 py-2 text-sm font-medium transition-all duration-200 hover:bg-sky/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky",
-      isActive
-        ? "bg-sky/10 text-sky"
-        : "text-muted-foreground hover:text-foreground"
+      "relative rounded-lg px-3 py-2 text-sm font-medium transition-all duration-200 hover:bg-primary/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50",
+      isActive ? "text-primary" : "text-muted-foreground hover:text-foreground"
+    );
+  };
+
+  const underlineClass = (to: string) => {
+    const isActive = pathname === to;
+    return cn(
+      "absolute bottom-0 left-1/2 h-0.5 w-6 -translate-x-1/2 rounded-full bg-primary transition-all duration-300",
+      isActive ? "opacity-100 w-6" : "opacity-0 w-0"
     );
   };
 
   const mobileLinkClass = (to: string) => {
     const isActive = pathname === to;
     return cn(
-      "group relative flex items-center gap-3 rounded-lg px-4 py-3 text-sm font-medium transition-all duration-200 hover:bg-sky/10 active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky",
+      "group relative flex items-center gap-3 rounded-lg px-4 py-3 text-sm font-medium transition-all duration-200 hover:bg-primary/10 active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50",
       isActive
-        ? "bg-sky/10 text-sky"
-        : "text-foreground hover:text-sky"
+        ? "bg-primary/10 text-primary"
+        : "text-foreground hover:text-primary"
     );
   };
 
@@ -243,15 +260,15 @@ export function Navbar() {
   return (
     <header
       className={cn(
-        "sticky top-8 z-40 w-full border-b transition-all duration-300", // ✅ top-8 match karta hai TopHeader ki h-8 (32px)
+        "sticky top-8 z-40 w-full border-b transition-all duration-300",
         scrolled
-          ? "border-border/40 bg-background/85 backdrop-blur-xl shadow-lg shadow-sky/5"
+          ? "border-border/40 bg-background/85 backdrop-blur-xl shadow-lg shadow-primary/5"
           : "border-transparent bg-background/60 backdrop-blur-md"
       )}
     >
       <nav
         aria-label="Primary"
-        className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-3 sm:px-6 lg:px-8"
+        className="mx-auto flex max-w-7xl items-center justify-between gap-3 px-3 py-2 sm:px-6 lg:px-8 sm:py-3"
       >
         <BrandMark />
 
@@ -264,6 +281,7 @@ export function Navbar() {
               aria-current={pathname === "/" ? "page" : undefined}
             >
               Home
+              <span className={underlineClass("/")} />
             </Link>
           </li>
           <li>
@@ -273,6 +291,7 @@ export function Navbar() {
               aria-current={pathname === "/sla" ? "page" : undefined}
             >
               SLA Support
+              <span className={underlineClass("/sla")} />
             </Link>
           </li>
           <li>
@@ -286,31 +305,33 @@ export function Navbar() {
                 aria-current={pathname === link.to ? "page" : undefined}
               >
                 {link.label}
+                <span className={underlineClass(link.to)} />
               </Link>
             </li>
           ))}
         </ul>
 
-        <div className="flex items-center gap-2">
+        {/* ─── Right Actions ─── */}
+        <div className="flex items-center gap-1 sm:gap-2">
           <Button
             asChild
-            className="hidden sm:inline-flex bg-gradient-to-r from-sky to-blue-400 text-white shadow-md shadow-sky/30 hover:scale-105 hover:shadow-lg hover:shadow-sky/40 transition-all group rounded-lg"
+            className="hidden sm:inline-flex h-9 px-4 text-sm font-semibold bg-gradient-to-r from-primary to-primary/90 text-primary-foreground shadow-md shadow-primary/30 hover:scale-105 hover:shadow-lg hover:shadow-primary/40 transition-all group rounded-lg"
           >
             <Link to="/contact" hash="request">
               Request Quote
-              <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" />
+              <ArrowRight className="size-3.5 transition-transform group-hover:translate-x-1" />
             </Link>
           </Button>
 
           <ThemeToggle />
 
-          {/* ─── Mobile Menu ─── */}
+          {/* ─── Mobile Menu (Sheet) ─── */}
           <Sheet open={open} onOpenChange={setOpen}>
             <SheetTrigger asChild>
               <Button
                 variant="ghost"
                 size="icon"
-                className="min-h-11 min-w-11 rounded-full hover:bg-sky/20 xl:hidden focus-visible:ring-2 focus-visible:ring-sky"
+                className="min-h-10 min-w-10 rounded-full hover:bg-primary/20 xl:hidden focus-visible:ring-2 focus-visible:ring-primary/50"
                 aria-label="Toggle navigation menu"
               >
                 <Hamburger open={open} />
@@ -321,9 +342,10 @@ export function Navbar() {
               side="right"
               className="w-full max-w-sm border-l border-border/50 bg-background/95 p-0 shadow-2xl backdrop-blur-xl data-[state=open]:animate-in data-[state=open]:slide-in-from-right data-[state=closed]:animate-out data-[state=closed]:slide-out-to-right"
             >
-              <div className="flex h-full flex-col p-6">
-                <SheetHeader className="flex flex-row items-center justify-between space-y-0 border-b border-border/50 pb-4">
-                  <SheetTitle className="flex items-center gap-3">
+              <div className="flex h-full flex-col p-5">
+                {/* ─── Sheet Header (Single Close Button) ─── */}
+                <div className="flex items-center justify-between border-b border-border/50 pb-3">
+                  <div className="flex items-center gap-2.5">
                     <img
                       src={logo}
                       alt="AI Power Enterprises Logo"
@@ -331,24 +353,27 @@ export function Navbar() {
                       loading="lazy"
                       decoding="async"
                     />
-                    <span className="font-display text-sm font-bold text-foreground">
-                      AI POWER ENTERPRISES
+                    <span className="font-display text-sm font-bold text-foreground leading-tight">
+                      AI POWER<br className="sm:hidden" />
+                      <span className="hidden sm:inline"> </span>
+                      ENTERPRISES
                     </span>
-                  </SheetTitle>
+                  </div>
                   <SheetClose asChild>
                     <Button
                       variant="ghost"
                       size="icon"
-                      className="rounded-full hover:bg-sky/20 focus-visible:ring-2 focus-visible:ring-sky"
+                      className="rounded-full hover:bg-primary/20 focus-visible:ring-2 focus-visible:ring-primary/50"
                       aria-label="Close menu"
                     >
                       <X className="size-5" />
                     </Button>
                   </SheetClose>
-                </SheetHeader>
+                </div>
 
+                {/* ─── Sheet Body ─── */}
                 <div className="flex-1 overflow-y-auto py-4">
-                  <ul className="flex flex-col gap-1 px-2">
+                  <ul className="flex flex-col gap-0.5">
                     <li>
                       <Link
                         to="/"
@@ -359,7 +384,7 @@ export function Navbar() {
                         <Home className="size-4 shrink-0" />
                         Home
                         {pathname === "/" && (
-                          <Sparkles className="ml-auto size-4 text-sky" />
+                          <Sparkles className="ml-auto size-4 text-primary" />
                         )}
                       </Link>
                     </li>
@@ -373,15 +398,15 @@ export function Navbar() {
                         <ShieldCheck className="size-4 shrink-0" />
                         SLA Support
                         {pathname === "/sla" && (
-                          <Sparkles className="ml-auto size-4 text-sky" />
+                          <Sparkles className="ml-auto size-4 text-primary" />
                         )}
                       </Link>
                     </li>
-                    <li>
-                      <p className="mt-2 text-[10px] font-semibold uppercase tracking-widest text-muted-foreground">
+                    <li className="mt-3">
+                      <p className="px-4 text-[10px] font-semibold uppercase tracking-widest text-muted-foreground">
                         Our Services
                       </p>
-                      <ul className="mt-1 flex flex-col gap-1">
+                      <ul className="mt-1 flex flex-col gap-0.5">
                         {serviceLinks.map((link) => {
                           const Icon = link.icon;
                           const isActive = pathname === link.to;
@@ -391,16 +416,16 @@ export function Navbar() {
                                 to={link.to}
                                 onClick={() => setOpen(false)}
                                 className={cn(
-                                  "flex items-center gap-3 rounded-lg px-4 py-2.5 text-sm font-medium transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky",
+                                  "flex items-center gap-3 rounded-lg px-4 py-2.5 text-sm font-medium transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50",
                                   isActive
-                                    ? "bg-sky/10 text-sky"
-                                    : "text-muted-foreground hover:bg-sky/10 hover:text-foreground"
+                                    ? "bg-primary/10 text-primary"
+                                    : "text-muted-foreground hover:bg-primary/10 hover:text-foreground"
                                 )}
                               >
                                 <Icon className="size-4 shrink-0" />
                                 {link.label}
                                 {isActive && (
-                                  <CheckCircle className="ml-auto size-4 text-sky" />
+                                  <CheckCircle className="ml-auto size-4 text-primary" />
                                 )}
                               </Link>
                             </li>
@@ -410,7 +435,7 @@ export function Navbar() {
                       <Link
                         to="/services"
                         onClick={() => setOpen(false)}
-                        className="mt-1 flex items-center justify-between rounded-lg px-4 py-2 text-xs font-medium text-muted-foreground transition-colors hover:text-sky focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky"
+                        className="mt-1 flex items-center justify-between rounded-lg px-4 py-2 text-xs font-medium text-muted-foreground transition-colors hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50"
                       >
                         View All Services →
                       </Link>
@@ -431,7 +456,7 @@ export function Navbar() {
                             {Icon && <Icon className="size-4 shrink-0" />}
                             {link.label}
                             {pathname === link.to && (
-                              <Sparkles className="ml-auto size-4 text-sky" />
+                              <Sparkles className="ml-auto size-4 text-primary" />
                             )}
                           </Link>
                         </li>
@@ -440,21 +465,31 @@ export function Navbar() {
                   </ul>
                 </div>
 
-                <div className="mt-auto space-y-4 border-t border-border/50 pt-6">
-                  <div className="flex items-center gap-3 rounded-xl bg-muted/30 p-3 text-sm">
-                    <div className="flex size-8 items-center justify-center rounded-lg bg-emerald-500/10 text-emerald-500">
-                      <Phone className="size-4" />
+                {/* ─── Sheet Footer ─── */}
+                <div className="mt-auto space-y-4 border-t border-border/50 pt-4">
+                  <div className="grid grid-cols-2 gap-2">
+                    <div className="flex items-center gap-2 rounded-xl bg-primary/5 p-2.5 text-sm">
+                      <div className="flex size-8 items-center justify-center rounded-lg bg-emerald-500/10 text-emerald-500">
+                        <Phone className="size-4" />
+                      </div>
+                      <div>
+                        <p className="text-[10px] font-semibold text-foreground">24/7 Support</p>
+                        <p className="text-[9px] text-muted-foreground">Instant response</p>
+                      </div>
                     </div>
-                    <div>
-                      <p className="font-semibold text-foreground">24/7 Support</p>
-                      <p className="text-[11px] text-muted-foreground">
-                        Instant hardware response
-                      </p>
+                    <div className="flex items-center gap-2 rounded-xl bg-primary/5 p-2.5 text-sm">
+                      <div className="flex size-8 items-center justify-center rounded-lg bg-primary/10 text-primary">
+                        <Headset className="size-4" />
+                      </div>
+                      <div>
+                        <p className="text-[10px] font-semibold text-foreground">SLA</p>
+                        <p className="text-[9px] text-muted-foreground">30 min response</p>
+                      </div>
                     </div>
                   </div>
                   <Button
                     asChild
-                    className="w-full bg-gradient-to-r from-sky to-blue-400 text-white shadow-md shadow-sky/30 hover:shadow-lg hover:shadow-sky/40 transition-all group rounded-lg"
+                    className="w-full h-10 text-sm font-semibold bg-gradient-to-r from-primary to-primary/90 text-primary-foreground shadow-md shadow-primary/30 hover:shadow-lg hover:shadow-primary/40 transition-all group rounded-lg"
                   >
                     <Link
                       to="/contact"
@@ -462,10 +497,10 @@ export function Navbar() {
                       onClick={() => setOpen(false)}
                     >
                       Request Quote
-                      <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" />
+                      <ArrowRight className="size-3.5 transition-transform group-hover:translate-x-1" />
                     </Link>
                   </Button>
-                  <p className="text-center text-[10px] text-muted-foreground">
+                  <p className="text-center text-[9px] text-muted-foreground">
                     © {new Date().getFullYear()} AI Power Enterprises
                   </p>
                 </div>

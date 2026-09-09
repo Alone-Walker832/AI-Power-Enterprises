@@ -17,8 +17,8 @@ export const company = {
     info: "info@aipowerent.net",
     sales: "sales@aipowerent.net",
   },
-  phone: "+922134000516",
-  whatsapp: "922134000516",
+  phone: "+92 21 33382931",
+  whatsapp: "+92 21 33382931",
   whatsappMessage:
     "Hello AI Power Enterprises, I would like to discuss enterprise IT services and SLA support.",
 } as const;
