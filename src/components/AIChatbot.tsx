@@ -5,6 +5,9 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 import { chatbotFaqs } from "@/data/companyData";
 import { cn } from "@/lib/utils";
 
+// ─── Import Website Logo (only for header) ──────────────────────
+import logo from "@/assets/logo.png";
+
 type Message = {
   id: string;
   role: "bot" | "user";
@@ -104,18 +107,18 @@ export function AIChatbot() {
 
   return (
     <>
-      {/* ─── Floating Trigger Button (Theme-aware, no sky gradient) ─── */}
+      {/* ─── Floating Trigger Button (without logo) ─── */}
       {!open && (
         <Button
           onClick={() => setOpen(true)}
           aria-label="Open AI Assistant"
-          className="group fixed bottom-24 right-6 z-40 flex h-12 items-center gap-2.5 rounded-full border border-border/40 bg-primary px-4 font-sans text-xs font-bold text-primary-foreground shadow-lg shadow-primary/20 transition-all duration-300 hover:-translate-y-0.5 hover:scale-105 hover:shadow-xl hover:shadow-primary/30 active:scale-95"
+          className="group fixed bottom-24 right-6 z-40 flex h-12 items-center gap-2.5 rounded-full border border-primary/30 bg-gradient-to-r from-primary to-primary/90 px-4 font-sans text-xs font-bold text-primary-foreground shadow-lg shadow-primary/30 transition-all duration-300 hover:-translate-y-1 hover:scale-105 hover:shadow-xl hover:shadow-primary/40 active:scale-95"
         >
           <div className="relative flex items-center justify-center">
             <Bot className="size-4.5 transition-transform duration-300 group-hover:rotate-12" />
             <span className="absolute -top-1 -right-1 flex size-2">
-              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-primary/80 opacity-75" />
-              <span className="relative inline-flex size-2 rounded-full bg-primary-foreground" />
+              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
+              <span className="relative inline-flex size-2 rounded-full bg-emerald-400" />
             </span>
           </div>
           <span className="tracking-wide">Ask AI Assistant</span>
@@ -123,143 +126,150 @@ export function AIChatbot() {
         </Button>
       )}
 
-      {/* ─── Chat Widget Window (Theme-aware) ─── */}
+      {/* ─── Chat Widget Window with Animated Border ─── */}
       {open && (
         <div
           role="dialog"
           aria-label="AI Assistant Window"
-          className={cn(
-            "fixed bottom-24 right-6 z-50 flex h-[27rem] w-[min(20.5rem,calc(100vw-2rem))] flex-col overflow-hidden rounded-2xl border border-border/60 bg-background/95 text-foreground shadow-2xl backdrop-blur-xl animate-in fade-in slide-in-from-bottom-4 duration-300",
-            "dark:bg-card/95 dark:border-border/40"
-          )}
+          className="fixed bottom-24 right-6 z-50 w-[min(22rem,calc(100vw-2rem))] h-[28rem] animate-in fade-in slide-in-from-bottom-4 duration-300"
         >
-          {/* Header */}
-          <div className="flex items-center justify-between border-b border-border/50 bg-muted/30 px-3.5 py-3 backdrop-blur-sm">
-            <div className="flex items-center gap-2.5">
-              <div className="relative flex size-8 items-center justify-center rounded-xl bg-primary/10 text-primary border border-primary/20">
-                <Bot className="size-4" />
-                <span className="absolute -bottom-0.5 -right-0.5 size-2 rounded-full bg-emerald-400 ring-2 ring-background" />
-              </div>
-              <div>
-                <div className="flex items-center gap-1.5">
-                  <span className="font-display text-xs font-bold">AI Power Support</span>
-                  <Sparkles className="size-3 text-primary animate-pulse" />
-                </div>
-                <p className="text-[9px] text-muted-foreground font-medium uppercase tracking-wider">
-                  24/7 Automated SLA
-                </p>
-              </div>
-            </div>
-
-            <div className="flex items-center gap-1">
-              <Button
-                variant="ghost"
-                size="icon"
-                onClick={handleReset}
-                className="size-7 rounded-lg text-muted-foreground hover:text-foreground hover:bg-muted"
-                title="Reset Conversation"
-              >
-                <RefreshCw className="size-3.5" />
-              </Button>
-              <Button
-                variant="ghost"
-                size="icon"
-                onClick={() => setOpen(false)}
-                className="size-7 rounded-lg text-muted-foreground hover:text-foreground hover:bg-muted"
-                title="Close Chat"
-              >
-                <X className="size-4" />
-              </Button>
-            </div>
-          </div>
-
-          {/* Messages Scroll Container */}
-          <ScrollArea className="flex-1 px-3 py-3">
-            <div className="space-y-3">
-              {messages.map((message) => (
-                <div
-                  key={message.id}
-                  className={cn(
-                    "flex flex-col gap-1 max-w-[88%]",
-                    message.role === "user" ? "ml-auto items-end" : "items-start"
-                  )}
-                >
-                  <div
-                    className={cn(
-                      "rounded-2xl px-3.5 py-2.5 text-xs font-normal leading-relaxed shadow-sm",
-                      message.role === "user"
-                        ? "rounded-tr-xs bg-primary text-primary-foreground"
-                        : "rounded-tl-xs border border-border/50 bg-muted text-muted-foreground"
-                    )}
-                  >
-                    {message.text}
+          {/* Animated Border Wrapper */}
+          <div className="relative h-full w-full rounded-2xl p-[2px] bg-gradient-to-r from-primary via-purple-500 to-primary bg-[length:300%_300%] animate-border-spin">
+            <div className="flex h-full w-full flex-col overflow-hidden rounded-2xl bg-background/95 backdrop-blur-xl dark:bg-card/95 shadow-2xl shadow-primary/20">
+              
+              {/* ─── Header (with Logo) ─── */}
+              <div className="flex items-center justify-between border-b border-primary/20 bg-gradient-to-r from-primary/5 via-background to-primary/5 px-4 py-3 backdrop-blur-sm shrink-0">
+                <div className="flex items-center gap-3">
+                  <div className="relative flex size-10 items-center justify-center rounded-xl from-primary/20 to-primary/5 p-1 ring-2 ring-primary/20">
+                    <img
+                      src={logo}
+                      alt="AI Power Enterprises"
+                      className="h-full w-full rounded-lg object-contain"
+                    />
+                    <span className="absolute -bottom-0.5 -right-0.5 size-2.5 rounded-full bg-emerald-400 ring-2 ring-background" />
                   </div>
-                  <span className="px-1 text-[9px] text-muted-foreground/60">
-                    {message.time}
-                  </span>
+                  <div>
+                    <div className="flex items-center gap-1.5">
+                      <span className="font-display text-sm font-bold text-foreground">AI Power Support</span>
+                      <Sparkles className="size-3 text-primary animate-pulse" />
+                    </div>
+                    <p className="text-[9px] font-medium uppercase tracking-wider text-muted-foreground">
+                      24/7 Automated SLA
+                    </p>
+                  </div>
                 </div>
-              ))}
 
-              {/* Typing Indicator */}
-              {isTyping && (
-                <div className="flex items-center gap-1.5 max-w-[80%] rounded-2xl rounded-tl-xs border border-border/50 bg-muted px-3.5 py-2.5 text-xs">
-                  <span className="size-1.5 animate-bounce rounded-full bg-primary/80 [animation-delay:-0.32s]" />
-                  <span className="size-1.5 animate-bounce rounded-full bg-primary/80 [animation-delay:-0.16s]" />
-                  <span className="size-1.5 animate-bounce rounded-full bg-primary/80" />
-                </div>
-              )}
-
-              <div ref={messagesEndRef} />
-            </div>
-          </ScrollArea>
-
-          {/* Bottom Action Section: Initial FAQs or Active Text Field */}
-          <div className="border-t border-border/50 bg-muted/20 p-2.5 backdrop-blur-sm">
-            {!hasInteracted ? (
-              <div className="space-y-1.5">
-                <div className="flex items-center gap-1 px-1 text-[10px] font-semibold text-muted-foreground">
-                  <MessageSquare className="size-3 text-primary" />
-                  <span>Suggested Quick Questions:</span>
-                </div>
-                <div className="flex flex-col gap-1">
-                  {chatbotFaqs.slice(0, 4).map((faq) => (
-                    <button
-                      key={faq.question}
-                      type="button"
-                      onClick={() => processQuery(faq.question)}
-                      className="group flex items-center justify-between rounded-lg border border-border/50 bg-background/80 px-2.5 py-1.5 text-left text-[11px] font-medium text-foreground transition-all hover:border-primary/40 hover:bg-primary/10 hover:text-primary active:scale-[0.99]"
-                    >
-                      <span className="line-clamp-1">{faq.question}</span>
-                      <Send className="size-2.5 shrink-0 opacity-40 transition-transform group-hover:translate-x-0.5 group-hover:opacity-100" />
-                    </button>
-                  ))}
+                <div className="flex items-center gap-1">
+                  <Button
+                    variant="ghost"
+                    size="icon"
+                    onClick={handleReset}
+                    className="size-8 rounded-lg text-muted-foreground transition-all hover:bg-primary/10 hover:text-primary"
+                    title="Reset Conversation"
+                  >
+                    <RefreshCw className="size-4" />
+                  </Button>
+                  <Button
+                    variant="ghost"
+                    size="icon"
+                    onClick={() => setOpen(false)}
+                    className="size-8 rounded-lg text-muted-foreground transition-all hover:bg-destructive/10 hover:text-destructive"
+                    title="Close Chat"
+                  >
+                    <X className="size-4" />
+                  </Button>
                 </div>
               </div>
-            ) : (
-              <form
-                onSubmit={(e) => {
-                  e.preventDefault();
-                  processQuery(inputValue);
-                }}
-                className="flex items-center gap-1.5"
-              >
-                <input
-                  type="text"
-                  value={inputValue}
-                  onChange={(e) => setInputValue(e.target.value)}
-                  placeholder="Ask a question..."
-                  className="flex-1 rounded-full border border-border/60 bg-background px-3.5 py-1.5 text-xs text-foreground outline-none transition-all placeholder:text-muted-foreground/60 focus:border-primary focus:ring-1 focus:ring-primary/30"
-                />
-                <Button
-                  type="submit"
-                  size="icon"
-                  disabled={!inputValue.trim() || isTyping}
-                  className="size-7 shrink-0 rounded-full bg-primary text-primary-foreground transition-all hover:bg-primary/90 active:scale-95 disabled:opacity-40"
-                >
-                  <Send className="size-3" />
-                </Button>
-              </form>
-            )}
+
+              {/* ─── Messages (no gap from header) ─── */}
+              <ScrollArea className="flex-1 px-4 py-3 [&>div]:block">
+                <div className="space-y-3">
+                  {messages.map((message) => (
+                    <div
+                      key={message.id}
+                      className={cn(
+                        "flex flex-col gap-1 max-w-[88%]",
+                        message.role === "user" ? "ml-auto items-end" : "items-start"
+                      )}
+                    >
+                      <div
+                        className={cn(
+                          "rounded-2xl px-4 py-2.5 text-sm font-normal leading-relaxed shadow-sm",
+                          message.role === "user"
+                            ? "rounded-tr-xs bg-primary text-primary-foreground" // Solid primary
+                            : "rounded-tl-xs border border-primary/10 bg-muted/50 text-foreground backdrop-blur-sm"
+                        )}
+                      >
+                        {message.text}
+                      </div>
+                      <span className="px-1 text-[10px] text-muted-foreground/50">
+                        {message.time}
+                      </span>
+                    </div>
+                  ))}
+
+                  {/* Typing Indicator */}
+                  {isTyping && (
+                    <div className="flex items-center gap-1.5 max-w-[80%] rounded-2xl rounded-tl-xs border border-primary/10 bg-muted/50 px-4 py-2.5 text-sm backdrop-blur-sm">
+                      <span className="size-2 animate-bounce rounded-full bg-primary/80 [animation-delay:-0.32s]" />
+                      <span className="size-2 animate-bounce rounded-full bg-primary/80 [animation-delay:-0.16s]" />
+                      <span className="size-2 animate-bounce rounded-full bg-primary/80" />
+                    </div>
+                  )}
+
+                  <div ref={messagesEndRef} />
+                </div>
+              </ScrollArea>
+
+              {/* ─── Bottom Area ─── */}
+              <div className="border-t border-primary/10 bg-gradient-to-b from-background to-primary/5 p-3 backdrop-blur-sm shrink-0">
+                {!hasInteracted ? (
+                  <div className="space-y-2">
+                    <div className="flex items-center gap-1.5 px-1 text-[10px] font-semibold text-muted-foreground">
+                      <MessageSquare className="size-3.5 text-primary" />
+                      <span>Suggested Quick Questions:</span>
+                    </div>
+                    <div className="flex flex-col gap-1.5">
+                      {chatbotFaqs.slice(0, 4).map((faq) => (
+                        <button
+                          key={faq.question}
+                          type="button"
+                          onClick={() => processQuery(faq.question)}
+                          className="group flex items-center justify-between rounded-xl border border-primary/10 bg-background/80 px-3 py-2 text-left text-xs font-medium text-foreground transition-all hover:border-primary/30 hover:bg-primary/5 hover:text-primary active:scale-[0.98]"
+                        >
+                          <span className="line-clamp-1">{faq.question}</span>
+                          <Send className="size-3 shrink-0 opacity-30 transition-all group-hover:translate-x-0.5 group-hover:opacity-100" />
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+                ) : (
+                  <form
+                    onSubmit={(e) => {
+                      e.preventDefault();
+                      processQuery(inputValue);
+                    }}
+                    className="flex items-center gap-2"
+                  >
+                    <input
+                      type="text"
+                      value={inputValue}
+                      onChange={(e) => setInputValue(e.target.value)}
+                      placeholder="Ask a question..."
+                      className="flex-1 rounded-full border border-primary/20 bg-background px-4 py-2 text-sm text-foreground outline-none transition-all placeholder:text-muted-foreground/60 focus:border-primary focus:ring-2 focus:ring-primary/20"
+                    />
+                    <Button
+                      type="submit"
+                      size="icon"
+                      disabled={!inputValue.trim() || isTyping}
+                      className="size-9 shrink-0 rounded-full bg-primary text-primary-foreground shadow-lg shadow-primary/30 transition-all hover:scale-105 hover:shadow-primary/40 active:scale-95 disabled:opacity-50"
+                    >
+                      <Send className="size-4" />
+                    </Button>
+                  </form>
+                )}
+              </div>
+            </div>
           </div>
         </div>
       )}

@@ -47,11 +47,12 @@ import cctvImage from "@/assets/hero-cctv.jpg?url";
 import managedImage from "@/assets/hero-managed.jpg?url";
 
 // ─── Partner Logos ──────────────────────────────────────────────
-import ciscoLogo from "@/assets/partners/cisco.png?url";
-import dellLogo from "@/assets/partners/dell.png?url";
-import hpLogo from "@/assets/partners/hp.png?url";
-import microsoftLogo from "@/assets/partners/microsoft.webp?url";
-import redhatLogo from "@/assets/partners/redhat.png?url";
+import ciscoLogo from "@/assets/partners/cisco.jpeg";
+import dellLogo from "@/assets/partners/dell.jpeg";
+import hpLogo from "@/assets/partners/hp.jpeg";
+import microsoftLogo from "@/assets/partners/microsoft.jpeg";
+import redhatLogo from "@/assets/partners/redhat.jpeg";
+import fujitsuLogo from "@/assets/partners/fujitsu.jpeg";
 
 import {
   pillars,
@@ -108,8 +109,8 @@ const AnimatedCounter = ({ value, label }: { value: string; label: string }) => 
 const useTypewriter = (
   words: string[],
   onWordChange?: (word: string) => void,
-  typingSpeed = 60,
-  deletingSpeed = 30,
+  typingSpeed = 55,
+  deletingSpeed = 25,
   pauseDuration = 2500
 ) => {
   const [text, setText] = useState("");
@@ -198,6 +199,7 @@ const partnerBadges = [
   { name: "Hewlett Packard", logo: hpLogo },
   { name: "Dell Technologies", logo: dellLogo },
   { name: "Cisco Systems", logo: ciscoLogo },
+  { name: "Fujitsu", logo: fujitsuLogo },
 ];
 
 export default function HomePage() {
@@ -221,264 +223,333 @@ export default function HomePage() {
       const matched = serviceWords.find((w) => w.label === word);
       if (matched) setCurrentServiceImage(matched.image);
     },
-    60,   // typing speed (ms per char)
-    30,   // deleting speed
+    55,   // typing speed (ms per char)
+    25,   // deleting speed
     2500  // pause after full word
   );
 
   return (
     <>
       {/* ─── 1. HERO ─── */}
-      <section
-        ref={heroRef}
-        className="relative flex min-h-[calc(100vh-4rem)] w-full items-center overflow-hidden bg-gradient-to-br from-sky-100/60 via-sky-50/40 to-blue-100/40 dark:from-slate-950 dark:via-slate-900 dark:to-sky-950/20 select-none pt-10 md:pt-10"
-        aria-labelledby="hero-heading"
+<section
+  ref={heroRef}
+  className="relative flex min-h-[92vh] w-full items-center overflow-hidden bg-gradient-to-br from-sky-100/60 via-sky-50/40 to-blue-100/40 dark:from-slate-950 dark:via-slate-900 dark:to-sky-950/20 select-none"
+  aria-labelledby="hero-heading"
+>
+  {/* Background elements */}
+  <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_#0EA5E9_0%,_transparent_60%)] opacity-[0.06] dark:opacity-[0.08]" />
+  <div className="absolute inset-0 grid-pattern opacity-[0.02] dark:opacity-[0.03]" />
+  <div className="absolute inset-0 pointer-events-none">
+    {particles.map((p) => (
+      <motion.span
+        key={p.id}
+        className="absolute rounded-full bg-primary/20 dark:bg-primary/10"
+        style={{
+          width: p.size,
+          height: p.size,
+          top: p.y + "%",
+          left: p.x + "%",
+          opacity: p.opacity,
+        }}
+        animate={{
+          y: [0, -30, 0],
+          x: [0, 10, 0],
+          opacity: [p.opacity, p.opacity * 1.5, p.opacity],
+        }}
+        transition={{
+          duration: p.duration,
+          repeat: Infinity,
+          delay: p.delay,
+          ease: "easeInOut",
+        }}
+      />
+    ))}
+  </div>
+
+  <div className="relative mx-auto flex h-full w-full max-w-7xl items-center px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
+    <motion.div
+      style={{ y: contentY, opacity: useTransform(scrollYProgress, [0, 0.4], [1, 0.8]) }}
+      className="grid w-full items-center gap-4 lg:grid-cols-[1fr_0.9fr] lg:gap-8"
+    >
+      {/* ─── LEFT COLUMN ─── */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, ease: "easeOut" }}
+        className="flex flex-col items-center lg:items-start justify-center text-center lg:text-left"
       >
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_#0EA5E9_0%,_transparent_60%)] opacity-[0.06] dark:opacity-[0.08]" />
-        <div className="absolute inset-0 grid-pattern opacity-[0.02] dark:opacity-[0.03]" />
-        <div className="absolute inset-0 pointer-events-none">
-          {particles.map((p) => (
-            <motion.span
-              key={p.id}
-              className="absolute rounded-full bg-primary/20 dark:bg-primary/10"
-              style={{
-                width: p.size,
-                height: p.size,
-                top: p.y + "%",
-                left: p.x + "%",
-                opacity: p.opacity,
-              }}
-              animate={{
-                y: [0, -30, 0],
-                x: [0, 10, 0],
-                opacity: [p.opacity, p.opacity * 1.5, p.opacity],
-              }}
-              transition={{
-                duration: p.duration,
-                repeat: Infinity,
-                delay: p.delay,
-                ease: "easeInOut",
-              }}
-            />
-          ))}
+        <motion.span
+          initial={{ opacity: 0, scale: 0.95 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.4, delay: 0.1 }}
+          className="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/5 px-3.5 py-1.5 text-[11px] font-semibold uppercase tracking-[0.15em] text-primary backdrop-blur-sm shadow-sm w-fit dark:bg-primary/10"
+        >
+          <Zap className="size-3.5 shrink-0" />
+          <span>The Enterprise IT Partner</span>
+        </motion.span>
+
+        <h1
+          id="hero-heading"
+          className="mt-3 font-display text-2xl font-bold leading-tight tracking-tight text-foreground sm:text-3xl lg:text-4xl xl:text-5xl"
+        >
+          <span>Enterprise IT Infrastructure,</span>
+          <br />
+          <span>Managed Services &amp; 24/7</span>
+          <br />
+          <span className="relative after:content-['|'] after:animate-blink after:ml-1 bg-gradient-to-r from-primary via-sky-500 to-sky-400 bg-clip-text text-transparent">
+            {typedServices}
+          </span>
+        </h1>
+
+        <p className="mt-2 max-w-lg text-sm text-muted-foreground sm:text-base leading-relaxed mx-auto lg:mx-0">
+          {company.description ||
+            "A technology‑driven partner for enterprise infrastructure, integration, managed services and technical support — across Pakistan and internationally."}
+        </p>
+
+        <div className="mt-4 flex flex-wrap items-center justify-center lg:justify-start gap-3">
+          <Button
+            asChild
+            size="lg"
+            className="h-11 px-5 text-sm font-semibold bg-primary text-primary-foreground shadow-lg shadow-primary/30 hover:shadow-xl hover:shadow-primary/40 transition-all hover:scale-[1.02] active:scale-[0.98]"
+          >
+            <Link to="/services">
+              Explore Services
+              <ArrowRight className="ml-1.5 size-4" />
+            </Link>
+          </Button>
+          <Button
+            asChild
+            variant="outline"
+            className="h-11 border-border bg-background/50 px-5 text-sm font-semibold text-foreground hover:bg-accent hover:border-primary/30 transition-all backdrop-blur-sm"
+          >
+            <Link to="/contact" hash="request">SLA Consultation</Link>
+          </Button>
         </div>
 
-        <div className="relative mx-auto flex h-full w-full max-w-7xl items-center px-4 sm:px-6 lg:px-8 pb-8">
-          <motion.div
-            style={{ y: contentY, opacity: useTransform(scrollYProgress, [0, 0.4], [1, 0.8]) }}
-            className="grid w-full items-center gap-6 lg:grid-cols-[1fr_0.9fr] lg:gap-10"
-          >
-            {/* ─── LEFT COLUMN ─── */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, ease: "easeOut" }}
-              className="flex flex-col justify-center"
-            >
-              <motion.span
-                initial={{ opacity: 0, scale: 0.95 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.4, delay: 0.1 }}
-                className="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/5 px-3.5 py-1.5 text-[11px] font-semibold uppercase tracking-[0.15em] text-primary backdrop-blur-sm shadow-sm w-fit dark:bg-primary/10"
-              >
-                <Zap className="size-3.5 shrink-0" />
-                <span>The Enterprise IT Partner</span>
-              </motion.span>
+        {/* ─── TRUSTED BY — Stars + Partner Logos ─── */}
+        <motion.div
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.6, duration: 0.5 }}
+          className="mt-5 w-full"
+        >
+          <div className="flex items-center justify-center lg:justify-start gap-3 mb-3">
+            <div className="flex gap-0.5">
+              {[...Array(5)].map((_, i) => (
+                <svg
+                  key={i}
+                  className="size-4 text-yellow-400 fill-yellow-400"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                >
+                  <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
+                </svg>
+              ))}
+            </div>
+            <span className="text-sm font-semibold text-foreground/80">
+              Trusted by 1,000+ businesses
+            </span>
+          </div>
 
-              <h1
-                id="hero-heading"
-                className="mt-4 font-display text-2xl font-bold leading-tight tracking-tight text-foreground sm:text-3xl lg:text-4xl xl:text-5xl"
+          {/* Partner badges: overlapping stack with premium hover effect */}
+          <div className="flex flex-wrap items-center justify-center lg:justify-start -space-x-2 sm:-space-x-3">
+            {partnerBadges.map((partner, idx) => (
+              <div
+                key={partner.name}
+                className="relative group transition-all duration-300 hover:z-[100] hover:scale-110 hover:-translate-y-2"
+                style={{ zIndex: partnerBadges.length - idx }}
               >
-                <span>Enterprise IT Infrastructure,</span>
-                <br />
-                <span>Managed Services &amp; 24/7</span>
-                <br />
-                <span className="relative after:content-['|'] after:animate-blink after:ml-1">
-                  {typedServices}
+                <div className="flex h-12 w-12 sm:h-14 sm:w-14 items-center justify-center rounded-full border-2 border-white/80 bg-white/90 shadow-lg backdrop-blur-sm transition-all duration-300 group-hover:border-primary/50 group-hover:shadow-2xl group-hover:ring-2 group-hover:ring-primary/30 dark:border-slate-800/80 dark:bg-slate-800/90">
+                  <img
+                    src={partner.logo}
+                    alt={`${partner.name} logo`}
+                    className="h-full w-full object-contain p-1.5"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </div>
+                {/* Tooltip on hover */}
+                <span className="absolute -bottom-6 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-[8px] font-semibold uppercase tracking-wider text-muted-foreground whitespace-nowrap">
+                  {partner.name}
                 </span>
-              </h1>
-
-              <p className="mt-3 max-w-lg text-sm text-muted-foreground sm:text-base leading-relaxed">
-                {company.description ||
-                  "A technology‑driven partner for enterprise infrastructure, integration, managed services and technical support — across Pakistan and internationally."}
-              </p>
-
-              <div className="mt-5 flex flex-wrap gap-3">
-                <Button
-                  asChild
-                  size="lg"
-                  className="h-12 px-6 text-sm font-semibold bg-primary text-primary-foreground shadow-lg shadow-primary/30 hover:shadow-xl hover:shadow-primary/40 transition-all hover:scale-[1.02] active:scale-[0.98]"
-                >
-                  <Link to="/services">
-                    Explore Services
-                    <ArrowRight className="ml-1.5 size-4" />
-                  </Link>
-                </Button>
-                <Button
-                  asChild
-                  variant="outline"
-                  className="h-12 border-border bg-background/50 px-6 text-sm font-semibold text-foreground hover:bg-accent hover:border-primary/30 transition-all backdrop-blur-sm"
-                >
-                  <Link to="/contact" hash="request">SLA Consultation</Link>
-                </Button>
               </div>
+            ))}
+          </div>
+        </motion.div>
+      </motion.div>
 
-              {/* ─── TRUSTED BY — Stars + Partner Logos ─── */}
-              <motion.div
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.6, duration: 0.5 }}
-                className="mt-8 w-full"
-              >
-                <div className="flex items-center gap-3 mb-4">
-                  <div className="flex gap-0.5">
-                    {[...Array(5)].map((_, i) => (
-                      <svg
-                        key={i}
-                        className="size-4 text-yellow-400 fill-yellow-400"
-                        xmlns="http://www.w3.org/2000/svg"
-                        viewBox="0 0 24 24"
-                      >
-                        <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
-                      </svg>
-                    ))}
-                  </div>
-                  <span className="text-sm font-semibold text-foreground/80">
-                    Trusted by 1,000+ businesses
-                  </span>
-                </div>
-
-                <div className="flex flex-wrap items-center gap-4 md:gap-5">
-                  {partnerBadges.map((partner) => (
-                    <div key={partner.name} className="flex flex-col items-center gap-1.5">
-                      <div className="flex h-14 w-14 items-center justify-center rounded-full border border-border/30 bg-white p-2 shadow-sm transition-all hover:shadow-xl hover:scale-105 dark:bg-slate-800 dark:border-white/10">
-                        <img
-                          src={partner.logo}
-                          alt={`${partner.name} logo`}
-                          className="h-full w-full object-contain"
-                          loading="lazy"
-                          decoding="async"
-                        />
-                      </div>
-                      <span className="text-[9px] font-medium uppercase tracking-wider text-muted-foreground/60">
-                        {partner.name.split(" ")[0]}
-                      </span>
-                    </div>
-                  ))}
-                </div>
-              </motion.div>
-            </motion.div>
-
-            {/* ─── RIGHT COLUMN ─── */}
-            <div className="relative flex flex-col items-center justify-center gap-4">
-              <motion.div
-                initial={{ opacity: 0, scale: 0.96 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.7, delay: 0.15, ease: "easeOut" }}
-                className="relative flex items-center justify-center w-full"
-              >
-                <motion.div
-                  style={{ scale: imageScale }}
-                  className="relative w-full overflow-hidden rounded-2xl border border-border/50 shadow-2xl"
-                  whileHover={{ scale: 1.02, transition: { duration: 0.3 } }}
-                >
-                  {/* ─── IMAGE CONTAINER (fixed aspect ratio) ─── */}
-                  <div className="relative w-full pt-[75%] sm:pt-[66%] lg:pt-[56%]">
-                    <AnimatePresence mode="wait">
-                      <motion.img
-                        key={currentServiceImage}
-                        src={currentServiceImage}
-                        alt="Enterprise IT Service"
-                        className="absolute inset-0 w-full h-full object-cover object-center"
-                        initial={{ opacity: 0, scale: 0.96 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        exit={{ opacity: 0, scale: 0.96 }}
-                        transition={{
-                          opacity: { duration: 0.5, ease: "easeInOut" },
-                          scale: { duration: 0.5, ease: "easeInOut" },
-                        }}
-                        loading="lazy"
-                        decoding="async"
-                      />
-                    </AnimatePresence>
-                    {/* Subtle gradient overlay for depth */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/10 via-transparent to-transparent pointer-events-none" />
-                  </div>
-                </motion.div>
-
-                {/* Floating Badge 100+ */}
-                <motion.div
-                  initial={{ opacity: 0, y: 15 }}
-                  animate={{ opacity: 1, y: [0, -8, 0] }}
+      {/* ─── RIGHT COLUMN (Image + Floating Badges) ─── */}
+      <div className="relative flex flex-col items-center justify-center gap-3">
+        <motion.div
+          initial={{ opacity: 0, scale: 0.96 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.7, delay: 0.15, ease: "easeOut" }}
+          className="relative flex items-center justify-center w-full max-w-md lg:max-w-full"
+        >
+          <motion.div
+            style={{ scale: imageScale }}
+            className="relative w-full overflow-hidden rounded-2xl border border-border/50 shadow-2xl"
+            whileHover={{ scale: 1.02, transition: { duration: 0.3 } }}
+          >
+            <div className="relative w-full pt-[75%] sm:pt-[66%] lg:pt-[56%]">
+              <AnimatePresence mode="wait">
+                <motion.img
+                  key={currentServiceImage}
+                  src={currentServiceImage}
+                  alt="Enterprise IT Service"
+                  className="absolute inset-0 w-full h-full object-cover object-center"
+                  initial={{ opacity: 0, scale: 0.95 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.95 }}
                   transition={{
-                    y: { duration: 3, repeat: Infinity, ease: "easeInOut" },
-                    opacity: { delay: 0.5, duration: 0.5 },
+                    opacity: { duration: 0.4, ease: "easeInOut" },
+                    scale: { duration: 0.4, ease: "easeInOut" },
                   }}
-                  className="absolute -bottom-3 left-3 rounded-xl border border-border/60 bg-white/90 px-3.5 py-2.5 shadow-xl backdrop-blur-md dark:bg-slate-900/90 sm:-bottom-4 sm:left-4 sm:px-4 sm:py-3"
-                >
-                  <p className="font-display text-lg font-extrabold text-primary sm:text-xl leading-none">100+</p>
-                  <p className="mt-0.5 text-[9px] font-semibold uppercase tracking-widest text-muted-foreground sm:text-[10px]">
-                    IT Professionals
-                  </p>
-                </motion.div>
-
-                {/* Floating Badge 30 min */}
-                <motion.div
-                  initial={{ opacity: 0, x: -15 }}
-                  animate={{ opacity: 1, y: [0, 8, 0] }}
-                  transition={{
-                    y: { duration: 3.5, repeat: Infinity, ease: "easeInOut" },
-                    opacity: { delay: 0.7, duration: 0.5 },
-                  }}
-                  className="absolute -top-3 right-3 rounded-xl border border-border/60 bg-white/90 px-3 py-2 shadow-xl backdrop-blur-md dark:bg-slate-900/90 sm:-top-4 sm:right-4 sm:px-4"
-                >
-                  <p className="font-display text-base font-bold text-primary sm:text-lg leading-none">30 min</p>
-                  <p className="mt-0.5 text-[8px] font-semibold uppercase tracking-widest text-muted-foreground sm:text-[9px]">
-                    SLA Response
-                  </p>
-                </motion.div>
-              </motion.div>
-
-              {/* Mini Stats */}
-              <dl className="grid grid-cols-3 gap-3 w-full max-w-sm">
-                {[
-                  { icon: Clock, value: "30 min", label: "Response" },
-                  { icon: Headset, value: "24/7", label: "Support" },
-                  { icon: ShieldCheck, value: "8 hubs", label: "Nationwide" },
-                ].map((item) => (
-                  <div key={item.label} className="flex flex-col items-center rounded-xl border border-border/30 bg-white/40 p-2.5 backdrop-blur-sm dark:bg-slate-800/40">
-                    <item.icon className="size-4 text-primary" />
-                    <dt className="font-display text-sm font-bold text-foreground leading-none mt-1">
-                      {item.value}
-                    </dt>
-                    <dd className="text-[8px] uppercase tracking-widest text-muted-foreground">
-                      {item.label}
-                    </dd>
-                  </div>
-                ))}
-              </dl>
+                  loading="lazy"
+                  decoding="async"
+                />
+              </AnimatePresence>
+              <div className="absolute inset-0 bg-gradient-to-t from-black/10 via-transparent to-transparent pointer-events-none" />
             </div>
           </motion.div>
-        </div>
 
-        {/* Scroll hint */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 0.3 }}
-          transition={{ delay: 1.2, duration: 1 }}
-          className="absolute bottom-4 left-1/2 hidden -translate-x-1/2 lg:flex flex-col items-center gap-1 text-[9px] font-medium tracking-wider uppercase text-muted-foreground/60 pointer-events-none"
-        >
-          <span>Scroll</span>
-          <motion.span
-            animate={{ y: [0, 6, 0] }}
-            transition={{ repeat: Infinity, duration: 1.6, ease: "easeInOut" }}
-            className="h-3 w-px rounded-full bg-muted-foreground/40"
-          />
+          {/* Floating Badges */}
+          <motion.div
+            initial={{ opacity: 0, y: 15 }}
+            animate={{ opacity: 1, y: [0, -8, 0] }}
+            transition={{
+              y: { duration: 3, repeat: Infinity, ease: "easeInOut" },
+              opacity: { delay: 0.5, duration: 0.5 },
+            }}
+            className="absolute -bottom-2 left-2 rounded-xl border border-border/60 bg-white/90 px-2.5 py-2 shadow-xl backdrop-blur-md dark:bg-slate-900/90 sm:-bottom-3 sm:left-3 sm:px-3 sm:py-2.5"
+          >
+            <p className="font-display text-base font-extrabold text-primary sm:text-lg leading-none">100+</p>
+            <p className="mt-0.5 text-[8px] font-semibold uppercase tracking-widest text-muted-foreground sm:text-[9px]">
+              IT Professionals
+            </p>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, x: -15 }}
+            animate={{ opacity: 1, y: [0, 8, 0] }}
+            transition={{
+              y: { duration: 3.5, repeat: Infinity, ease: "easeInOut" },
+              opacity: { delay: 0.7, duration: 0.5 },
+            }}
+            className="absolute -top-2 right-2 rounded-xl border border-border/60 bg-white/90 px-2.5 py-2 shadow-xl backdrop-blur-md dark:bg-slate-900/90 sm:-top-3 sm:right-3 sm:px-3 sm:py-2.5"
+          >
+            <p className="font-display text-sm font-bold text-primary sm:text-base leading-none">30 min</p>
+            <p className="mt-0.5 text-[7px] font-semibold uppercase tracking-widest text-muted-foreground sm:text-[8px]">
+              SLA Response
+            </p>
+          </motion.div>
         </motion.div>
-      </section>
+
+        {/* Mini Stats */}
+        <dl className="grid grid-cols-3 gap-2 w-full max-w-xs mx-auto">
+          {[
+            { icon: Clock, value: "30 min", label: "Response" },
+            { icon: Headset, value: "24/7", label: "Support" },
+            { icon: ShieldCheck, value: "8 hubs", label: "Nationwide" },
+          ].map((item) => (
+            <div key={item.label} className="flex flex-col items-center rounded-xl border border-border/30 bg-white/40 p-2 backdrop-blur-sm dark:bg-slate-800/40">
+              <item.icon className="size-3.5 text-primary" />
+              <dt className="font-display text-xs font-bold text-foreground leading-none mt-1">
+                {item.value}
+              </dt>
+              <dd className="text-[7px] uppercase tracking-widest text-muted-foreground">
+                {item.label}
+              </dd>
+            </div>
+          ))}
+        </dl>
+      </div>
+    </motion.div>
+  </div>
+
+  {/* Scroll hint */}
+  <motion.div
+    initial={{ opacity: 0 }}
+    animate={{ opacity: 0.3 }}
+    transition={{ delay: 1.2, duration: 1 }}
+    className="absolute bottom-2 left-1/2 hidden -translate-x-1/2 lg:flex flex-col items-center gap-1 text-[9px] font-medium tracking-wider uppercase text-muted-foreground/60 pointer-events-none"
+  >
+    <span>Scroll</span>
+    <motion.span
+      animate={{ y: [0, 6, 0] }}
+      transition={{ repeat: Infinity, duration: 1.6, ease: "easeInOut" }}
+      className="h-3 w-px rounded-full bg-muted-foreground/40"
+    />
+  </motion.div>
+</section>
 
 
 
+{/* ─── 10. STRATEGIC PARTNERS (ADVANCED & PROFESSIONAL) ─── */}
+<section className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8 lg:py-20" aria-labelledby="partners-heading">
+  <div className="mx-auto max-w-2xl text-center">
+    <span className="eyebrow text-xs font-semibold uppercase tracking-widest text-primary">Alliances</span>
+    <h2 id="partners-heading" className="mt-3 font-display text-2xl font-bold text-foreground sm:text-3xl lg:text-4xl">
+      Strategic <span className="text-primary">Technology Partners</span>
+    </h2>
+    <p className="mt-2 text-sm text-muted-foreground">
+      Certified alignment with the world's leading enterprise technology vendors.
+    </p>
+  </div>
+
+  {/* Marquee Container */}
+  <div className="relative mt-8 overflow-hidden">
+    {/* Mask applied to inner wrapper so hovered items aren't clipped */}
+    <div className="[mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)]">
+      <div className="animate-marquee flex w-max gap-6 sm:gap-8 py-4">
+        {/* Triple loop for seamless marquee */}
+        {[...partnerBadges, ...partnerBadges, ...partnerBadges].map((partner, index) => (
+          <div
+            key={`${partner.name}-${index}`}
+            className="group relative flex h-16 w-28 sm:h-20 sm:w-32 lg:h-24 lg:w-36 flex-shrink-0 items-center justify-center rounded-xl border-2 border-border/40 bg-white/70 p-3 shadow-md backdrop-blur-sm transition-all duration-300 hover:z-20 hover:scale-110 hover:-translate-y-1 hover:border-primary/50 hover:shadow-2xl hover:shadow-primary/20 dark:bg-slate-800/70 dark:border-slate-700/50"
+          >
+            {/* Glow effect on hover */}
+            <div className="absolute inset-0 rounded-xl bg-gradient-to-br from-primary/0 via-primary/0 to-primary/0 opacity-0 transition-all duration-500 group-hover:from-primary/10 group-hover:via-primary/20 group-hover:to-primary/10 group-hover:opacity-100" />
+            
+            {/* Partner Logo */}
+            <img
+              src={partner.logo}
+              alt={`${partner.name} logo`}
+              className="h-full w-full object-contain transition-all duration-300 group-hover:scale-105"
+              loading="lazy"
+              decoding="async"
+            />
+            
+            {/* Partner Name - Appears on Hover */}
+            <div className="absolute -bottom-7 left-1/2 -translate-x-1/2 opacity-0 transition-all duration-300 group-hover:opacity-100 group-hover:-bottom-8">
+              <span className="whitespace-nowrap text-[8px] font-semibold uppercase tracking-widest text-muted-foreground/80">
+                {partner.name}
+              </span>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+
+  {/* Static grid fallback for smaller screens (better touch experience) */}
+  <div className="mt-6 grid grid-cols-3 gap-3 sm:grid-cols-4 md:grid-cols-6 lg:hidden">
+    {partnerBadges.map((partner) => (
+      <div
+        key={partner.name}
+        className="flex h-16 w-full items-center justify-center rounded-xl border-2 border-border/40 bg-white/70 p-2 shadow-sm backdrop-blur-sm transition-all hover:scale-105 hover:border-primary/30 hover:shadow-md dark:bg-slate-800/70"
+      >
+        <img
+          src={partner.logo}
+          alt={`${partner.name} logo`}
+          className="h-full w-full object-contain"
+          loading="lazy"
+          decoding="async"
+        />
+      </div>
+    ))}
+  </div>
+</section>
 
       
 
@@ -540,7 +611,7 @@ export default function HomePage() {
           </p>
         </div>
 
-        <div className="mt-10 grid grid-cols-2 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-10 grid grid-cols-2 gap-3 sm:grid-cols-2 lg:grid-cols-4">
           {serviceCards.map((service, index) => (
             <motion.article
               key={service.title}
@@ -585,13 +656,13 @@ export default function HomePage() {
               Our expertise spans across financial, industrial, public, and technology sectors.
             </p>
           </div>
-          <div className="mt-8 flex flex-wrap justify-center gap-3">
+          <div className="mt-8 flex flex-wrap justify-center gap-2 sm:gap-3">
             {sectors.map((sector) => (
               <div
                 key={sector.label}
-                className="flex items-center gap-2 rounded-full border border-border bg-background px-4 py-2 text-sm font-medium text-foreground shadow-sm hover:shadow-md hover:border-primary/30 transition-all hover:-translate-y-0.5"
+                className="flex items-center gap-1.5 sm:gap-2 rounded-full border border-border bg-background px-3 py-1.5 sm:px-4 sm:py-2 text-xs sm:text-sm font-medium text-foreground shadow-sm hover:shadow-md hover:border-primary/30 transition-all hover:-translate-y-0.5"
               >
-                <sector.icon className="size-4 text-primary" />
+                <sector.icon className="size-3.5 sm:size-4 text-primary" />
                 {sector.label}
               </div>
             ))}
@@ -611,7 +682,7 @@ export default function HomePage() {
           </p>
         </div>
 
-        <ul className="mt-8 grid grid-cols-2 gap-3 lg:grid-cols-3">
+        <ul className="mt-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 sm:gap-3">
           {[
             { icon: Users, text: "Experienced Technical Workforce" },
             { icon: MapPin, text: "Nationwide Service Coverage" },
@@ -653,7 +724,7 @@ export default function HomePage() {
             </p>
           </div>
 
-          <div className="mt-8 grid gap-6 md:grid-cols-3">
+          <div className="mt-8 grid gap-4 sm:gap-6 md:grid-cols-3">
             {[
               { title: "Banking & Financial", clients: clients.filter(c => c.category === "bfsi").slice(0, 6), icon: Building },
               { title: "Industry & Manufacturing", clients: clients.filter(c => c.category === "industrial").slice(0, 6), icon: TrendingUp },
@@ -694,7 +765,7 @@ export default function HomePage() {
         </div>
 
         <div className="mt-8 overflow-hidden rounded-xl border border-border bg-card/50">
-          <div className="grid grid-cols-2 gap-3 p-4 sm:grid-cols-3 lg:grid-cols-4">
+          <div className="grid grid-cols-2 gap-2 sm:gap-3 p-3 sm:p-4 sm:grid-cols-3 lg:grid-cols-4">
             {[
               { label: "Coverage", value: "24/7 × 365" },
               { label: "Initial Response", value: "Within 30 min" },
@@ -704,9 +775,9 @@ export default function HomePage() {
               { label: "Business-Critical", value: "8/5 model" },
               { label: "Service Reporting", value: "Quarterly" },
             ].map((param) => (
-              <div key={param.label} className="rounded-lg border border-border/30 p-3 text-center hover:border-primary/30 hover:bg-primary/5 transition-all">
-                <dt className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">{param.label}</dt>
-                <dd className="mt-1 font-display text-sm font-bold text-primary">{param.value}</dd>
+              <div key={param.label} className="rounded-lg border border-border/30 p-2.5 sm:p-3 text-center hover:border-primary/30 hover:bg-primary/5 transition-all">
+                <dt className="text-[9px] sm:text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">{param.label}</dt>
+                <dd className="mt-1 font-display text-sm sm:text-base font-bold text-primary">{param.value}</dd>
               </div>
             ))}
           </div>
@@ -747,32 +818,6 @@ export default function HomePage() {
                 <h3 className="mt-3 font-display text-base font-semibold text-foreground">{step.title}</h3>
                 <p className="mt-1 text-xs leading-relaxed text-muted-foreground">{step.description}</p>
               </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ─── 10. STRATEGIC PARTNERS ─── */}
-      <section className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8 lg:py-20" aria-labelledby="partners-heading">
-        <div className="mx-auto max-w-2xl text-center">
-          <span className="eyebrow text-xs font-semibold uppercase tracking-widest text-primary">Alliances</span>
-          <h2 id="partners-heading" className="mt-3 font-display text-2xl font-bold text-foreground sm:text-3xl lg:text-4xl">
-            Strategic <span className="text-primary">Technology Partners</span>
-          </h2>
-          <p className="mt-2 text-sm text-muted-foreground">
-            Certified alignment with the world's leading enterprise technology vendors.
-          </p>
-        </div>
-
-        <div className="relative mt-8 overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)]">
-          <div className="animate-marquee flex w-max gap-4">
-            {[...partners.map((p) => p.name), ...partners.map((p) => p.name)].map((name, index) => (
-              <span
-                key={`${name}-${index}`}
-                className="flex h-12 min-w-40 items-center justify-center rounded-xl border border-border bg-card px-6 font-display text-sm font-semibold text-foreground shadow-sm hover:shadow-md hover:border-primary/30 transition-all"
-              >
-                {name}
-              </span>
             ))}
           </div>
         </div>
