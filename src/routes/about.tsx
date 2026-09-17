@@ -626,7 +626,7 @@ function AboutPage() {
       Featured Partnership
     </span>
     <h2 className="mt-2 font-display text-xl font-bold sm:text-2xl">
-      HPE × <span className="text-primary">AI Power Enterprises</span>
+      HPE With <span className="text-primary">AI Power Enterprises</span>
     </h2>
     <p className="mt-2 text-xs text-muted-foreground sm:text-sm">
       Certified technology alliance — enterprise servers, storage, hybrid cloud, and 24/7 SLA-backed support across Pakistan.
