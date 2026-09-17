@@ -3,20 +3,21 @@ import { motion, useScroll, useTransform } from "motion/react";
 import { useRef } from "react";
 import type { LucideIcon } from "lucide-react";
 import {
-  Camera,
-  Cctv,
-  MonitorPlay,
-  Network,
+  HardDrive,
+  Database,
   ShieldCheck,
-  Wrench,
   ArrowRight,
   CheckCircle2,
-  HardDrive,
-  Settings,
+  Wrench,
+  Headset,
   MapPin,
   Clock,
-  Headset,
   Layers,
+  Server,
+  Archive,
+  RefreshCw,
+  Lock,
+  Activity,
   PhoneCall,
   MessageCircle,
   Mail,
@@ -25,14 +26,12 @@ import {
   Target,
   TrendingUp,
   Award,
-  Eye,
-  Lock,
-  Activity,
 } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import {
+  partners,
   company,
   siteConfig,
   services,
@@ -46,75 +45,75 @@ import {
 // ═══════════════════════════════════════════════════════════════════
 // PAGE-LEVEL SEO CONSTANTS
 // ═══════════════════════════════════════════════════════════════════
-const PAGE_PATH = "/cctv";
+const PAGE_PATH = "/storage";
 const PAGE_URL = `${siteConfig.url}${PAGE_PATH}`;
 const PAGE_TITLE =
-  "IP CCTV & Surveillance Solutions in Pakistan | Enterprise Grade";
+  "Enterprise Storage & Backup Solutions in Pakistan | SAN, NAS";
 const PAGE_DESCRIPTION =
-  "IP CCTV design, site assessment, network video transmission, storage, command rooms and preventive maintenance for enterprise sites across Pakistan.";
+  "Enterprise storage & backup solutions in Pakistan — SAN, NAS, all-flash arrays, tape archival, replication and disaster recovery. Deployed and supported 24/7 nationwide.";
 const PAGE_KEYWORDS = [
-  "CCTV solutions Pakistan",
-  "IP camera installation Karachi",
-  "enterprise surveillance Pakistan",
-  "CCTV AMC Karachi",
-  "IP CCTV design Pakistan",
-  "NVR storage solutions Pakistan",
-  "video management system Karachi",
-  "ANPR cameras Pakistan",
-  "thermal cameras Pakistan",
-  "command room integration Karachi",
-  "access control integration Pakistan",
-  "24/7 CCTV maintenance Karachi",
+  "enterprise storage Pakistan",
+  "SAN NAS solutions Karachi",
+  "backup solutions Pakistan",
+  "all-flash storage Karachi",
+  "disaster recovery Pakistan",
+  "storage area network Pakistan",
+  "NAS storage Karachi",
+  "ransomware protection Pakistan",
+  "LTO tape archive Pakistan",
+  "replication Pakistan",
+  "storage AMC Pakistan",
+  "24/7 storage support Karachi",
 ];
 
 // ═══════════════════════════════════════════════════════════════════
 // PAGE FAQS
 // ═══════════════════════════════════════════════════════════════════
-const cctvFaqs = [
+const storageFaqs = [
   {
-    question: "Do you design and install IP CCTV systems in Pakistan?",
+    question: "What storage solutions do you provide in Pakistan?",
     answer:
-      "Yes. We handle full lifecycle IP CCTV — site assessment, camera placement and lens calculations, PoE switching and fibre backbone, NVR/SAN storage sizing, VMS deployment, command room setup, and ongoing preventive maintenance across Pakistan.",
+      "We design and deploy Fibre Channel and iSCSI SAN, enterprise NAS (NFS/SMB/CIFS), all-flash and hybrid arrays, LTO tape archives, backup appliances, and disaster recovery infrastructure across Pakistan.",
   },
   {
-    question: "Which CCTV brands do you supply and support?",
+    question: "Do you offer all-flash and hybrid storage arrays?",
     answer:
-      "We work with leading enterprise security brands including Hikvision, Dahua, Axis Communications and Bosch Security — selecting the right fit for your environment, budget and integration needs.",
+      "Yes. We supply NVMe all-flash arrays for databases and virtualization, plus hybrid SSD-cached arrays that balance performance and cost for mixed workloads.",
   },
   {
-    question: "Can you integrate CCTV with access control and network infrastructure?",
+    question: "How do you protect against ransomware?",
     answer:
-      "Yes. We integrate CCTV with door controllers, biometrics, intercom systems, and your enterprise network using VLAN segmentation, QoS, PoE, and secure remote access — creating a unified security ecosystem.",
+      "We implement immutable backups, air-gapped copies, disk and tape-based retention, and rapid recovery workflows — layered with data-at-rest encryption and key management.",
   },
   {
-    question: "How long is video retention typically configured for?",
+    question: "Do you support backup and disaster recovery?",
     answer:
-      "Retention depends on your compliance and operational requirements. We size NVR/SAN storage for typical retention windows of 30, 60, 90, or 180 days — with redundancy, archiving and fast retrieval built-in.",
+      "Yes. We design RPO/RTO-aligned backup and disaster recovery strategies with replication, snapshots, automated failover, and documented recovery runbooks tested regularly.",
   },
   {
-    question: "Do you offer CCTV AMC and preventive maintenance?",
+    question: "Which storage brands do you support?",
     answer:
-      "Yes. We offer Annual Maintenance Contracts covering scheduled health checks, lens cleaning, firmware updates, fault repair, spare parts availability and 24/7 SLA-backed support.",
+      "We support HPE, Dell EMC, NetApp, Pure Storage and other enterprise storage platforms, along with Veeam and other backup software ecosystems.",
   },
   {
-    question: "What is the SLA response time for CCTV issues?",
+    question: "What is the SLA response time for storage hardware?",
     answer: `Our contractual SLA commitment is a 30-minute initial response, 24/7 × 365 coverage, with part replacement within 4 working hours and onsite intervention across 8 national hubs. Contact ${company.phone} for details.`,
   },
 ];
 
 // ═══════════════════════════════════════════════════════════════════
-// ROUTE — Full SEO + 3 JSON-LD schemas
+// ROUTE — Full SEO + 3 JSON-LD schemas (via companyData helpers)
 // ═══════════════════════════════════════════════════════════════════
-export const Route = createFileRoute("/cctv")({
+export const Route = createFileRoute("/storage")({
   head: () => {
-    const cctvService = services.find((s) => s.slug === "cctv");
-    const serviceLd = cctvService ? serviceSchema(cctvService) : null;
+    const storageService = services.find((s) => s.slug === "storage");
+    const serviceLd = storageService ? serviceSchema(storageService) : null;
     const breadcrumbLd = breadcrumbSchema([
       { name: "Home", url: "/" },
       { name: "Services", url: "/services" },
-      { name: "CCTV & Surveillance", url: PAGE_PATH },
+      { name: "Storage & Backup", url: PAGE_PATH },
     ]);
-    const faqLd = faqPageSchema(cctvFaqs);
+    const faqLd = faqPageSchema(storageFaqs);
 
     return {
       meta: [
@@ -139,7 +138,7 @@ export const Route = createFileRoute("/cctv")({
         { property: "og:image:height", content: "630" },
         {
           property: "og:image:alt",
-          content: "IP CCTV & Surveillance — AI Power Enterprises",
+          content: "Enterprise Storage & Backup Solutions — AI Power Enterprises",
         },
         { property: "og:locale", content: siteConfig.locale },
         { name: "twitter:card", content: "summary_large_image" },
@@ -171,7 +170,7 @@ export const Route = createFileRoute("/cctv")({
       ],
     };
   },
-  component: CctvPage,
+  component: StoragePage,
 });
 
 // ═══════════════════════════════════════════════════════════════════
@@ -179,128 +178,89 @@ export const Route = createFileRoute("/cctv")({
 // ═══════════════════════════════════════════════════════════════════
 const capabilities = [
   {
-    icon: Camera,
-    title: "Site Assessment & Design",
+    icon: Database,
+    title: "SAN Storage Arrays",
     description:
-      "Coverage mapping, camera selection, lux and lens calculations per zone, and detailed site surveys.",
-  },
-  {
-    icon: Network,
-    title: "Network Video Transmission",
-    description:
-      "PoE switching, fibre backbone, VLAN-segmented surveillance networks with QoS for reliable video streaming.",
-  },
-  {
-    icon: MonitorPlay,
-    title: "Command & Control Rooms",
-    description:
-      "Video walls, centralized VMS, role-based access, retention policies and live monitoring stations.",
+      "Fibre Channel and iSCSI SAN with multi-path I/O, thin provisioning, snapshots and synchronous replication.",
   },
   {
     icon: HardDrive,
-    title: "Storage & Retention",
+    title: "NAS & File Services",
     description:
-      "NVR/SAN sizing for compliant retention with redundancy, archiving and fast retrieval.",
-  },
-  {
-    icon: Wrench,
-    title: "Preventive Maintenance",
-    description:
-      "Scheduled health checks, lens cleaning, firmware updates, fault repair and spare parts availability.",
-  },
-  {
-    icon: Settings,
-    title: "Analytics & Integration",
-    description:
-      "Motion detection, intrusion, ANPR, access-control integration and AI-based event correlation.",
-  },
-];
-
-const securityComponents = [
-  {
-    icon: Camera,
-    title: "IP Cameras",
-    desc: "Fixed, dome, PTZ and thermal cameras — indoor and outdoor — with night vision and WDR.",
-  },
-  {
-    icon: Network,
-    title: "PoE Switches & Fibre",
-    desc: "PoE+ switches, fibre transceivers, media converters for long-distance connectivity.",
-  },
-  {
-    icon: HardDrive,
-    title: "Storage Appliances",
-    desc: "NVRs and SAN storage with RAID, redundancy and scalable capacity.",
-  },
-  {
-    icon: MonitorPlay,
-    title: "VMS Software",
-    desc: "Centralized video management with recording, search, export and camera control.",
-  },
-];
-
-const integrationItems = [
-  {
-    icon: Network,
-    title: "Network Integration",
-    desc: "VLAN segmentation, QoS, PoE, and secure remote access for surveillance traffic.",
+      "High-availability NAS with NFS, SMB/CIFS, S3-compatible object storage and file-level tiering.",
   },
   {
     icon: Layers,
-    title: "Access Control Integration",
-    desc: "Connect with door controllers, biometrics and intercom for unified security.",
+    title: "All-Flash & Hybrid Arrays",
+    description:
+      "NVMe all-flash performance tiers and hybrid arrays — right-sized IOPS, latency and capacity for each workload.",
   },
   {
-    icon: HardDrive,
-    title: "Unified Storage",
-    desc: "Consolidated storage pools for video, access logs and server backups.",
+    icon: Archive,
+    title: "Tape & Long-Term Archive",
+    description:
+      "LTO tape libraries, air-gapped archives and immutable storage for regulatory retention.",
   },
   {
-    icon: MonitorPlay,
-    title: "Centralized Management",
-    desc: "Single VMS for all cameras, with real-time alerts and incident playback.",
+    icon: RefreshCw,
+    title: "Replication & DR",
+    description:
+      "Sync/async replication, snapshots, automated failover and recovery runbooks for defined RPO/RTO.",
+  },
+  {
+    icon: Lock,
+    title: "Encryption & Compliance",
+    description:
+      "Data-at-rest encryption, key management, audit trails and compliance-aligned retention policies.",
   },
 ];
 
-const implementationSteps = [
+const tiers = [
   {
-    step: "01",
-    title: "Site Survey",
-    text: "Site walk, camera placement, lighting and network assessment.",
+    title: "Tier 0 — All-Flash",
+    desc: "NVMe storage for databases, virtualisation and IOPS-intensive workloads.",
   },
   {
-    step: "02",
-    title: "Design & BOM",
-    text: "Detailed design, camera specs, switch ports, storage sizing and cabling plan.",
+    title: "Tier 1 — Hybrid",
+    desc: "SSD-cached SAS arrays balancing performance and cost for mixed workloads.",
   },
   {
-    step: "03",
-    title: "Installation",
-    text: "Camera mounting, cabling, switch configuration and network integration.",
+    title: "Tier 2 — Capacity",
+    desc: "High-density SATA and NL-SAS storage for file shares and archives.",
   },
   {
-    step: "04",
-    title: "Commissioning",
-    text: "System testing, camera calibration, storage verification and handover.",
-  },
-  {
-    step: "05",
-    title: "Managed Support",
-    text: "24/7 monitoring, preventive maintenance, SLA-backed response.",
+    title: "Tier 3 — Archive & Tape",
+    desc: "LTO tape and object storage for long-term retention and compliance.",
   },
 ];
 
-const cctvPartners = [
-  { name: "Hikvision", badge: "Authorized Partner" },
-  { name: "Dahua", badge: "Authorized Partner" },
-  { name: "Axis Communications", badge: "Technology Partner" },
-  { name: "Bosch Security", badge: "Technology Partner" },
+const backupDrs = [
+  {
+    title: "Backup Appliances",
+    desc: "Disk-based backup with deduplication, compression and cloud replication.",
+  },
+  {
+    title: "Disaster Recovery",
+    desc: "Orchestrated failover, DR testing and runbook documentation.",
+  },
+  {
+    title: "Ransomware Protection",
+    desc: "Immutable backups, air-gapped copies and rapid recovery workflows.",
+  },
+  {
+    title: "Cloud Tiering",
+    desc: "Azure, AWS and hybrid cloud cold-tier integration for cost optimisation.",
+  },
 ];
+
+const storagePartners = partners.filter((p) =>
+  ["Hewlett Packard Enterprise", "Dell Technologies"].includes(p.name),
+);
 
 // ═══════════════════════════════════════════════════════════════════
 // MAIN PAGE
 // ═══════════════════════════════════════════════════════════════════
-function CctvPage() {
+function StoragePage() {
   const heroRef = useRef<HTMLElement>(null);
   const { scrollYProgress } = useScroll({
     target: heroRef,
@@ -308,9 +268,9 @@ function CctvPage() {
   });
   const opacity = useTransform(scrollYProgress, [0, 0.3], [1, 0.6]);
 
-  const relatedServices = services
-    .filter((s) => s.slug !== "cctv")
-    .slice(0, 3);
+  const relatedServices = services.filter((s) =>
+    ["servers", "datacenter", "managed-services"].includes(s.slug),
+  );
 
   return (
     <>
@@ -324,7 +284,7 @@ function CctvPage() {
           aria-hidden="true"
         />
         <div
-          className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--primary)_0%,_transparent_60%)] opacity-10"
+          className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_left,_var(--primary)_0%,_transparent_60%)] opacity-10"
           aria-hidden="true"
         />
 
@@ -335,24 +295,24 @@ function CctvPage() {
               className="space-y-5 text-center sm:space-y-6 lg:text-left"
             >
               <Badge className="border-primary/30 bg-primary/20 text-[10px] font-semibold uppercase tracking-widest text-primary sm:text-xs">
-                <Cctv className="mr-1.5 size-3.5" aria-hidden="true" />
-                CCTV & Surveillance
+                <HardDrive className="mr-1.5 size-3.5" aria-hidden="true" />
+                Storage & Backup
               </Badge>
               <h1 className="font-display text-3xl font-bold leading-tight text-hero-foreground sm:text-4xl lg:text-5xl xl:text-6xl">
-                Enterprise IP CCTV Surveillance,{" "}
-                <span className="text-gradient">Designed & Maintained</span>
+                Enterprise Storage Built for{" "}
+                <span className="text-gradient">Performance & Resilience</span>
               </h1>
               <p className="mx-auto max-w-xl text-base text-hero-muted sm:text-lg lg:mx-0 lg:text-xl">
-                End-to-end IP surveillance from site assessment to command room
-                — with 24/7 preventive maintenance and SLA-backed support
-                nationwide.
+                SAN, NAS, all-flash arrays and backup infrastructure —
+                engineered for data integrity, disaster recovery and 24/7
+                operations.
               </p>
 
               {/* Trust chips */}
               <ul className="flex flex-wrap justify-center gap-x-5 gap-y-2 pt-1 text-xs text-hero-muted sm:text-sm lg:justify-start">
                 {[
-                  { icon: Eye, label: "Full lifecycle delivery" },
-                  { icon: Lock, label: "Access control ready" },
+                  { icon: ShieldCheck, label: "Ransomware-resistant" },
+                  { icon: Layers, label: "Tiered storage strategy" },
                   { icon: MapPin, label: "8 hubs nationwide" },
                 ].map(({ icon: Icon, label }) => (
                   <li key={label} className="inline-flex items-center gap-1.5">
@@ -372,7 +332,7 @@ function CctvPage() {
                   className="glow-ring w-full sm:w-auto"
                 >
                   <Link to="/contact" hash="request">
-                    Request CCTV Survey
+                    Request Storage Assessment
                     <ArrowRight className="ml-2 size-4" aria-hidden="true" />
                   </Link>
                 </Button>
@@ -382,7 +342,7 @@ function CctvPage() {
                   size="lg"
                   className="w-full border-hero-border text-hero-foreground hover:bg-hero-foreground/10 sm:w-auto"
                 >
-                  <Link to="/sla">SLA Support Details</Link>
+                  <Link to="/sla">View SLA Cover</Link>
                 </Button>
               </div>
             </motion.div>
@@ -391,17 +351,17 @@ function CctvPage() {
             <div className="grid grid-cols-2 gap-3 sm:gap-4">
               {[
                 {
-                  value: "End-to-End",
-                  label: "Design to command room",
-                  icon: Camera,
-                },
-                {
                   value: "24/7 × 365",
-                  label: "Maintenance cover",
+                  label: "Storage Support",
                   icon: ShieldCheck,
                 },
-                { value: "8 hubs", label: "Nationwide install", icon: MapPin },
-                { value: "30 min", label: "SLA response", icon: Clock },
+                { value: "Tiered", label: "Storage Strategy", icon: Layers },
+                {
+                  value: "4 hrs",
+                  label: "Part Replacement",
+                  icon: Wrench,
+                },
+                { value: "8 hubs", label: "Nationwide Reach", icon: MapPin },
               ].map((stat) => (
                 <motion.div
                   key={stat.label}
@@ -415,7 +375,7 @@ function CctvPage() {
                     className="size-6 text-hero-accent sm:size-8"
                     aria-hidden="true"
                   />
-                  <p className="mt-2 text-center font-display text-base font-bold text-hero-foreground sm:mt-3 sm:text-xl lg:text-2xl">
+                  <p className="mt-2 font-display text-lg font-bold text-hero-foreground sm:mt-3 sm:text-2xl lg:text-3xl">
                     {stat.value}
                   </p>
                   <p className="mt-1 text-center text-[10px] font-medium uppercase tracking-wider text-hero-muted sm:text-xs">
@@ -428,11 +388,11 @@ function CctvPage() {
         </div>
 
         <div
-          className="pointer-events-none absolute -top-32 -left-32 h-96 w-96 rounded-full bg-primary/10 blur-3xl"
+          className="pointer-events-none absolute -top-32 -right-32 h-96 w-96 rounded-full bg-primary/10 blur-3xl"
           aria-hidden="true"
         />
         <div
-          className="pointer-events-none absolute -bottom-32 -right-32 h-96 w-96 rounded-full bg-primary/5 blur-3xl"
+          className="pointer-events-none absolute -bottom-32 -left-32 h-96 w-96 rounded-full bg-primary/5 blur-3xl"
           aria-hidden="true"
         />
       </section>
@@ -444,12 +404,11 @@ function CctvPage() {
             Capabilities
           </Badge>
           <h2 className="font-display text-2xl font-bold sm:text-3xl lg:text-4xl">
-            Complete{" "}
-            <span className="text-gradient">Surveillance Stack</span>
+            End-to-End <span className="text-gradient">Storage Portfolio</span>
           </h2>
           <p className="mt-3 text-sm text-muted-foreground sm:text-base">
-            From site assessment to command room — we cover every layer of the
-            surveillance pipeline.
+            From IOPS-intensive databases to long-term archives — every
+            workload covered.
           </p>
         </div>
 
@@ -480,26 +439,25 @@ function CctvPage() {
         </div>
       </section>
 
-      {/* ═══ SECURITY COMPONENTS ═══ */}
+      {/* ═══ STORAGE TIERS ═══ */}
       <section className="border-t border-border bg-card/30 py-9 sm:py-12 lg:py-16">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="mx-auto max-w-2xl text-center">
             <Badge variant="secondary" className="mb-4">
-              Security Components
+              Storage Tiers
             </Badge>
             <h2 className="font-display text-2xl font-bold sm:text-3xl lg:text-4xl">
-              End-to-End{" "}
-              <span className="text-gradient">
-                Surveillance Hardware & Software
-              </span>
+              Right Tier for{" "}
+              <span className="text-gradient">Every Workload</span>
             </h2>
             <p className="mt-3 text-sm text-muted-foreground sm:text-base">
-              Cameras, networking, storage and management — all integrated.
+              Cost-optimised tiering matched to performance, capacity and
+              retention needs.
             </p>
           </div>
 
           <div className="mt-8 grid gap-4 sm:mt-10 sm:grid-cols-2 lg:grid-cols-4">
-            {securityComponents.map((item, idx) => (
+            {tiers.map((item, idx) => (
               <motion.div
                 key={item.title}
                 initial={{ opacity: 0, y: 14 }}
@@ -508,10 +466,7 @@ function CctvPage() {
                 transition={{ duration: 0.3, delay: idx * 0.05 }}
                 className="rounded-xl border border-border bg-card p-5 shadow-sm transition-all hover:-translate-y-0.5 hover:border-primary/30 hover:shadow-lg"
               >
-                <span className="inline-flex size-10 items-center justify-center rounded-lg bg-primary/10 text-primary">
-                  <item.icon className="size-5" aria-hidden="true" />
-                </span>
-                <h3 className="mt-3 font-display text-base font-semibold">
+                <h3 className="font-display text-base font-semibold">
                   {item.title}
                 </h3>
                 <p className="mt-1.5 text-sm text-muted-foreground">
@@ -523,51 +478,44 @@ function CctvPage() {
         </div>
       </section>
 
-      {/* ═══ INTEGRATED SECURITY ═══ */}
+      {/* ═══ BACKUP & DR ═══ */}
       <section className="mx-auto max-w-7xl px-4 py-9 sm:px-6 sm:py-12 lg:px-8 lg:py-16">
         <div className="mx-auto max-w-2xl text-center">
           <Badge variant="secondary" className="mb-4">
-            Integrated Security
+            Backup & DR
           </Badge>
           <h2 className="font-display text-2xl font-bold sm:text-3xl lg:text-4xl">
-            Unified{" "}
-            <span className="text-gradient">
-              Security & IT Infrastructure
-            </span>
+            Backup, Recover &{" "}
+            <span className="text-gradient">Survive</span>
           </h2>
           <p className="mt-3 text-sm text-muted-foreground sm:text-base">
-            CCTV seamlessly integrates with your network, access control and IT
-            management systems.
+            Ransomware-resistant backup, verified restores and disaster
+            recovery orchestration.
           </p>
         </div>
 
-        <div className="mt-8 grid gap-5 sm:mt-10 sm:grid-cols-2">
-          {integrationItems.map((item, idx) => (
+        <div className="mt-8 grid gap-4 sm:mt-10 sm:grid-cols-2 lg:grid-cols-4">
+          {backupDrs.map((item, idx) => (
             <motion.div
               key={item.title}
               initial={{ opacity: 0, y: 14 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.3, delay: idx * 0.05 }}
-              className="flex items-start gap-4 rounded-xl border border-border bg-card p-5 shadow-sm transition-all hover:-translate-y-0.5 hover:border-primary/30 hover:shadow-md"
+              className="rounded-xl border border-border bg-card p-5 shadow-sm transition-all hover:-translate-y-0.5 hover:border-primary/30 hover:shadow-lg"
             >
-              <span className="inline-flex size-10 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary">
-                <item.icon className="size-5" aria-hidden="true" />
-              </span>
-              <div className="min-w-0">
-                <h3 className="font-display text-base font-semibold">
-                  {item.title}
-                </h3>
-                <p className="mt-1 text-sm text-muted-foreground">
-                  {item.desc}
-                </p>
-              </div>
+              <h3 className="font-display text-base font-semibold">
+                {item.title}
+              </h3>
+              <p className="mt-1.5 text-sm text-muted-foreground">
+                {item.desc}
+              </p>
             </motion.div>
           ))}
         </div>
       </section>
 
-      {/* ═══ SLA FOR CCTV ═══ */}
+      {/* ═══ SLA COMMITMENTS ═══ */}
       <section className="border-t border-border bg-card/30 py-9 sm:py-12 lg:py-16">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="mx-auto max-w-2xl text-center">
@@ -575,23 +523,24 @@ function CctvPage() {
               SLA Cover
             </Badge>
             <h2 className="font-display text-2xl font-bold sm:text-3xl lg:text-4xl">
-              Surveillance Support{" "}
-              <span className="text-gradient">Commitments</span>
+              Storage{" "}
+              <span className="text-gradient">Support Commitments</span>
             </h2>
             <p className="mt-3 text-sm text-muted-foreground sm:text-base">
-              Contractual response and maintenance for your CCTV systems.
+              Contractual response and resolution times for your critical
+              storage infrastructure.
             </p>
           </div>
 
           <div className="mt-8 grid gap-4 sm:mt-10 sm:grid-cols-2 lg:grid-cols-4">
             {[
-              { icon: Clock, label: "Response Time", value: "30 min" },
+              { icon: Clock, label: "Initial Response", value: "30 minutes" },
               {
                 icon: Wrench,
                 label: "Part Replacement",
                 value: "4 hours",
               },
-              { icon: Headset, label: "Support Coverage", value: "24/7 × 365" },
+              { icon: Headset, label: "Coverage", value: "24/7 × 365" },
               { icon: MapPin, label: "Onsite Reach", value: "8 hubs" },
             ].map((item, idx) => (
               <motion.div
@@ -627,252 +576,227 @@ function CctvPage() {
         </div>
       </section>
 
-      {/* ═══ IMPLEMENTATION ═══ */}
+      {/* ═══ PARTNERS (with logos) ═══ */}
       <section className="mx-auto max-w-7xl px-4 py-9 sm:px-6 sm:py-12 lg:px-8 lg:py-16">
         <div className="mx-auto max-w-2xl text-center">
           <Badge variant="secondary" className="mb-4">
-            Implementation
+            Storage Platforms
           </Badge>
           <h2 className="font-display text-2xl font-bold sm:text-3xl lg:text-4xl">
-            From Survey to{" "}
-            <span className="text-gradient">Managed Support</span>
+            Enterprise <span className="text-gradient">Storage Vendors</span>
           </h2>
           <p className="mt-3 text-sm text-muted-foreground sm:text-base">
-            A structured methodology ensures your surveillance system is
-            deployed right and stays reliable.
+            Multi-vendor expertise across leading enterprise storage platforms.
           </p>
         </div>
 
-        <div className="mt-8 grid gap-5 sm:mt-10 sm:grid-cols-2 lg:grid-cols-3">
-          {implementationSteps.map((item, idx) => (
-            <motion.div
-              key={item.step}
-              initial={{ opacity: 0, y: 14 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.3, delay: idx * 0.05 }}
-              className="rounded-xl border border-border bg-card p-6 shadow-sm transition-all hover:-translate-y-0.5 hover:border-primary/30 hover:shadow-lg"
+        <div className="mt-8 grid grid-cols-2 gap-4 sm:mt-10 sm:grid-cols-3 lg:grid-cols-4">
+          {storagePartners.map((partner) => (
+            <div
+              key={partner.name}
+              className="flex flex-col items-center justify-center gap-2 rounded-xl border border-border bg-card p-4 text-center shadow-sm transition-all hover:border-primary/30 hover:shadow-md"
             >
-              <span className="inline-flex size-10 items-center justify-center rounded-full bg-primary/10 font-display text-sm font-bold text-primary">
-                {item.step}
-              </span>
-              <h3 className="mt-3 font-display text-base font-semibold sm:text-lg">
-                {item.title}
-              </h3>
-              <p className="mt-1.5 text-sm text-muted-foreground">
-                {item.text}
+              <img
+                src={partner.logo}
+                alt={`${partner.name} — storage partner`}
+                className="h-8 w-auto object-contain opacity-80 dark:opacity-90"
+                loading="lazy"
+                decoding="async"
+                width={80}
+                height={32}
+              />
+              <p className="text-[10px] font-medium text-muted-foreground sm:text-xs">
+                {partner.name}
               </p>
-            </motion.div>
+            </div>
+          ))}
+          {/* Additional storage-specific vendors (text badges) */}
+          {["NetApp", "Pure Storage", "Veeam"].map((name) => (
+            <div
+              key={name}
+              className="flex flex-col items-center justify-center gap-2 rounded-xl border border-border bg-card p-4 text-center shadow-sm transition-all hover:border-primary/30 hover:shadow-md"
+            >
+              <span className="font-display text-base font-bold text-foreground/80 sm:text-lg">
+                {name}
+              </span>
+              <p className="text-[10px] font-medium uppercase tracking-wider text-muted-foreground">
+                Storage Ecosystem
+              </p>
+            </div>
           ))}
         </div>
       </section>
 
-      {/* ═══ PARTNERS ═══ */}
+      {/* ═══ WHY CHOOSE US ═══ */}
       <section className="border-t border-border bg-card/30 py-9 sm:py-12 lg:py-16">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="mx-auto max-w-2xl text-center">
             <Badge variant="secondary" className="mb-4">
-              Technology Partners
+              Why AI Power
             </Badge>
             <h2 className="font-display text-2xl font-bold sm:text-3xl lg:text-4xl">
-              Certified{" "}
-              <span className="text-gradient">Security Vendors</span>
+              What Sets Us <span className="text-gradient">Apart</span>
             </h2>
             <p className="mt-3 text-sm text-muted-foreground sm:text-base">
-              We work with leading global brands to deliver enterprise-grade
-              surveillance.
+              Workload-aligned design, vendor-neutral sizing, and SLA-backed
+              operations.
             </p>
           </div>
 
-          <div className="mt-8 grid grid-cols-2 gap-4 sm:mt-10 sm:grid-cols-3 lg:grid-cols-4">
-            {cctvPartners.map((partner, idx) => (
+          <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+            {[
+              {
+                icon: Users,
+                title: "Certified Engineers",
+                desc: "HPE, Dell EMC, NetApp and Veeam-trained engineers across SAN, NAS and backup platforms.",
+              },
+              {
+                icon: Target,
+                title: "Workload-Aligned",
+                desc: "We map storage tier, IOPS and capacity to actual workload profiles — not marketing specs.",
+              },
+              {
+                icon: TrendingUp,
+                title: "Ransomware-Ready",
+                desc: "Immutable backups, air-gapped copies and rapid recovery workflows designed into every deployment.",
+              },
+              {
+                icon: Award,
+                title: "SLA-Backed Support",
+                desc: "30-minute response, 4-hour part replacement, 24/7 × 365 — contractually guaranteed.",
+              },
+            ].map((item, idx) => (
               <motion.div
-                key={partner.name}
-                initial={{ opacity: 0, y: 12 }}
+                key={item.title}
+                initial={{ opacity: 0, y: 14 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.3, delay: idx * 0.05 }}
-                className="flex flex-col items-center justify-center gap-2 rounded-xl border border-border bg-card p-5 text-center shadow-sm transition-all hover:-translate-y-0.5 hover:border-primary/30 hover:shadow-md"
+                className="rounded-xl border border-border bg-card p-6 text-center shadow-sm transition-all hover:border-primary/30 hover:shadow-lg"
               >
-                <span className="font-display text-base font-bold text-foreground sm:text-lg">
-                  {partner.name}
+                <span className="inline-flex size-12 items-center justify-center rounded-full bg-primary/10 text-primary">
+                  <item.icon className="size-6" aria-hidden="true" />
                 </span>
-                <span className="text-[10px] font-medium uppercase tracking-wider text-muted-foreground sm:text-xs">
-                  {partner.badge}
-                </span>
+                <h3 className="mt-3 font-display text-base font-semibold sm:text-lg">
+                  {item.title}
+                </h3>
+                <p className="mt-1.5 text-xs text-muted-foreground sm:text-sm">
+                  {item.desc}
+                </p>
               </motion.div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* ═══ WHY CHOOSE US ═══ */}
-      <section className="mx-auto max-w-7xl px-4 py-9 sm:px-6 sm:py-12 lg:px-8 lg:py-16">
+      {/* ═══ FAQ ═══ */}
+      <section className="mx-auto max-w-4xl px-4 py-9 sm:px-6 sm:py-12 lg:px-8 lg:py-16">
         <div className="mx-auto max-w-2xl text-center">
           <Badge variant="secondary" className="mb-4">
-            Why AI Power
+            FAQ
           </Badge>
           <h2 className="font-display text-2xl font-bold sm:text-3xl lg:text-4xl">
-            What Sets Us <span className="text-gradient">Apart</span>
+            Frequently Asked{" "}
+            <span className="text-gradient">Questions</span>
           </h2>
           <p className="mt-3 text-sm text-muted-foreground sm:text-base">
-            Full-lifecycle surveillance expertise — from design to managed
-            support.
+            Common questions about SAN, NAS, backup and disaster recovery.
           </p>
         </div>
 
-        <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-          {[
-            {
-              icon: Users,
-              title: "Certified Engineers",
-              desc: "Trained security engineers across Hikvision, Dahua, Axis and Bosch platforms with enterprise deployment experience.",
-            },
-            {
-              icon: Target,
-              title: "Design-Led Approach",
-              desc: "Every project starts with a site survey, camera placement plan, lux calculations and network design.",
-            },
-            {
-              icon: Activity,
-              title: "Integrated Systems",
-              desc: "CCTV + access control + network designed together — not bolted on as separate systems.",
-            },
-            {
-              icon: Award,
-              title: "SLA-Backed Support",
-              desc: "30-minute response, 4-hour part replacement, 24/7 × 365 — contractually guaranteed.",
-            },
-          ].map((item, idx) => (
-            <motion.div
-              key={item.title}
-              initial={{ opacity: 0, y: 14 }}
+        <div className="mt-8 space-y-3">
+          {storageFaqs.map((faq, index) => (
+            <motion.details
+              key={faq.question}
+              initial={{ opacity: 0, y: 10 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.3, delay: idx * 0.05 }}
-              className="rounded-xl border border-border bg-card p-6 text-center shadow-sm transition-all hover:border-primary/30 hover:shadow-lg"
+              transition={{ duration: 0.3, delay: index * 0.04 }}
+              className="group rounded-xl border border-border bg-card shadow-sm transition-all hover:border-primary/30 hover:shadow-md [&_summary::-webkit-details-marker]:hidden"
             >
-              <span className="inline-flex size-12 items-center justify-center rounded-full bg-primary/10 text-primary">
-                <item.icon className="size-6" aria-hidden="true" />
-              </span>
-              <h3 className="mt-3 font-display text-base font-semibold sm:text-lg">
-                {item.title}
-              </h3>
-              <p className="mt-1.5 text-xs text-muted-foreground sm:text-sm">
-                {item.desc}
-              </p>
-            </motion.div>
-          ))}
-        </div>
-      </section>
-
-      {/* ═══ FAQ ═══ */}
-      <section className="border-t border-border bg-card/30 py-9 sm:py-12 lg:py-16">
-        <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
-          <div className="mx-auto max-w-2xl text-center">
-            <Badge variant="secondary" className="mb-4">
-              FAQ
-            </Badge>
-            <h2 className="font-display text-2xl font-bold sm:text-3xl lg:text-4xl">
-              Frequently Asked{" "}
-              <span className="text-gradient">Questions</span>
-            </h2>
-            <p className="mt-3 text-sm text-muted-foreground sm:text-base">
-              Common questions about CCTV design, deployment, integration and
-              SLA coverage.
-            </p>
-          </div>
-
-          <div className="mt-8 space-y-3">
-            {cctvFaqs.map((faq, index) => (
-              <motion.details
-                key={faq.question}
-                initial={{ opacity: 0, y: 10 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.3, delay: index * 0.04 }}
-                className="group rounded-xl border border-border bg-card shadow-sm transition-all hover:border-primary/30 hover:shadow-md [&_summary::-webkit-details-marker]:hidden"
-              >
-                <summary className="flex cursor-pointer items-start justify-between gap-3 p-4 sm:p-5">
-                  <h3 className="text-left text-sm font-semibold sm:text-base">
-                    {faq.question}
-                  </h3>
-                  <span
-                    className="mt-0.5 inline-flex size-5 shrink-0 items-center justify-center rounded-full border border-border text-muted-foreground transition-transform group-open:rotate-90"
-                    aria-hidden="true"
+              <summary className="flex cursor-pointer items-start justify-between gap-3 p-4 sm:p-5">
+                <h3 className="text-left text-sm font-semibold sm:text-base">
+                  {faq.question}
+                </h3>
+                <span
+                  className="mt-0.5 inline-flex size-5 shrink-0 items-center justify-center rounded-full border border-border text-muted-foreground transition-transform group-open:rotate-90"
+                  aria-hidden="true"
+                >
+                  <svg
+                    className="size-3"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2.5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
                   >
-                    <svg
-                      className="size-3"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="2.5"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    >
-                      <polyline points="9 18 15 12 9 6" />
-                    </svg>
-                  </span>
-                </summary>
-                <div className="border-t border-border/60 px-4 pb-4 pt-3 text-sm text-muted-foreground sm:px-5 sm:pb-5">
-                  {faq.answer}
-                </div>
-              </motion.details>
-            ))}
-          </div>
+                    <polyline points="9 18 15 12 9 6" />
+                  </svg>
+                </span>
+              </summary>
+              <div className="border-t border-border/60 px-4 pb-4 pt-3 text-sm text-muted-foreground sm:px-5 sm:pb-5">
+                {faq.answer}
+              </div>
+            </motion.details>
+          ))}
         </div>
       </section>
 
       {/* ═══ RELATED SERVICES ═══ */}
-      <section className="mx-auto max-w-7xl px-4 py-9 sm:px-6 sm:py-12 lg:px-8 lg:py-16">
-        <div className="mx-auto max-w-2xl text-center">
-          <Badge variant="secondary" className="mb-4">
-            Explore More
-          </Badge>
-          <h2 className="font-display text-2xl font-bold sm:text-3xl lg:text-4xl">
-            Related <span className="text-gradient">Services</span>
-          </h2>
-          <p className="mt-3 text-sm text-muted-foreground sm:text-base">
-            CCTV is one piece of our end-to-end IT infrastructure portfolio.
-          </p>
-        </div>
+      <section className="border-t border-border bg-card/30 py-9 sm:py-12 lg:py-16">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="mx-auto max-w-2xl text-center">
+            <Badge variant="secondary" className="mb-4">
+              Explore More
+            </Badge>
+            <h2 className="font-display text-2xl font-bold sm:text-3xl lg:text-4xl">
+              Complete Your{" "}
+              <span className="text-gradient">Infrastructure</span>
+            </h2>
+            <p className="mt-3 text-sm text-muted-foreground sm:text-base">
+              Storage works best with the right compute, data centre and
+              managed services — explore all.
+            </p>
+          </div>
 
-        <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-          {relatedServices.map((service) => (
-            <Link
-              key={service.slug}
-              to={service.path}
-              className="group rounded-xl border border-border bg-card p-6 shadow-sm transition-all hover:-translate-y-0.5 hover:border-primary/30 hover:shadow-lg"
-            >
-              <h3 className="font-display text-lg font-semibold group-hover:text-primary">
-                {service.title}
-              </h3>
-              <p className="mt-2 line-clamp-3 text-sm text-muted-foreground">
-                {service.summary}
-              </p>
-              <span className="mt-4 inline-flex items-center gap-1 text-sm font-medium text-primary">
-                Learn more
-                <ArrowRight
-                  className="size-3.5 transition-transform group-hover:translate-x-0.5"
-                  aria-hidden="true"
-                />
-              </span>
-            </Link>
-          ))}
-        </div>
+          <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+            {relatedServices.map((service) => (
+              <Link
+                key={service.slug}
+                to={service.path}
+                className="group rounded-xl border border-border bg-card p-6 shadow-sm transition-all hover:-translate-y-0.5 hover:border-primary/30 hover:shadow-lg"
+              >
+                <h3 className="font-display text-lg font-semibold group-hover:text-primary">
+                  {service.title}
+                </h3>
+                <p className="mt-2 line-clamp-3 text-sm text-muted-foreground">
+                  {service.summary}
+                </p>
+                <span className="mt-4 inline-flex items-center gap-1 text-sm font-medium text-primary">
+                  Learn more
+                  <ArrowRight
+                    className="size-3.5 transition-transform group-hover:translate-x-0.5"
+                    aria-hidden="true"
+                  />
+                </span>
+              </Link>
+            ))}
+          </div>
 
-        <div className="mt-8 text-center">
-          <Button asChild variant="outline" size="lg">
-            <Link to="/services">
-              View All Services
-              <ArrowRight className="ml-2 size-4" aria-hidden="true" />
-            </Link>
-          </Button>
+          <div className="mt-8 text-center">
+            <Button asChild variant="outline" size="lg">
+              <Link to="/services">
+                View All Services
+                <ArrowRight className="ml-2 size-4" aria-hidden="true" />
+              </Link>
+            </Button>
+          </div>
         </div>
       </section>
 
       {/* ═══ FINAL CTA + CONTACT STRIP ═══ */}
-      <section className="mx-auto max-w-7xl px-4 pb-9 sm:px-6 sm:pb-12 lg:px-8 lg:pb-16">
+      <section className="mx-auto max-w-7xl px-4 py-9 sm:px-6 sm:py-12 lg:px-8 lg:py-16">
         <div className="hero-surface relative overflow-hidden rounded-2xl border border-hero-border px-5 py-10 text-center sm:px-10 sm:py-12">
           <div
             className="grid-pattern absolute inset-0 opacity-20"
@@ -884,11 +808,11 @@ function CctvPage() {
               aria-hidden="true"
             />
             <h2 className="mt-3 font-display text-xl font-bold text-hero-foreground sm:text-2xl lg:text-3xl xl:text-4xl">
-              Ready to Secure Your Site?
+              Ready to Modernise Your Storage?
             </h2>
             <p className="mt-3 text-sm text-hero-muted sm:text-base">
-              Let&apos;s design and deploy a surveillance system that covers
-              every angle — with SLA-backed maintenance and response.
+              Get a storage assessment covering capacity, performance, backup
+              and disaster recovery — with SLA-backed support.
             </p>
 
             <div className="mt-6 flex flex-col justify-center gap-3 sm:flex-row">
@@ -898,7 +822,7 @@ function CctvPage() {
                 className="glow-ring w-full sm:w-auto"
               >
                 <Link to="/contact" hash="request">
-                  Request a Survey
+                  Request Storage Assessment
                   <ArrowRight className="ml-2 size-4" aria-hidden="true" />
                 </Link>
               </Button>

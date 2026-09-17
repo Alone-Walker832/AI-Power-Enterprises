@@ -14,11 +14,13 @@ import { Route as AboutRouteImport } from './routes/about'
 import { Route as CctvRouteImport } from './routes/cctv'
 import { Route as ClientsRouteImport } from './routes/clients'
 import { Route as ContactRouteImport } from './routes/contact'
+import { Route as DatacenterRouteImport } from './routes/datacenter'
 import { Route as ManagedServicesRouteImport } from './routes/managed-services'
 import { Route as NetworkingRouteImport } from './routes/networking'
 import { Route as ServersRouteImport } from './routes/servers'
 import { Route as ServicesRouteImport } from './routes/services'
 import { Route as SlaRouteImport } from './routes/sla'
+import { Route as StorageRouteImport } from './routes/storage'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -43,6 +45,11 @@ const ClientsRoute = ClientsRouteImport.update({
 const ContactRoute = ContactRouteImport.update({
   id: '/contact',
   path: '/contact',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DatacenterRoute = DatacenterRouteImport.update({
+  id: '/datacenter',
+  path: '/datacenter',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ManagedServicesRoute = ManagedServicesRouteImport.update({
@@ -70,6 +77,11 @@ const SlaRoute = SlaRouteImport.update({
   path: '/sla',
   getParentRoute: () => rootRouteImport,
 } as any)
+const StorageRoute = StorageRouteImport.update({
+  id: '/storage',
+  path: '/storage',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -77,11 +89,13 @@ export interface FileRoutesByFullPath {
   '/cctv': typeof CctvRoute
   '/clients': typeof ClientsRoute
   '/contact': typeof ContactRoute
+  '/datacenter': typeof DatacenterRoute
   '/managed-services': typeof ManagedServicesRoute
   '/networking': typeof NetworkingRoute
   '/servers': typeof ServersRoute
   '/services': typeof ServicesRoute
   '/sla': typeof SlaRoute
+  '/storage': typeof StorageRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -89,11 +103,13 @@ export interface FileRoutesByTo {
   '/cctv': typeof CctvRoute
   '/clients': typeof ClientsRoute
   '/contact': typeof ContactRoute
+  '/datacenter': typeof DatacenterRoute
   '/managed-services': typeof ManagedServicesRoute
   '/networking': typeof NetworkingRoute
   '/servers': typeof ServersRoute
   '/services': typeof ServicesRoute
   '/sla': typeof SlaRoute
+  '/storage': typeof StorageRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -102,11 +118,13 @@ export interface FileRoutesById {
   '/cctv': typeof CctvRoute
   '/clients': typeof ClientsRoute
   '/contact': typeof ContactRoute
+  '/datacenter': typeof DatacenterRoute
   '/managed-services': typeof ManagedServicesRoute
   '/networking': typeof NetworkingRoute
   '/servers': typeof ServersRoute
   '/services': typeof ServicesRoute
   '/sla': typeof SlaRoute
+  '/storage': typeof StorageRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -116,11 +134,13 @@ export interface FileRouteTypes {
     | '/cctv'
     | '/clients'
     | '/contact'
+    | '/datacenter'
     | '/managed-services'
     | '/networking'
     | '/servers'
     | '/services'
     | '/sla'
+    | '/storage'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -128,11 +148,13 @@ export interface FileRouteTypes {
     | '/cctv'
     | '/clients'
     | '/contact'
+    | '/datacenter'
     | '/managed-services'
     | '/networking'
     | '/servers'
     | '/services'
     | '/sla'
+    | '/storage'
   id:
     | '__root__'
     | '/'
@@ -140,11 +162,13 @@ export interface FileRouteTypes {
     | '/cctv'
     | '/clients'
     | '/contact'
+    | '/datacenter'
     | '/managed-services'
     | '/networking'
     | '/servers'
     | '/services'
     | '/sla'
+    | '/storage'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -153,11 +177,13 @@ export interface RootRouteChildren {
   CctvRoute: typeof CctvRoute
   ClientsRoute: typeof ClientsRoute
   ContactRoute: typeof ContactRoute
+  DatacenterRoute: typeof DatacenterRoute
   ManagedServicesRoute: typeof ManagedServicesRoute
   NetworkingRoute: typeof NetworkingRoute
   ServersRoute: typeof ServersRoute
   ServicesRoute: typeof ServicesRoute
   SlaRoute: typeof SlaRoute
+  StorageRoute: typeof StorageRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -197,6 +223,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ContactRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/datacenter': {
+      id: '/datacenter'
+      path: '/datacenter'
+      fullPath: '/datacenter'
+      preLoaderRoute: typeof DatacenterRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/managed-services': {
       id: '/managed-services'
       path: '/managed-services'
@@ -232,6 +265,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SlaRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/storage': {
+      id: '/storage'
+      path: '/storage'
+      fullPath: '/storage'
+      preLoaderRoute: typeof StorageRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -241,11 +281,13 @@ const rootRouteChildren: RootRouteChildren = {
   CctvRoute: CctvRoute,
   ClientsRoute: ClientsRoute,
   ContactRoute: ContactRoute,
+  DatacenterRoute: DatacenterRoute,
   ManagedServicesRoute: ManagedServicesRoute,
   NetworkingRoute: NetworkingRoute,
   ServersRoute: ServersRoute,
   ServicesRoute: ServicesRoute,
   SlaRoute: SlaRoute,
+  StorageRoute: StorageRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
