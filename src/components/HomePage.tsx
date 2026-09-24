@@ -487,7 +487,7 @@ export default function HomePage() {
 
 
 {/* ─── 10. STRATEGIC PARTNERS ─── */}
-<section className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8 lg:py-20" aria-labelledby="partners-heading">
+<section className="mx-auto max-w-7xl px-4 pt-16 pb-8 sm:px-6 lg:px-8 lg:pt-20 lg:pb-10" aria-labelledby="partners-heading">
   <div className="mx-auto max-w-2xl text-center">
     <span className="eyebrow text-xs font-semibold uppercase tracking-widest text-primary">Alliances</span>
     <h2 id="partners-heading" className="mt-3 font-display text-2xl font-bold text-foreground sm:text-3xl lg:text-4xl">
@@ -524,6 +524,36 @@ export default function HomePage() {
       </div>
     </div>
   </div>
+
+
+
+  {/* ═══ HPE PARTNERSHIP BANNER ═══ */}
+<section className="mx-auto max-w-4xl px-4 py-9 sm:px-6 sm:py-12 lg:px-8">
+  <div className="text-center">
+    <span className="text-xs font-semibold uppercase tracking-widest text-primary">
+      Featured Partnership
+    </span>
+    <h2 className="mt-2 font-display text-xl font-bold sm:text-2xl">
+      HPE With <span className="text-primary">AI Power Enterprises</span>
+    </h2>
+    <p className="mt-2 text-xs text-muted-foreground sm:text-sm">
+      Certified technology alliance — enterprise servers, storage, hybrid cloud, and 24/7 SLA-backed support across Pakistan.
+    </p>
+  </div>
+
+  {/* Image wrapper — narrow + centered */}
+  <div className="mx-auto mt-6 max-w-md sm:max-w-lg">
+    <div className="overflow-hidden rounded-2xl border border-border/60 bg-card shadow-sm transition-all hover:-translate-y-0.5 hover:border-primary/40 hover:shadow-xl">
+      <img
+        src={hpePartnership}
+        alt="Hewlett Packard Enterprise and AI Power Enterprises — Technology Partnership"
+        className="h-auto w-full object-cover"
+        loading="lazy"
+        decoding="async"
+      />
+    </div>
+  </div>
+</section>
 
   {/* ─── Mobile Grid Fallback ─── */}
   <div className="mt-6 grid grid-cols-3 gap-3 sm:grid-cols-4 md:grid-cols-6 lg:hidden">
@@ -818,37 +848,6 @@ export default function HomePage() {
           </div>
         </div>
       </section>
-
-
-{/* ═══ HPE PARTNERSHIP BANNER ═══ */}
-<section className="mx-auto max-w-4xl px-4 py-9 sm:px-6 sm:py-12 lg:px-8">
-  <div className="text-center">
-    <span className="text-xs font-semibold uppercase tracking-widest text-primary">
-      Featured Partnership
-    </span>
-    <h2 className="mt-2 font-display text-xl font-bold sm:text-2xl">
-      HPE With <span className="text-primary">AI Power Enterprises</span>
-    </h2>
-    <p className="mt-2 text-xs text-muted-foreground sm:text-sm">
-      Certified technology alliance — enterprise servers, storage, hybrid cloud, and 24/7 SLA-backed support across Pakistan.
-    </p>
-  </div>
-
-  {/* Image wrapper — narrow + centered */}
-  <div className="mx-auto mt-6 max-w-md sm:max-w-lg">
-    <div className="overflow-hidden rounded-2xl border border-border/60 bg-card shadow-sm transition-all hover:-translate-y-0.5 hover:border-primary/40 hover:shadow-xl">
-      <img
-        src={hpePartnership}
-        alt="Hewlett Packard Enterprise and AI Power Enterprises — Technology Partnership"
-        className="h-auto w-full object-cover"
-        loading="lazy"
-        decoding="async"
-      />
-    </div>
-  </div>
-</section>
-
-
 
       {/* ─── 11. CTA ─── */}
       <section className="mx-auto max-w-7xl px-4 pb-16 sm:px-6 lg:px-8 lg:pb-20">

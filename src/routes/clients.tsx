@@ -1,5 +1,6 @@
 import { useMemo, useState, useRef } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
+import hpePartnership from "@/assets/partners/hpe-partnership.jpeg";
 import {
   motion,
   useScroll,
@@ -436,6 +437,37 @@ function ClientsPage() {
           ))}
         </div>
       </section>
+
+
+{/* ═══ HPE PARTNERSHIP BANNER ═══ */}
+<section className="mx-auto max-w-4xl px-4 py-9 sm:px-6 sm:py-12 lg:px-8">
+  <div className="text-center">
+    <span className="text-xs font-semibold uppercase tracking-widest text-primary">
+      Featured Partnership
+    </span>
+    <h2 className="mt-2 font-display text-xl font-bold sm:text-2xl">
+      HPE With <span className="text-primary">AI Power Enterprises</span>
+    </h2>
+    <p className="mt-2 text-xs text-muted-foreground sm:text-sm">
+      Certified technology alliance — enterprise servers, storage, hybrid cloud, and 24/7 SLA-backed support across Pakistan.
+    </p>
+  </div>
+
+  {/* Image wrapper — narrow + centered */}
+  <div className="mx-auto mt-6 max-w-md sm:max-w-lg">
+    <div className="overflow-hidden rounded-2xl border border-border/60 bg-card shadow-sm transition-all hover:-translate-y-0.5 hover:border-primary/40 hover:shadow-xl">
+      <img
+        src={hpePartnership}
+        alt="Hewlett Packard Enterprise and AI Power Enterprises — Technology Partnership"
+        className="h-auto w-full object-cover"
+        loading="lazy"
+        decoding="async"
+      />
+    </div>
+  </div>
+</section>
+
+      
 
       {/* ═══ CLIENTS ═══ */}
       <section
