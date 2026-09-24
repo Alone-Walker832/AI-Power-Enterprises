@@ -523,37 +523,8 @@ export default function HomePage() {
         ))}
       </div>
     </div>
-  </div>
-
-  {/* ─── Mobile Grid Fallback ─── */}
-  <div className="mt-6 grid grid-cols-3 gap-3 sm:grid-cols-4 md:grid-cols-6 lg:hidden">
-    {partnerBadges.map((partner) => (
-      <div
-        key={partner.name}
-        className="flex h-16 w-full items-center justify-center rounded-xl border-2 border-border/40 bg-white/70 p-2 shadow-sm backdrop-blur-sm transition-all hover:scale-105 hover:border-primary/30 hover:shadow-md dark:bg-slate-800/70"
-      >
-        <img
-          src={partner.logo}
-          alt={`${partner.name} logo`}
-          className="h-full w-full object-contain"
-          loading="lazy"
-          decoding="async"
-        />
-      </div>
-    ))}
-  </div>
-</section>
-
-
-
-
-
 {/* ═══ HPE PARTNERSHIP BANNER ═══ */}
-<section className="mx-auto max-w-4xl px-4 py-9 sm:px-6 sm:py-12 lg:px-8">
   <div className="text-center">
-    <span className="text-xs font-semibold uppercase tracking-widest text-primary">
-      Featured Partnership
-    </span>
     <h2 className="mt-2 font-display text-xl font-bold sm:text-2xl">
       HPE With <span className="text-primary">AI Power Enterprises</span>
     </h2>
@@ -574,10 +545,28 @@ export default function HomePage() {
       />
     </div>
   </div>
+
+
+  </div>
+
+  {/* ─── Mobile Grid Fallback ─── */}
+  <div className="mt-6 grid grid-cols-3 gap-3 sm:grid-cols-4 md:grid-cols-6 lg:hidden">
+    {partnerBadges.map((partner) => (
+      <div
+        key={partner.name}
+        className="flex h-16 w-full items-center justify-center rounded-xl border-2 border-border/40 bg-white/70 p-2 shadow-sm backdrop-blur-sm transition-all hover:scale-105 hover:border-primary/30 hover:shadow-md dark:bg-slate-800/70"
+      >
+        <img
+          src={partner.logo}
+          alt={`${partner.name} logo`}
+          className="h-full w-full object-contain"
+          loading="lazy"
+          decoding="async"
+        />
+      </div>
+    ))}
+  </div>
 </section>
-
-
-
 
 
       {/* ─── 2. CORE PILLARS ─── */}
