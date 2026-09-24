@@ -498,7 +498,7 @@ export default function HomePage() {
     </p>
   </div>
 
-  {/* Marquee — apne alag wrapper mein */}
+  {/* ─── Marquee ─── */}
   <div className="relative mt-8 overflow-hidden">
     <div className="[mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)]">
       <div className="animate-marquee flex w-max gap-6 sm:gap-8 py-4">
@@ -514,42 +514,39 @@ export default function HomePage() {
               loading="lazy"
               decoding="async"
             />
+            <div className="absolute -bottom-7 left-1/2 -translate-x-1/2 opacity-0 transition-all duration-300 group-hover:opacity-100 group-hover:-bottom-8">
+              <span className="whitespace-nowrap text-[8px] font-semibold uppercase tracking-widest text-muted-foreground/80">
+                {partner.name}
+              </span>
+            </div>
           </div>
         ))}
       </div>
     </div>
   </div>
 
-  {/* Mobile Grid Fallback */}
+  {/* ─── Mobile Grid Fallback ─── */}
   <div className="mt-6 grid grid-cols-3 gap-3 sm:grid-cols-4 md:grid-cols-6 lg:hidden">
     {partnerBadges.map((partner) => (
-      <div key={partner.name} className="flex h-16 w-full items-center justify-center rounded-xl border-2 border-border/40 bg-white/70 p-2 shadow-sm backdrop-blur-sm dark:bg-slate-800/70">
-        <img src={partner.logo} alt={`${partner.name} logo`} className="h-full w-full object-contain" loading="lazy" decoding="async" />
-      </div>
-    ))}
-  </div>
-
-  {/* ═══ HPE PARTNERSHIP — marquee ke BAHAR ═══ */}
-  <div className="mt-12 text-center">
-    <h2 className="font-display text-xl font-bold sm:text-2xl">
-      HPE With <span className="text-primary">AI Power Enterprises</span>
-    </h2>
-    <p className="mt-2 text-xs text-muted-foreground sm:text-sm">
-      Certified technology alliance — enterprise servers, storage, hybrid cloud, and 24/7 SLA-backed support across Pakistan.
-    </p>
-    <div className="mx-auto mt-6 max-w-md sm:max-w-lg">
-      <div className="overflow-hidden rounded-2xl border border-border/60 bg-card shadow-sm transition-all hover:-translate-y-0.5 hover:border-primary/40 hover:shadow-xl">
+      <div
+        key={partner.name}
+        className="flex h-16 w-full items-center justify-center rounded-xl border-2 border-border/40 bg-white/70 p-2 shadow-sm backdrop-blur-sm transition-all hover:scale-105 hover:border-primary/30 hover:shadow-md dark:bg-slate-800/70"
+      >
         <img
-          src={hpePartnership}
-          alt="Hewlett Packard Enterprise and AI Power Enterprises — Technology Partnership"
-          className="h-auto w-full object-cover"
+          src={partner.logo}
+          alt={`${partner.name} logo`}
+          className="h-full w-full object-contain"
           loading="lazy"
           decoding="async"
         />
       </div>
-    </div>
+    ))}
   </div>
 </section>
+
+
+
+
 
 
       {/* ─── 2. CORE PILLARS ─── */}
@@ -821,6 +818,37 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+
+
+{/* ═══ HPE PARTNERSHIP BANNER ═══ */}
+<section className="mx-auto max-w-4xl px-4 py-9 sm:px-6 sm:py-12 lg:px-8">
+  <div className="text-center">
+    <span className="text-xs font-semibold uppercase tracking-widest text-primary">
+      Featured Partnership
+    </span>
+    <h2 className="mt-2 font-display text-xl font-bold sm:text-2xl">
+      HPE With <span className="text-primary">AI Power Enterprises</span>
+    </h2>
+    <p className="mt-2 text-xs text-muted-foreground sm:text-sm">
+      Certified technology alliance — enterprise servers, storage, hybrid cloud, and 24/7 SLA-backed support across Pakistan.
+    </p>
+  </div>
+
+  {/* Image wrapper — narrow + centered */}
+  <div className="mx-auto mt-6 max-w-md sm:max-w-lg">
+    <div className="overflow-hidden rounded-2xl border border-border/60 bg-card shadow-sm transition-all hover:-translate-y-0.5 hover:border-primary/40 hover:shadow-xl">
+      <img
+        src={hpePartnership}
+        alt="Hewlett Packard Enterprise and AI Power Enterprises — Technology Partnership"
+        className="h-auto w-full object-cover"
+        loading="lazy"
+        decoding="async"
+      />
+    </div>
+  </div>
+</section>
+
+
 
       {/* ─── 11. CTA ─── */}
       <section className="mx-auto max-w-7xl px-4 pb-16 sm:px-6 lg:px-8 lg:pb-20">

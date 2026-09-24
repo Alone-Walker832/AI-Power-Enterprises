@@ -319,7 +319,7 @@ function ServicesDropdown({ pathname }: { pathname: string }) {
                 <span className="flex size-8 shrink-0 items-center justify-center rounded-lg bg-primary-foreground/15 backdrop-blur">
                   <ShieldCheck className="size-4" />
                 </span>
-                <span className="text-[10px] font-bold uppercase tracking-[0.15em] text-primary-foreground/85">
+                <span className="text-[10px] font-bold uppercase tracking-[0.15em] text-primary-foreground/185">
                   SLA Cover
                 </span>
               </div>
