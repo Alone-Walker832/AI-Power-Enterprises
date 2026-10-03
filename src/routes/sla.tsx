@@ -61,7 +61,7 @@ const PAGE_PATH = "/sla";
 const PAGE_URL = `${siteConfig.url}${PAGE_PATH}`;
 const PAGE_TITLE = "SLA-Based IT Support in Pakistan | 24/7 · 30-Min Response";
 const PAGE_DESCRIPTION =
-  "Contractual SLA support in Pakistan — 30-minute initial response, 4-working-hour part replacement, 24/7 × 365 coverage, onsite intervention and quarterly reporting.";
+  "Contractual SLA support in Pakistan — 30-minute initial response, 4-working-hour part replacement, 24/7 × 365 coverage and quarterly reporting.";
 const PAGE_KEYWORDS = [
   "SLA support Pakistan",
   "24/7 IT support Karachi",

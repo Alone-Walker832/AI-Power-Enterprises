@@ -52,7 +52,7 @@ const PAGE_URL = `${siteConfig.url}${PAGE_PATH}`;
 const PAGE_TITLE =
   "Managed IT Services in Pakistan | 24/7 Helpdesk & Support";
 const PAGE_DESCRIPTION =
-  "Managed IT services in Pakistan — 24/7 helpdesk, incident management, preventive maintenance, resident engineering and SLA-backed support across 8 national hubs.";
+  "Managed IT services in Pakistan — 24/7 helpdesk, incident management, preventive maintenance, resident engineering and SLA-backed support.";
 const PAGE_KEYWORDS = [
   "managed IT services Pakistan",
   "24/7 IT support Karachi",

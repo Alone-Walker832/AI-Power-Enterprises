@@ -50,7 +50,7 @@ const PAGE_URL = `${siteConfig.url}${PAGE_PATH}`;
 const PAGE_TITLE =
   "Data Centre Solutions in Pakistan | Design, Build & Operate";
 const PAGE_DESCRIPTION =
-  "End-to-end data centre solutions in Karachi & Pakistan — design, racks, structured cabling, power, cooling, monitoring and 24/7 support from certified engineers.";
+  "End-to-end data centre solutions in Karachi & Pakistan — design, racks, structured cabling, power, cooling, monitoring and 24/7 support.";
 const PAGE_KEYWORDS = [
   "data centre solutions Pakistan",
   "data center design Karachi",

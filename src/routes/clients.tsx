@@ -52,7 +52,7 @@ const PAGE_URL = `${siteConfig.url}${PAGE_PATH}`;
 const PAGE_TITLE =
   "Clients & Strategic Partners | AI Power Enterprises Pakistan";
 const PAGE_DESCRIPTION =
-  "Trusted by leading banks, industrial groups, hospitals, universities and telecom operators across Pakistan, with Microsoft, Red Hat, Cisco, HPE and Dell partnerships.";
+  "Trusted by banks, industrial groups, hospitals, universities and telecom operators across Pakistan. Certified Microsoft, Red Hat, Cisco, HPE and Dell partners.";
 const PAGE_KEYWORDS = [
   "AI Power Enterprises clients",
   "enterprise IT clients Pakistan",

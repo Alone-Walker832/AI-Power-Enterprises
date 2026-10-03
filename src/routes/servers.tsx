@@ -48,7 +48,7 @@ const PAGE_URL = `${siteConfig.url}${PAGE_PATH}`;
 const PAGE_TITLE =
   "Enterprise Servers & Storage in Pakistan | HPE, Dell, Cisco";
 const PAGE_DESCRIPTION =
-  "Enterprise servers, blade systems, SAN/NAS storage and backup infrastructure from HPE, Dell and Cisco — designed, deployed and supported nationwide in Pakistan.";
+  "Enterprise servers, blade systems, SAN/NAS storage and backup infrastructure from HPE, Dell and Cisco — deployed and supported nationwide in Pakistan.";
 const PAGE_KEYWORDS = [
   "enterprise servers Pakistan",
   "blade servers Karachi",

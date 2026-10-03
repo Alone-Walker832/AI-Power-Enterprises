@@ -1,21 +1,56 @@
 {
-  "name": "AI Power Enterprises",
+  "name": "AI Power Enterprises — Enterprise IT Services Pakistan",
   "short_name": "AIPE",
-  "description": "Enterprise IT Infrastructure, Integration & Managed Services",
+  "description": "Enterprise IT infrastructure, servers, storage, data centre, networking, IP CCTV and 24/7 SLA-based managed services across Pakistan.",
   "start_url": "/",
+  "scope": "/",
   "display": "standalone",
   "background_color": "#FFFFFF",
-  "theme_color": "#0A1F33",
+  "theme_color": "#0A192F",
+  "lang": "en-PK",
+  "dir": "ltr",
+  "categories": ["business", "productivity", "utilities"],
   "icons": [
     {
       "src": "/logo.png",
       "sizes": "192x192",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/logo.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/logo.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
     },
     {
       "src": "/apple-touch-icon.png",
       "sizes": "180x180",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Contact Us",
+      "short_name": "Contact",
+      "url": "/contact"
+    },
+    {
+      "name": "Our Services",
+      "short_name": "Services",
+      "url": "/services"
+    },
+    {
+      "name": "24/7 SLA Support",
+      "short_name": "SLA",
+      "url": "/sla"
     }
   ]
 }

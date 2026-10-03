@@ -50,7 +50,7 @@ const PAGE_URL = `${siteConfig.url}${PAGE_PATH}`;
 const PAGE_TITLE =
   "Enterprise Storage & Backup Solutions in Pakistan | SAN, NAS";
 const PAGE_DESCRIPTION =
-  "Enterprise storage & backup solutions in Pakistan — SAN, NAS, all-flash arrays, tape archival, replication and disaster recovery. Deployed and supported 24/7 nationwide.";
+  "Enterprise storage & backup in Pakistan — SAN, NAS, all-flash arrays, tape archival, replication and disaster recovery. Deployed and supported 24/7 nationwide.";
 const PAGE_KEYWORDS = [
   "enterprise storage Pakistan",
   "SAN NAS solutions Karachi",

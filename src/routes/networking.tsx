@@ -53,7 +53,7 @@ const PAGE_URL = `${siteConfig.url}${PAGE_PATH}`;
 const PAGE_TITLE =
   "Enterprise Networking Solutions in Pakistan | LAN, WAN, Wi-Fi";
 const PAGE_DESCRIPTION =
-  "Structured cabling (Cat6/Cat6A/fibre), enterprise routing & switching, wireless, next-gen firewalls and VPN — designed, deployed and supported nationwide in Pakistan.";
+  "Structured cabling (Cat6/Cat6A/fibre), enterprise routing & switching, wireless, next-gen firewalls and VPN — deployed and supported nationwide in Pakistan.";
 const PAGE_KEYWORDS = [
   "networking solutions Pakistan",
   "structured cabling Karachi",

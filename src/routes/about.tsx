@@ -55,7 +55,7 @@ const PAGE_URL = `${siteConfig.url}${PAGE_PATH}`;
 const PAGE_TITLE =
   "About AI Power Enterprises | Enterprise IT Partner in Pakistan";
 const PAGE_DESCRIPTION =
-  "AI Power Enterprises is a technology-driven solutions and services company providing enterprise IT infrastructure, managed services, consultancy, and 24/7 SLA support across Pakistan.";
+  "AI Power Enterprises is a Karachi-based technology company delivering enterprise IT infrastructure, systems integration, managed services and 24/7 SLA support across Pakistan.";
 const PAGE_KEYWORDS = [
   "about AI Power Enterprises",
   "enterprise IT company Pakistan",
