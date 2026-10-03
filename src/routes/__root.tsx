@@ -138,13 +138,29 @@ function PremiumLoader() {
 // ═══════════════════════════════════════════════════════════════════
 // Error Boundary Component
 // ═══════════════════════════════════════════════════════════════════
-function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
+function ErrorComponent({
+  error,
+  reset,
+}: {
+  // TanStack Router types the thrown value as `unknown`, so it is narrowed
+  // to a real Error below rather than assumed. Anything that is not an
+  // Error is still rendered via String() so the debug panel never crashes.
+  error: unknown;
+  reset: () => void;
+}) {
   const router = useRouter();
   const [copied, setCopied] = useState(false);
 
+  const errorText =
+    error instanceof Error
+      ? (error.stack ?? error.message)
+      : typeof error === "string"
+        ? error
+        : JSON.stringify(error);
+
   const handleCopyError = async () => {
     try {
-      await navigator.clipboard.writeText(error.stack || error.message);
+      await navigator.clipboard.writeText(errorText);
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
     } catch {
@@ -167,9 +183,7 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
         {import.meta.env.DEV && (
           <details className="mt-4 max-h-40 overflow-auto rounded-lg bg-muted/30 p-3 text-left text-xs font-mono">
             <summary className="cursor-pointer text-primary">View error details</summary>
-            <pre className="mt-2 whitespace-pre-wrap text-destructive">
-              {error.stack || error.message}
-            </pre>
+            <pre className="mt-2 whitespace-pre-wrap text-destructive">{errorText}</pre>
           </details>
         )}
         <div className="mt-6 flex flex-wrap items-center justify-center gap-3">

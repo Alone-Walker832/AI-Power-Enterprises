@@ -6,28 +6,44 @@ import viteReact from "@vitejs/plugin-react";
 import viteTsConfigPaths from "vite-tsconfig-paths";
 import tailwindcss from "@tailwindcss/vite";
 
-export default defineConfig({
-  plugins: [
-    // Path aliases (@/* → src/*)
-    viteTsConfigPaths({ projects: ["./tsconfig.json"] }),
+export default defineConfig(({ command }) => {
+  // Make NODE_ENV deterministic for `vite build`.
+  //
+  // TanStack Start gates prerendering on NODE_ENV internally, so if the
+  // variable is absent the build still completes "successfully" but writes
+  // ZERO prerendered pages — leaving the routes to be served only by the
+  // serverless function. Setting it here (rather than relying on the ambient
+  // shell/CI environment) guarantees `vite build` always produces static HTML
+  // for every route, on any machine, locally or on Vercel.
+  if (command === "build") {
+    process.env["NODE_ENV"] = "production";
+  }
 
-    // Tailwind v4
-    tailwindcss(),
+  return {
+    plugins: [
+      // Path aliases (@/* → src/*)
+      viteTsConfigPaths({ projects: ["./tsconfig.json"] }),
 
-    // TanStack Start — SSR
-    tanstackStart({
-      prerender: {
-        enabled: process.env["NODE_ENV"] === "production",
-        crawlLinks: true,
-      },
-    }),
+      // Tailwind v4
+      tailwindcss(),
 
-    // 🔥 YE ADD KARO — Vercel deployment ke liye
-    nitro({
-      preset: "vercel",
-    }),
+      // TanStack Start — SSR
+      tanstackStart({
+        prerender: {
+          // Explicitly enabled on every production build rather than being
+          // inferred from an environment variable that may not be set.
+          enabled: command === "build",
+          crawlLinks: true,
+        },
+      }),
 
-    // React
-    viteReact(),
-  ],
+      // Vercel deployment
+      nitro({
+        preset: "vercel",
+      }),
+
+      // React
+      viteReact(),
+    ],
+  };
 });
