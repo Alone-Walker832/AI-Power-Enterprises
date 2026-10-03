@@ -30,6 +30,7 @@ import {
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import { PremiumHero } from "@/components/sections/PremiumHero";
 import {
   partners,
   company,
@@ -288,82 +289,46 @@ function DataCentrePage() {
 
   return (
     <>
-      {/* ═══ HERO (compact top) ═══ */}
-      <section
-        ref={heroRef}
-        className="relative overflow-hidden bg-gradient-to-br from-hero via-hero/95 to-hero/80 py-9 sm:py-12 lg:py-8"
-      >
-        <div
-          className="grid-pattern absolute inset-0 opacity-25"
-          aria-hidden="true"
-        />
-        <div
-          className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_left,_var(--primary)_0%,_transparent_60%)] opacity-10"
-          aria-hidden="true"
-        />
-
-        <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-12">
-            <motion.div
-              style={{ opacity }}
-              className="space-y-5 text-center sm:space-y-6 lg:text-left"
-            >
-              <Badge className="border-primary/30 bg-primary/20 text-[10px] font-semibold uppercase tracking-widest text-primary sm:text-xs">
-                <Server className="mr-1.5 size-3.5" aria-hidden="true" />
-                Data Centre Solutions
-              </Badge>
-              <h1 className="font-display text-3xl font-bold leading-tight text-hero-foreground sm:text-4xl lg:text-5xl xl:text-6xl">
-                Enterprise Data Centres —{" "}
-                <span className="text-gradient">
-                  Designed, Built & Operated
-                </span>
-              </h1>
-              <p className="mx-auto max-w-xl text-base text-hero-muted sm:text-lg lg:mx-0 lg:text-xl">
-                Racks, containment, structured cabling, power, cooling and DCIM
-                — engineered to TIA-942 standards and supported 24/7 across
-                Pakistan.
-              </p>
-
-              {/* Trust chips */}
-              <ul className="flex flex-wrap justify-center gap-x-5 gap-y-2 pt-1 text-xs text-hero-muted sm:text-sm lg:justify-start">
-                {[
-                  { icon: Layers, label: "TIA-942 design" },
-                  { icon: Activity, label: "DCIM monitoring" },
-                  { icon: MapPin, label: "8 hubs nationwide" },
-                ].map(({ icon: Icon, label }) => (
-                  <li key={label} className="inline-flex items-center gap-1.5">
-                    <Icon
-                      className="size-3.5 text-hero-accent"
-                      aria-hidden="true"
-                    />
-                    {label}
-                  </li>
-                ))}
-              </ul>
-
-              <div className="flex flex-col gap-3 pt-2 sm:flex-row sm:flex-wrap sm:justify-center sm:gap-4 lg:justify-start">
-                <Button
-                  asChild
-                  size="lg"
-                  className="glow-ring w-full sm:w-auto"
-                >
-                  <Link to="/contact" hash="request">
-                    Book Site Survey
-                    <ArrowRight className="ml-2 size-4" aria-hidden="true" />
-                  </Link>
-                </Button>
-                <Button
-                  asChild
-                  variant="outline"
-                  size="lg"
-                  className="w-full border-hero-border text-hero-foreground hover:bg-hero-foreground/10 sm:w-auto"
-                >
-                  <Link to="/sla">View SLA Cover</Link>
-                </Button>
-              </div>
-            </motion.div>
-
-            {/* Right — Stats grid */}
+      {/* ═══ HERO ═══ */}
+      <motion.div ref={heroRef} style={{ opacity }}>
+        <PremiumHero
+          eyebrow={
+            <Badge className="border-primary/30 bg-primary/20 text-[10px] font-semibold uppercase tracking-widest text-primary sm:text-xs">
+              <Server className="mr-1.5 size-3.5" aria-hidden="true" />
+              Data Centre Solutions
+            </Badge>
+          }
+          title={
+            <>
+              Enterprise Data Centres —{" "}
+              <span className="text-gradient">Designed, Built &amp; Operated</span>
+            </>
+          }
+          description="Racks, containment, structured cabling, power, cooling and DCIM — engineered to TIA-942 standards and supported 24/7 across Pakistan."
+          chips={[
+            { icon: <Layers className="size-3.5" />, label: "TIA-942 design" },
+            { icon: <Activity className="size-3.5" />, label: "DCIM monitoring" },
+            { icon: <MapPin className="size-3.5" />, label: "8 hubs nationwide" },
+          ]}
+          actions={
+            <>
+              <Button asChild size="lg" className="glow-ring w-full sm:w-auto">
+                <Link to="/contact" hash="request">
+                  Book Site Survey
+                  <ArrowRight className="ml-2 size-4" aria-hidden="true" />
+                </Link>
+              </Button>
+              <Button
+                asChild
+                variant="outline"
+                size="lg"
+                className="w-full border-hero-border text-hero-foreground hover:bg-hero-foreground/10 sm:w-auto"
+              >
+                <Link to="/sla">View SLA Cover</Link>
+              </Button>
+            </>
+          }
+          aside={
             <div className="grid grid-cols-2 gap-3 sm:gap-4">
               {[
                 {
@@ -374,14 +339,14 @@ function DataCentrePage() {
                 { value: "30 min", label: "Initial Response", icon: Clock },
                 { value: "TIA-942", label: "Design Standard", icon: Layers },
                 { value: "8 hubs", label: "Nationwide Reach", icon: MapPin },
-              ].map((stat) => (
+              ].map((stat, i) => (
                 <motion.div
                   key={stat.label}
                   initial={{ opacity: 0, scale: 0.94 }}
                   whileInView={{ opacity: 1, scale: 1 }}
                   viewport={{ once: true }}
-                  transition={{ duration: 0.45 }}
-                  className="flex flex-col items-center rounded-2xl border border-hero-border bg-hero-foreground/5 p-4 backdrop-blur-sm sm:p-6"
+                  transition={{ duration: 0.45, delay: 0.08 * i }}
+                  className="glass-card flex flex-col items-center rounded-2xl p-4 transition-transform duration-300 hover:-translate-y-1 sm:p-6"
                 >
                   <stat.icon
                     className="size-6 text-hero-accent sm:size-8"
@@ -396,18 +361,9 @@ function DataCentrePage() {
                 </motion.div>
               ))}
             </div>
-          </div>
-        </div>
-
-        <div
-          className="pointer-events-none absolute -top-32 -right-32 h-96 w-96 rounded-full bg-primary/10 blur-3xl"
-          aria-hidden="true"
+          }
         />
-        <div
-          className="pointer-events-none absolute -bottom-32 -left-32 h-96 w-96 rounded-full bg-primary/5 blur-3xl"
-          aria-hidden="true"
-        />
-      </section>
+      </motion.div>
 
       {/* ═══ CAPABILITIES ═══ */}
       <section className="mx-auto max-w-7xl px-4 py-9 sm:px-6 sm:py-12 lg:px-8 lg:py-16">
