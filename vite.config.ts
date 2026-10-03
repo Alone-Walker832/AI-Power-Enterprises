@@ -6,44 +6,63 @@ import viteReact from "@vitejs/plugin-react";
 import viteTsConfigPaths from "vite-tsconfig-paths";
 import tailwindcss from "@tailwindcss/vite";
 
-export default defineConfig(({ command }) => {
-  // Make NODE_ENV deterministic for `vite build`.
-  //
-  // TanStack Start gates prerendering on NODE_ENV internally, so if the
-  // variable is absent the build still completes "successfully" but writes
-  // ZERO prerendered pages — leaving the routes to be served only by the
-  // serverless function. Setting it here (rather than relying on the ambient
-  // shell/CI environment) guarantees `vite build` always produces static HTML
-  // for every route, on any machine, locally or on Vercel.
-  if (command === "build") {
-    process.env["NODE_ENV"] = "production";
-  }
+export default defineConfig(() => ({
+  plugins: [
+    // Path aliases (@/* → src/*)
+    viteTsConfigPaths({ projects: ["./tsconfig.json"] }),
 
-  return {
-    plugins: [
-      // Path aliases (@/* → src/*)
-      viteTsConfigPaths({ projects: ["./tsconfig.json"] }),
+    // Tailwind v4
+    tailwindcss(),
 
-      // Tailwind v4
-      tailwindcss(),
+    // TanStack Start — SSR
+    tanstackStart({
+      // ───────────────────────────────────────────────────────────
+      // PAGES ARE DECLARED EXPLICITLY — DO NOT RELY ON DISCOVERY
+      // ───────────────────────────────────────────────────────────
+      // TanStack can auto-discover routes from `globalThis.TSS_PRERENDABLE_PATHS`
+      // or by crawling rendered links. In practice that discovery has been
+      // unreliable here: builds intermittently completed with exit code 0
+      // while writing ZERO prerendered HTML, leaving routes to be served
+      // only by the serverless function — which is how /services ended up
+      // being served as a 0-byte file.
+      //
+      // Listing every route removes the guessing. crawlLinks stays on so any
+      // page added later is still picked up automatically.
+      //
+      // If you add a route, add it here too (and to
+      // scripts/generate-sitemap.mjs, which warns if one is missed).
+      pages: [
+        { path: "/" },
+        { path: "/services" },
+        { path: "/datacenter" },
+        { path: "/servers" },
+        { path: "/storage" },
+        { path: "/networking" },
+        { path: "/cctv" },
+        { path: "/managed-services" },
+        { path: "/sla" },
+        { path: "/about" },
+        { path: "/clients" },
+        { path: "/contact" },
+      ],
+      prerender: {
+        // Constant `true`, never a computed condition: this hook only runs
+        // after a build, never during `vite dev`.
+        enabled: true,
+        crawlLinks: true,
+        // Retry a route a couple of times before failing the build, so a
+        // transient error can never leave a truncated/empty file behind.
+        retryCount: 2,
+        retryDelay: 500,
+      },
+    }),
 
-      // TanStack Start — SSR
-      tanstackStart({
-        prerender: {
-          // Explicitly enabled on every production build rather than being
-          // inferred from an environment variable that may not be set.
-          enabled: command === "build",
-          crawlLinks: true,
-        },
-      }),
+    // Vercel deployment
+    nitro({
+      preset: "vercel",
+    }),
 
-      // Vercel deployment
-      nitro({
-        preset: "vercel",
-      }),
-
-      // React
-      viteReact(),
-    ],
-  };
-});
+    // React
+    viteReact(),
+  ],
+}));
