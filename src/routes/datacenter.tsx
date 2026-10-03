@@ -48,8 +48,7 @@ import {
 // ═══════════════════════════════════════════════════════════════════
 const PAGE_PATH = "/datacenter";
 const PAGE_URL = `${siteConfig.url}${PAGE_PATH}`;
-const PAGE_TITLE =
-  "Data Centre Solutions in Pakistan | Design, Build & Operate";
+const PAGE_TITLE = "Data Centre Solutions in Pakistan | Design, Build & Operate";
 const PAGE_DESCRIPTION =
   "End-to-end data centre solutions in Karachi & Pakistan — design, racks, structured cabling, power, cooling, monitoring and 24/7 support.";
 const PAGE_KEYWORDS = [
@@ -123,8 +122,7 @@ export const Route = createFileRoute("/datacenter")({
         { name: "keywords", content: PAGE_KEYWORDS.join(", ") },
         {
           name: "robots",
-          content:
-            "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
+          content: "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
         },
         { property: "og:type", content: "website" },
         { property: "og:site_name", content: company.name },
@@ -264,11 +262,7 @@ const valueHighlights = [
 
 // Datacenter-relevant partners (with logos) + text-only vendors
 const dcPartners = partners.filter((p) =>
-  [
-    "Hewlett Packard Enterprise",
-    "Dell Technologies",
-    "Cisco Systems",
-  ].includes(p.name),
+  ["Hewlett Packard Enterprise", "Dell Technologies", "Cisco Systems"].includes(p.name),
 );
 const dcTextVendors = ["APC by Schneider", "Vertiv"];
 
@@ -276,7 +270,10 @@ const dcTextVendors = ["APC by Schneider", "Vertiv"];
 // MAIN PAGE
 // ═══════════════════════════════════════════════════════════════════
 function DataCentrePage() {
-  const heroRef = useRef<HTMLElement>(null);
+  // Typed as HTMLDivElement (not HTMLElement) because the ref is attached to
+  // the <motion.div> wrapper around <PremiumHero>, and motion's ref type is
+  // Ref<HTMLDivElement>. useScroll accepts any HTMLElement ref.
+  const heroRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: heroRef,
     offset: ["start start", "end start"],
@@ -348,10 +345,7 @@ function DataCentrePage() {
                   transition={{ duration: 0.45, delay: 0.08 * i }}
                   className="glass-card flex flex-col items-center rounded-2xl p-4 transition-transform duration-300 hover:-translate-y-1 sm:p-6"
                 >
-                  <stat.icon
-                    className="size-6 text-hero-accent sm:size-8"
-                    aria-hidden="true"
-                  />
+                  <stat.icon className="size-6 text-hero-accent sm:size-8" aria-hidden="true" />
                   <p className="mt-2 font-display text-lg font-bold text-hero-foreground sm:mt-3 sm:text-2xl lg:text-3xl">
                     {stat.value}
                   </p>
@@ -372,12 +366,10 @@ function DataCentrePage() {
             Capabilities
           </Badge>
           <h2 className="font-display text-2xl font-bold sm:text-3xl lg:text-4xl">
-            Complete{" "}
-            <span className="text-gradient">Data Centre Stack</span>
+            Complete <span className="text-gradient">Data Centre Stack</span>
           </h2>
           <p className="mt-3 text-sm text-muted-foreground sm:text-base">
-            From racks to redundancy — every layer engineered for reliability,
-            efficiency and scale.
+            From racks to redundancy — every layer engineered for reliability, efficiency and scale.
           </p>
         </div>
 
@@ -395,9 +387,7 @@ function DataCentrePage() {
                   <span className="inline-flex size-11 items-center justify-center rounded-lg bg-primary/10 text-primary">
                     <item.icon className="size-5" aria-hidden="true" />
                   </span>
-                  <CardTitle className="font-display text-base sm:text-lg">
-                    {item.title}
-                  </CardTitle>
+                  <CardTitle className="font-display text-base sm:text-lg">{item.title}</CardTitle>
                 </CardHeader>
                 <CardContent className="text-sm text-muted-foreground">
                   {item.description}
@@ -416,12 +406,10 @@ function DataCentrePage() {
               Why AI Power
             </Badge>
             <h2 className="font-display text-2xl font-bold sm:text-3xl lg:text-4xl">
-              Engineering{" "}
-              <span className="text-gradient">That Performs</span>
+              Engineering <span className="text-gradient">That Performs</span>
             </h2>
             <p className="mt-3 text-sm text-muted-foreground sm:text-base">
-              Standards-aligned design, vendor-neutral engineering, and
-              SLA-backed operations.
+              Standards-aligned design, vendor-neutral engineering, and SLA-backed operations.
             </p>
           </div>
 
@@ -441,9 +429,7 @@ function DataCentrePage() {
                 <h3 className="mt-3 font-display text-base font-semibold sm:text-lg">
                   {item.title}
                 </h3>
-                <p className="mt-1.5 text-xs text-muted-foreground sm:text-sm">
-                  {item.desc}
-                </p>
+                <p className="mt-1.5 text-xs text-muted-foreground sm:text-sm">{item.desc}</p>
               </motion.div>
             ))}
           </div>
@@ -457,12 +443,10 @@ function DataCentrePage() {
             Delivery
           </Badge>
           <h2 className="font-display text-2xl font-bold sm:text-3xl lg:text-4xl">
-            Survey to{" "}
-            <span className="text-gradient">Commissioning</span>
+            Survey to <span className="text-gradient">Commissioning</span>
           </h2>
           <p className="mt-3 text-sm text-muted-foreground sm:text-base">
-            A disciplined build methodology with full documentation at every
-            stage.
+            A disciplined build methodology with full documentation at every stage.
           </p>
         </div>
 
@@ -479,12 +463,8 @@ function DataCentrePage() {
               <span className="inline-flex size-10 items-center justify-center rounded-full bg-primary/10 font-display text-sm font-bold text-primary">
                 {item.step}
               </span>
-              <h3 className="mt-3 font-display text-base font-semibold sm:text-lg">
-                {item.title}
-              </h3>
-              <p className="mt-1.5 text-sm text-muted-foreground">
-                {item.text}
-              </p>
+              <h3 className="mt-3 font-display text-base font-semibold sm:text-lg">{item.title}</h3>
+              <p className="mt-1.5 text-sm text-muted-foreground">{item.text}</p>
             </motion.div>
           ))}
         </div>
@@ -498,12 +478,10 @@ function DataCentrePage() {
               SLA Cover
             </Badge>
             <h2 className="font-display text-2xl font-bold sm:text-3xl lg:text-4xl">
-              Data Centre{" "}
-              <span className="text-gradient">Support Commitments</span>
+              Data Centre <span className="text-gradient">Support Commitments</span>
             </h2>
             <p className="mt-3 text-sm text-muted-foreground sm:text-base">
-              Contractual response and resolution times for your data centre
-              infrastructure.
+              Contractual response and resolution times for your data centre infrastructure.
             </p>
           </div>
 
@@ -526,13 +504,8 @@ function DataCentrePage() {
                 transition={{ duration: 0.3, delay: idx * 0.05 }}
                 className="rounded-xl border border-border bg-card p-5 text-center shadow-sm transition-all hover:-translate-y-0.5 hover:shadow-md"
               >
-                <item.icon
-                  className="mx-auto size-6 text-primary"
-                  aria-hidden="true"
-                />
-                <p className="mt-2 font-display text-xl font-bold sm:text-2xl">
-                  {item.value}
-                </p>
+                <item.icon className="mx-auto size-6 text-primary" aria-hidden="true" />
+                <p className="mt-2 font-display text-xl font-bold sm:text-2xl">{item.value}</p>
                 <p className="text-[10px] font-medium uppercase tracking-wider text-muted-foreground sm:text-xs">
                   {item.label}
                 </p>
@@ -558,12 +531,10 @@ function DataCentrePage() {
             Technology Alliances
           </Badge>
           <h2 className="font-display text-2xl font-bold sm:text-3xl lg:text-4xl">
-            Certified{" "}
-            <span className="text-gradient">Data Centre Vendors</span>
+            Certified <span className="text-gradient">Data Centre Vendors</span>
           </h2>
           <p className="mt-3 text-sm text-muted-foreground sm:text-base">
-            Multi-vendor expertise across compute, networking, power and
-            cooling platforms.
+            Multi-vendor expertise across compute, networking, power and cooling platforms.
           </p>
         </div>
 
@@ -611,8 +582,7 @@ function DataCentrePage() {
               FAQ
             </Badge>
             <h2 className="font-display text-2xl font-bold sm:text-3xl lg:text-4xl">
-              Frequently Asked{" "}
-              <span className="text-gradient">Questions</span>
+              Frequently Asked <span className="text-gradient">Questions</span>
             </h2>
             <p className="mt-3 text-sm text-muted-foreground sm:text-base">
               Common questions about data centre design, build and operations.
@@ -630,9 +600,7 @@ function DataCentrePage() {
                 className="group rounded-xl border border-border bg-card shadow-sm transition-all hover:border-primary/30 hover:shadow-md [&_summary::-webkit-details-marker]:hidden"
               >
                 <summary className="flex cursor-pointer items-start justify-between gap-3 p-4 sm:p-5">
-                  <h3 className="text-left text-sm font-semibold sm:text-base">
-                    {faq.question}
-                  </h3>
+                  <h3 className="text-left text-sm font-semibold sm:text-base">{faq.question}</h3>
                   <span
                     className="mt-0.5 inline-flex size-5 shrink-0 items-center justify-center rounded-full border border-border text-muted-foreground transition-transform group-open:rotate-90"
                     aria-hidden="true"
@@ -666,12 +634,10 @@ function DataCentrePage() {
             Explore More
           </Badge>
           <h2 className="font-display text-2xl font-bold sm:text-3xl lg:text-4xl">
-            Complete Your{" "}
-            <span className="text-gradient">Infrastructure</span>
+            Complete Your <span className="text-gradient">Infrastructure</span>
           </h2>
           <p className="mt-3 text-sm text-muted-foreground sm:text-base">
-            Pair your data centre with complementary compute, storage and
-            networking solutions.
+            Pair your data centre with complementary compute, storage and networking solutions.
           </p>
         </div>
 
@@ -685,9 +651,7 @@ function DataCentrePage() {
               <h3 className="font-display text-lg font-semibold group-hover:text-primary">
                 {service.title}
               </h3>
-              <p className="mt-2 line-clamp-3 text-sm text-muted-foreground">
-                {service.summary}
-              </p>
+              <p className="mt-2 line-clamp-3 text-sm text-muted-foreground">{service.summary}</p>
               <span className="mt-4 inline-flex items-center gap-1 text-sm font-medium text-primary">
                 Learn more
                 <ArrowRight
@@ -712,29 +676,19 @@ function DataCentrePage() {
       {/* ═══ FINAL CTA + CONTACT STRIP ═══ */}
       <section className="mx-auto max-w-7xl px-4 pb-9 sm:px-6 sm:pb-12 lg:px-8 lg:pb-16">
         <div className="hero-surface relative overflow-hidden rounded-2xl border border-hero-border px-5 py-10 text-center sm:px-10 sm:py-12">
-          <div
-            className="grid-pattern absolute inset-0 opacity-20"
-            aria-hidden="true"
-          />
+          <div className="grid-pattern absolute inset-0 opacity-20" aria-hidden="true" />
           <div className="relative mx-auto max-w-2xl">
-            <Sparkles
-              className="mx-auto size-8 text-hero-accent"
-              aria-hidden="true"
-            />
+            <Sparkles className="mx-auto size-8 text-hero-accent" aria-hidden="true" />
             <h2 className="mt-3 font-display text-xl font-bold text-hero-foreground sm:text-2xl lg:text-3xl xl:text-4xl">
               Ready to Build Your Data Centre?
             </h2>
             <p className="mt-3 text-sm text-hero-muted sm:text-base">
-              Book a site survey with our certified engineers — and get a full
-              design proposal with SLA-backed support.
+              Book a site survey with our certified engineers — and get a full design proposal with
+              SLA-backed support.
             </p>
 
             <div className="mt-6 flex flex-col justify-center gap-3 sm:flex-row">
-              <Button
-                asChild
-                size="lg"
-                className="glow-ring w-full sm:w-auto"
-              >
+              <Button asChild size="lg" className="glow-ring w-full sm:w-auto">
                 <Link to="/contact" hash="request">
                   Book Site Survey
                   <ArrowRight className="ml-2 size-4" aria-hidden="true" />

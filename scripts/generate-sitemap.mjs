@@ -84,9 +84,7 @@ const entries = PAGES.map((page) => {
 
 // Guard: warn if a route file exists on disk but is not in PAGES, so new
 // pages cannot be silently omitted from the sitemap.
-const onDisk = fs
-  .readdirSync(ROUTES_DIR)
-  .filter((f) => f.endsWith(".tsx") && !EXCLUDED.has(f));
+const onDisk = fs.readdirSync(ROUTES_DIR).filter((f) => f.endsWith(".tsx") && !EXCLUDED.has(f));
 const listed = new Set(PAGES.map((p) => p.file));
 const missing = onDisk.filter((f) => !listed.has(f));
 

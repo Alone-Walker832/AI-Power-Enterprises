@@ -42,33 +42,20 @@ const companyLinks = [
 function SectionHeading({ children }: { children: React.ReactNode }) {
   return (
     <h3 className="flex items-center justify-center gap-2 font-display text-xs font-semibold uppercase tracking-[0.18em] text-foreground md:justify-start">
-      <span
-        className="inline-block size-1.5 rounded-full bg-primary"
-        aria-hidden="true"
-      />
+      <span className="inline-block size-1.5 rounded-full bg-primary" aria-hidden="true" />
       {children}
     </h3>
   );
 }
 
-function FooterLink({
-  to,
-  hash,
-  label,
-}: {
-  to: string;
-  hash?: string;
-  label: string;
-}) {
+function FooterLink({ to, hash, label }: { to: string; hash?: string; label: string }) {
   return (
     <Link
       to={to}
       {...(hash ? { hash } : {})}
       className="group inline-flex items-center gap-1.5 text-sm text-muted-foreground transition-all hover:text-primary"
     >
-      <span className="transition-transform group-hover:translate-x-0.5">
-        {label}
-      </span>
+      <span className="transition-transform group-hover:translate-x-0.5">{label}</span>
       <ArrowRight
         className="size-3 -translate-x-1 opacity-0 transition-all group-hover:translate-x-0 group-hover:opacity-100"
         aria-hidden="true"
@@ -87,9 +74,7 @@ export function Footer() {
 
   // Merge companyLinks with any remaining navLinks (excluding Home, dupes)
   const remainingNavLinks = (navLinks ?? []).filter(
-    (link) =>
-      link.to !== "/" &&
-      !companyLinks.some((c) => c.to === link.to),
+    (link) => link.to !== "/" && !companyLinks.some((c) => c.to === link.to),
   );
 
   const mergedCompanyLinks = [
@@ -143,16 +128,11 @@ export function Footer() {
             </Link>
 
             {/* Tagline */}
-            <p className="mt-4 max-w-xs text-sm text-muted-foreground">
-              {company.promise}
-            </p>
+            <p className="mt-4 max-w-xs text-sm text-muted-foreground">{company.promise}</p>
 
             {/* Address */}
             <div className="mt-5 flex max-w-xs items-start gap-2 text-sm text-muted-foreground">
-              <MapPin
-                className="mt-0.5 size-4 shrink-0 text-primary"
-                aria-hidden="true"
-              />
+              <MapPin className="mt-0.5 size-4 shrink-0 text-primary" aria-hidden="true" />
               <span className="leading-snug">{company.address}</span>
             </div>
 
@@ -186,32 +166,32 @@ export function Footer() {
             </div>
           </div>
 
-{/* ─── Services + Company (side-by-side on every device) ─── */}
-<div className="grid grid-cols-2 gap-6 sm:col-span-2 sm:gap-8 lg:contents">
-  {/* Services */}
-  <div className="flex flex-col items-center text-center md:items-start md:text-left lg:col-span-3">
-    <SectionHeading>Services</SectionHeading>
-    <ul className="mt-4 space-y-2.5">
-      {safeServiceLinks.map((link) => (
-        <li key={link.to}>
-          <FooterLink to={link.to} label={link.label} />
-        </li>
-      ))}
-    </ul>
-  </div>
+          {/* ─── Services + Company (side-by-side on every device) ─── */}
+          <div className="grid grid-cols-2 gap-6 sm:col-span-2 sm:gap-8 lg:contents">
+            {/* Services */}
+            <div className="flex flex-col items-center text-center md:items-start md:text-left lg:col-span-3">
+              <SectionHeading>Services</SectionHeading>
+              <ul className="mt-4 space-y-2.5">
+                {safeServiceLinks.map((link) => (
+                  <li key={link.to}>
+                    <FooterLink to={link.to} label={link.label} />
+                  </li>
+                ))}
+              </ul>
+            </div>
 
-  {/* Company */}
-  <div className="flex flex-col items-center text-center md:items-start md:text-left lg:col-span-2">
-    <SectionHeading>Company</SectionHeading>
-    <ul className="mt-4 space-y-2.5">
-      {mergedCompanyLinks.map((link) => (
-        <li key={link.to}>
-          <FooterLink to={link.to} label={link.label} />
-        </li>
-      ))}
-    </ul>
-  </div>
-</div>
+            {/* Company */}
+            <div className="flex flex-col items-center text-center md:items-start md:text-left lg:col-span-2">
+              <SectionHeading>Company</SectionHeading>
+              <ul className="mt-4 space-y-2.5">
+                {mergedCompanyLinks.map((link) => (
+                  <li key={link.to}>
+                    <FooterLink to={link.to} label={link.label} />
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
 
           {/* ─── Column 4: Contact & Coverage ─── */}
           <div className="flex flex-col items-center text-center sm:col-span-2 md:items-start md:text-left lg:col-span-3">
@@ -227,9 +207,7 @@ export function Footer() {
                   <span className="inline-flex size-8 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary ring-1 ring-primary/15 transition-all group-hover:bg-primary group-hover:text-primary-foreground">
                     <Phone className="size-3.5" aria-hidden="true" />
                   </span>
-                  <span className="font-medium text-foreground">
-                    {company.phone}
-                  </span>
+                  <span className="font-medium text-foreground">{company.phone}</span>
                 </a>
               </li>
 
@@ -305,49 +283,27 @@ export function Footer() {
           {/* Trust inline */}
           <ul className="flex flex-wrap items-center justify-center gap-x-4 gap-y-2 text-xs text-muted-foreground">
             <li className="inline-flex items-center gap-1.5">
-              <Clock
-                className="size-3.5 text-primary"
-                aria-hidden="true"
-              />
+              <Clock className="size-3.5 text-primary" aria-hidden="true" />
               30-Min SLA
             </li>
-            <li
-              className="hidden sm:inline-flex items-center gap-1.5"
-              aria-hidden="true"
-            >
+            <li className="hidden sm:inline-flex items-center gap-1.5" aria-hidden="true">
               <span className="text-border">·</span>
             </li>
             <li className="inline-flex items-center gap-1.5">
-              <Headset
-                className="size-3.5 text-primary"
-                aria-hidden="true"
-              />
+              <Headset className="size-3.5 text-primary" aria-hidden="true" />
               24/7 × 365
             </li>
-            <li
-              className="hidden sm:inline-flex items-center gap-1.5"
-              aria-hidden="true"
-            >
+            <li className="hidden sm:inline-flex items-center gap-1.5" aria-hidden="true">
               <span className="text-border">·</span>
             </li>
             <li className="inline-flex items-center gap-1.5">
-              <MapPin
-                className="size-3.5 text-primary"
-                aria-hidden="true"
-              />
-              8 Hubs
+              <MapPin className="size-3.5 text-primary" aria-hidden="true" />8 Hubs
             </li>
-            <li
-              className="hidden sm:inline-flex items-center gap-1.5"
-              aria-hidden="true"
-            >
+            <li className="hidden sm:inline-flex items-center gap-1.5" aria-hidden="true">
               <span className="text-border">·</span>
             </li>
             <li className="inline-flex items-center gap-1.5">
-              <ShieldCheck
-                className="size-3.5 text-primary"
-                aria-hidden="true"
-              />
+              <ShieldCheck className="size-3.5 text-primary" aria-hidden="true" />
               Multi-Vendor Certified
             </li>
           </ul>

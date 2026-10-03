@@ -10,21 +10,9 @@ export type NavLink = { label: string; to: string; hash?: string };
 export type ClientCategory = "bfsi" | "industrial" | "public";
 export type SocialPlatform = "linkedin";
 export type HeroImageKey =
-  | "datacenter"
-  | "servers"
-  | "storage"
-  | "networking"
-  | "cctv"
-  | "managed"
-  | "sla";
+  "datacenter" | "servers" | "storage" | "networking" | "cctv" | "managed" | "sla";
 export type ServiceSlug =
-  | "datacenter"
-  | "servers"
-  | "storage"
-  | "networking"
-  | "cctv"
-  | "managed-services"
-  | "sla";
+  "datacenter" | "servers" | "storage" | "networking" | "cctv" | "managed-services" | "sla";
 export type Service = {
   slug: ServiceSlug;
   path: string;
@@ -52,8 +40,7 @@ export const company = {
   address:
     "Office #516, Anum Blessings, Plot No. ZCC KECHSU Block 7/8, Shahrah-e-Faisal, Karachi, Pakistan",
   addressParts: {
-    street:
-      "Office #516, Anum Blessings, Plot No. ZCC KECHSU Block 7/8, Shahrah-e-Faisal",
+    street: "Office #516, Anum Blessings, Plot No. ZCC KECHSU Block 7/8, Shahrah-e-Faisal",
     city: "Karachi",
     region: "Sindh",
     postalCode: "75350",
@@ -73,8 +60,7 @@ export const company = {
     close: "19:00",
     display: "Mon – Sat: 9:00 AM – 7:00 PM (PKT)",
     closed: "Sunday",
-    supportNote:
-      "24/7 SLA support desk available for mission-critical contracts.",
+    supportNote: "24/7 SLA support desk available for mission-critical contracts.",
   },
   // ═══════════════════════════════════════════════════════════════
   // CANONICAL HOST — single source of truth for EVERY url in the app
@@ -97,14 +83,9 @@ export const company = {
 } as const;
 
 // ─── Contact Helpers ────────────────────────────────────────────────
-export const telLink = (num: string = company.phone): string =>
-  `tel:+${digitsOnly(num)}`;
+export const telLink = (num: string = company.phone): string => `tel:+${digitsOnly(num)}`;
 
-export const mailtoLink = (
-  email: string,
-  subject?: string,
-  body?: string,
-): string => {
+export const mailtoLink = (email: string, subject?: string, body?: string): string => {
   const params = new URLSearchParams();
   if (subject) params.set("subject", subject);
   if (body) params.set("body", body);
@@ -119,9 +100,7 @@ export const whatsappLink = `https://wa.me/${digitsOnly(
 
 // For custom messages only (new — optional)
 export const whatsappLinkWith = (message: string): string =>
-  `https://wa.me/${digitsOnly(company.whatsapp)}?text=${encodeURIComponent(
-    message,
-  )}`;
+  `https://wa.me/${digitsOnly(company.whatsapp)}?text=${encodeURIComponent(message)}`;
 
 // ─── Social Links ───────────────────────────────────────────────────
 export const social: Partial<Record<SocialPlatform, string>> = {
@@ -131,8 +110,7 @@ export const social: Partial<Record<SocialPlatform, string>> = {
 // ─── Site-Wide SEO Config ───────────────────────────────────────────
 export const siteConfig = {
   url: company.website,
-  defaultTitle:
-    "AI Power Enterprises | IT Infrastructure & Managed Services",
+  defaultTitle: "AI Power Enterprises | IT Infrastructure & Managed Services",
   titleTemplate: "%s | AI Power Enterprises",
   defaultDescription:
     "Enterprise IT infrastructure, servers, storage, networking, CCTV & 24/7 SLA-based managed services across Pakistan. Trusted partner for mission-critical IT.",
@@ -653,8 +631,7 @@ export const serviceSections: ServiceSection[] = [
   {
     id: "cctv",
     title: "CCTV & Enterprise Security Surveillance",
-    summary:
-      "End-to-end IP surveillance from site assessment to command room operations.",
+    summary: "End-to-end IP surveillance from site assessment to command room operations.",
     items: [
       "IP CCTV surveillance design and site assessment",
       "Network-based video transmission and storage infrastructure",
@@ -666,8 +643,7 @@ export const serviceSections: ServiceSection[] = [
   {
     id: "networking",
     title: "Network Passive & Active Infrastructure",
-    summary:
-      "Structured cabling through to core switching, wireless and perimeter security.",
+    summary: "Structured cabling through to core switching, wireless and perimeter security.",
     items: [
       "Structured cabling: Cat6, Cat6A and high-speed fibre-optic",
       "Data centre server racks and cable containment systems",
@@ -679,8 +655,7 @@ export const serviceSections: ServiceSection[] = [
   {
     id: "licensing",
     title: "Enterprise Software Licensing & Virtualization",
-    summary:
-      "Compliant licensing, virtualization and enterprise application platforms.",
+    summary: "Compliant licensing, virtualization and enterprise application platforms.",
     items: [
       "Microsoft Windows Server, Azure, Microsoft 365, SQL Server",
       "Red Hat Enterprise Linux (RHEL), OpenShift, Ansible",
@@ -692,16 +667,14 @@ export const serviceSections: ServiceSection[] = [
   {
     id: "managed-services",
     title: "Managed IT Services & Technical Operations",
-    summary:
-      "Reliable technical support, incident management, and proactive maintenance.",
+    summary: "Reliable technical support, incident management, and proactive maintenance.",
     items: managedServices,
     icon: "Settings",
   },
   {
     id: "disaster-recovery",
     title: "Disaster Recovery & Business Continuity",
-    summary:
-      "Comprehensive recovery strategies, backup testing and technical assistance.",
+    summary: "Comprehensive recovery strategies, backup testing and technical assistance.",
     items: disasterRecovery,
     icon: "Activity",
   },
@@ -759,11 +732,7 @@ export const services: Service[] = [
       title: "Enterprise Servers & Compute Solutions | AI Power Enterprises",
       description:
         "Supply, deployment and support of enterprise servers, blades and engineered compute platforms in Pakistan.",
-      keywords: [
-        "enterprise servers Pakistan",
-        "blade servers Karachi",
-        "server AMC Pakistan",
-      ],
+      keywords: ["enterprise servers Pakistan", "blade servers Karachi", "server AMC Pakistan"],
     },
   },
   {
@@ -871,11 +840,7 @@ export const services: Service[] = [
       title: "Managed IT Services in Pakistan | 24/7 Support & Monitoring",
       description:
         "Managed IT services in Pakistan — helpdesk, monitoring, preventive maintenance and resident engineers.",
-      keywords: [
-        "managed IT services Pakistan",
-        "24/7 IT support Karachi",
-        "IT AMC Karachi",
-      ],
+      keywords: ["managed IT services Pakistan", "24/7 IT support Karachi", "IT AMC Karachi"],
     },
   },
   {
@@ -899,11 +864,7 @@ export const services: Service[] = [
       title: "SLA Support & Maintenance in Pakistan | 24/7 Mission-Critical",
       description:
         "Contractual SLA support with 30-minute response and 24/7/365 coverage across Pakistan.",
-      keywords: [
-        "SLA support Pakistan",
-        "24/7 IT maintenance Karachi",
-        "AMC services Pakistan",
-      ],
+      keywords: ["SLA support Pakistan", "24/7 IT maintenance Karachi", "AMC services Pakistan"],
     },
   },
 ];
@@ -1039,14 +1000,7 @@ export const localBusinessSchema = {
   openingHoursSpecification: [
     {
       "@type": "OpeningHoursSpecification",
-      dayOfWeek: [
-        "Monday",
-        "Tuesday",
-        "Wednesday",
-        "Thursday",
-        "Friday",
-        "Saturday",
-      ],
+      dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
       opens: company.hours.open,
       closes: company.hours.close,
     },
@@ -1062,9 +1016,7 @@ export const localBusinessSchema = {
 
 // ─── Helper: strips @context so schema can safely nest inside @graph ─
 // Usage: stripContext(organizationSchema) → object without @context
-export const stripContext = <T extends Record<string, unknown>>(
-  schema: T,
-): Omit<T, "@context"> => {
+export const stripContext = <T extends Record<string, unknown>>(schema: T): Omit<T, "@context"> => {
   const { "@context": _ctx, ...rest } = schema;
   void _ctx;
   return rest as Omit<T, "@context">;
@@ -1132,9 +1084,7 @@ export const websiteSchema = {
 // Har page pe jahan FAQ section ho, wahan use karo:
 //   const faqLd = faqPageSchema();                    // all FAQs
 //   const faqLd = faqPageSchema(faqs.slice(0, 4));    // subset
-export const faqPageSchema = (
-  items: { question: string; answer: string }[] = faqs,
-) => ({
+export const faqPageSchema = (items: { question: string; answer: string }[] = faqs) => ({
   "@context": "https://schema.org",
   "@type": "FAQPage",
   mainEntity: items.map((faq) => ({
@@ -1153,18 +1103,14 @@ export const faqPageSchema = (
 //     { name: "Home", url: "/" },
 //     { name: "Services", url: "/services" },
 //   ])
-export const breadcrumbSchema = (
-  items: { name: string; url: string }[],
-) => ({
+export const breadcrumbSchema = (items: { name: string; url: string }[]) => ({
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
   itemListElement: items.map((item, index) => ({
     "@type": "ListItem",
     position: index + 1,
     name: item.name,
-    item: item.url.startsWith("http")
-      ? item.url
-      : `${company.website}${item.url}`,
+    item: item.url.startsWith("http") ? item.url : `${company.website}${item.url}`,
   })),
 });
 

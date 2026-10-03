@@ -29,12 +29,9 @@ export function NotFound() {
         <div className="text-7xl md:text-9xl font-black tracking-tight bg-gradient-to-br from-primary via-purple-500 to-blue-400 bg-clip-text text-transparent drop-shadow-xl">
           404
         </div>
-        <h1 className="mt-2 text-2xl md:text-3xl font-bold tracking-tight">
-          Page not found
-        </h1>
+        <h1 className="mt-2 text-2xl md:text-3xl font-bold tracking-tight">Page not found</h1>
         <p className="mt-2 text-sm text-muted-foreground">
-          The page you&apos;re looking for doesn&apos;t exist or has been
-          moved.
+          The page you&apos;re looking for doesn&apos;t exist or has been moved.
         </p>
         <div className="mt-6 flex flex-wrap justify-center gap-3">
           <Link
@@ -53,10 +50,7 @@ export function NotFound() {
 
         {/* Recovery links — keeps a visitor (and the crawler) on a path
             back into the site instead of at a dead end. */}
-        <nav
-          aria-label="Suggested pages"
-          className="mt-8 border-t border-border/60 pt-6"
-        >
+        <nav aria-label="Suggested pages" className="mt-8 border-t border-border/60 pt-6">
           <p className="text-xs font-semibold uppercase tracking-[0.18em] text-muted-foreground">
             Popular destinations
           </p>

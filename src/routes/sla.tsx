@@ -133,8 +133,7 @@ export const Route = createFileRoute("/sla")({
         { name: "keywords", content: PAGE_KEYWORDS.join(", ") },
         {
           name: "robots",
-          content:
-            "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
+          content: "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
         },
         { property: "og:type", content: "website" },
         { property: "og:site_name", content: company.name },
@@ -373,10 +372,7 @@ function SlaPage() {
         ref={heroRef}
         className="relative overflow-hidden bg-gradient-to-br from-hero via-hero/95 to-hero/80 py-14 sm:py-16 lg:py-9"
       >
-        <div
-          className="grid-pattern absolute inset-0 opacity-25"
-          aria-hidden="true"
-        />
+        <div className="grid-pattern absolute inset-0 opacity-25" aria-hidden="true" />
         <div
           className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--primary)_0%,_transparent_60%)] opacity-10"
           aria-hidden="true"
@@ -394,34 +390,22 @@ function SlaPage() {
                 <span className="text-gradient">30-Minute Response</span>
               </h1>
               <p className="max-w-xl text-base text-hero-muted sm:text-lg lg:text-xl">
-                Round-the-clock call management, onsite hardware intervention
-                and spare parts availability — backed by measurable service
-                parameters and quarterly reporting.
+                Round-the-clock call management, onsite hardware intervention and spare parts
+                availability — backed by measurable service parameters and quarterly reporting.
               </p>
 
               {/* Trust signals under hero copy */}
               <ul className="flex flex-wrap gap-x-4 gap-y-2 pt-1 text-xs text-hero-muted sm:text-sm">
-                {[
-                  "24/7 × 365 Coverage",
-                  "Signed SLA Contract",
-                  "8 Nationwide Hubs",
-                ].map((item) => (
+                {["24/7 × 365 Coverage", "Signed SLA Contract", "8 Nationwide Hubs"].map((item) => (
                   <li key={item} className="inline-flex items-center gap-1.5">
-                    <CheckCircle2
-                      className="size-3.5 text-hero-accent"
-                      aria-hidden="true"
-                    />
+                    <CheckCircle2 className="size-3.5 text-hero-accent" aria-hidden="true" />
                     {item}
                   </li>
                 ))}
               </ul>
 
               <div className="flex flex-col gap-3 pt-1 sm:flex-row sm:flex-wrap sm:gap-4">
-                <Button
-                  asChild
-                  size="lg"
-                  className="glow-ring w-full sm:w-auto"
-                >
+                <Button asChild size="lg" className="glow-ring w-full sm:w-auto">
                   <Link to="/contact" hash="request">
                     Get SLA Consultation
                     <ArrowRight className="ml-2 size-4" aria-hidden="true" />
@@ -472,12 +456,10 @@ function SlaPage() {
             Service Parameters
           </Badge>
           <h2 className="font-display text-2xl font-bold sm:text-3xl lg:text-4xl">
-            Measurable,{" "}
-            <span className="text-gradient">Auditable Commitments</span>
+            Measurable, <span className="text-gradient">Auditable Commitments</span>
           </h2>
           <p className="mt-3 text-sm text-muted-foreground sm:text-base">
-            Every SLA is backed by clear, quantifiable metrics that ensure
-            accountability.
+            Every SLA is backed by clear, quantifiable metrics that ensure accountability.
           </p>
         </div>
 
@@ -494,15 +476,8 @@ function SlaPage() {
               >
                 <Card className="glass-card h-full border border-border/60 shadow-sm transition-all hover:shadow-lg">
                   <CardHeader>
-                    {Icon && (
-                      <Icon
-                        className="size-6 text-primary"
-                        aria-hidden="true"
-                      />
-                    )}
-                    <CardTitle className="text-base font-semibold">
-                      {parameter.label}
-                    </CardTitle>
+                    {Icon && <Icon className="size-6 text-primary" aria-hidden="true" />}
+                    <CardTitle className="text-base font-semibold">{parameter.label}</CardTitle>
                   </CardHeader>
                   <CardContent className="text-sm text-muted-foreground">
                     {parameter.value}
@@ -532,17 +507,12 @@ function SlaPage() {
                   <Badge className="w-fit border-primary/20 bg-primary/10 text-primary hover:bg-primary/20">
                     {model.coverage}
                   </Badge>
-                  <CardTitle className="font-display text-xl sm:text-2xl">
-                    {model.title}
-                  </CardTitle>
+                  <CardTitle className="font-display text-xl sm:text-2xl">{model.title}</CardTitle>
                 </CardHeader>
                 <CardContent>
                   <ul className="space-y-2">
                     {model.points.map((point) => (
-                      <li
-                        key={point}
-                        className="flex gap-2 text-sm text-muted-foreground"
-                      >
+                      <li key={point} className="flex gap-2 text-sm text-muted-foreground">
                         <CheckCircle2
                           className="mt-0.5 size-4 shrink-0 text-primary"
                           aria-hidden="true"
@@ -566,12 +536,11 @@ function SlaPage() {
               Why Contractual SLA
             </Badge>
             <h2 className="font-display text-2xl font-bold sm:text-3xl lg:text-4xl">
-              Standard Support vs{" "}
-              <span className="text-gradient">Contractual SLA</span>
+              Standard Support vs <span className="text-gradient">Contractual SLA</span>
             </h2>
             <p className="mt-3 text-sm text-muted-foreground sm:text-base">
-              The difference between &ldquo;best effort&rdquo; and a
-              contractually guaranteed, measurable service.
+              The difference between &ldquo;best effort&rdquo; and a contractually guaranteed,
+              measurable service.
             </p>
           </div>
 
@@ -580,9 +549,7 @@ function SlaPage() {
             <table className="w-full text-sm">
               <thead className="bg-muted/40">
                 <tr className="border-b border-border">
-                  <th className="px-4 py-3 text-left font-semibold">
-                    Feature
-                  </th>
+                  <th className="px-4 py-3 text-left font-semibold">Feature</th>
                   <th className="px-4 py-3 text-center font-semibold text-muted-foreground">
                     Standard Support
                   </th>
@@ -595,26 +562,18 @@ function SlaPage() {
                 {comparisonRows.map((row, i, arr) => (
                   <tr
                     key={row.feature}
-                    className={
-                      i < arr.length - 1 ? "border-b border-border/50" : ""
-                    }
+                    className={i < arr.length - 1 ? "border-b border-border/50" : ""}
                   >
                     <td className="px-4 py-3 font-medium">{row.feature}</td>
                     <td className="px-4 py-3 text-center text-muted-foreground">
                       <span className="inline-flex items-center gap-1.5">
-                        <XIcon
-                          className="size-3.5 text-muted-foreground/60"
-                          aria-hidden="true"
-                        />
+                        <XIcon className="size-3.5 text-muted-foreground/60" aria-hidden="true" />
                         {row.standard}
                       </span>
                     </td>
                     <td className="px-4 py-3 text-center font-medium text-primary">
                       <span className="inline-flex items-center gap-1.5">
-                        <Check
-                          className="size-3.5"
-                          aria-hidden="true"
-                        />
+                        <Check className="size-3.5" aria-hidden="true" />
                         {row.sla}
                       </span>
                     </td>
@@ -644,23 +603,16 @@ function SlaPage() {
                       <p className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">
                         Standard
                       </p>
-                      <p className="text-xs text-muted-foreground">
-                        {row.standard}
-                      </p>
+                      <p className="text-xs text-muted-foreground">{row.standard}</p>
                     </div>
                   </div>
                   <div className="flex items-start gap-2 rounded-lg bg-primary/10 px-3 py-2">
-                    <Check
-                      className="mt-0.5 size-3.5 shrink-0 text-primary"
-                      aria-hidden="true"
-                    />
+                    <Check className="mt-0.5 size-3.5 shrink-0 text-primary" aria-hidden="true" />
                     <div className="min-w-0">
                       <p className="text-[10px] font-semibold uppercase tracking-wider text-primary/70">
                         SLA
                       </p>
-                      <p className="text-xs font-medium text-primary">
-                        {row.sla}
-                      </p>
+                      <p className="text-xs font-medium text-primary">{row.sla}</p>
                     </div>
                   </div>
                 </div>
@@ -699,9 +651,7 @@ function SlaPage() {
               </span>
               <div>
                 <h3 className="text-sm font-semibold">{step.label}</h3>
-                <p className="mt-0.5 text-xs text-muted-foreground">
-                  {step.desc}
-                </p>
+                <p className="mt-0.5 text-xs text-muted-foreground">{step.desc}</p>
               </div>
             </motion.div>
           ))}
@@ -716,12 +666,10 @@ function SlaPage() {
               Our Commitment
             </Badge>
             <h2 className="font-display text-2xl font-bold sm:text-3xl lg:text-4xl">
-              What a Contractual SLA{" "}
-              <span className="text-gradient">Actually Delivers</span>
+              What a Contractual SLA <span className="text-gradient">Actually Delivers</span>
             </h2>
             <p className="mt-3 text-sm text-muted-foreground sm:text-base">
-              Beyond response times — the operational discipline behind every
-              commitment.
+              Beyond response times — the operational discipline behind every commitment.
             </p>
           </div>
 
@@ -738,12 +686,8 @@ function SlaPage() {
                 <span className="inline-flex size-10 items-center justify-center rounded-lg bg-primary/10 text-primary">
                   <item.icon className="size-5" aria-hidden="true" />
                 </span>
-                <h3 className="mt-3 font-display text-base font-semibold">
-                  {item.title}
-                </h3>
-                <p className="mt-1.5 text-sm text-muted-foreground">
-                  {item.desc}
-                </p>
+                <h3 className="mt-3 font-display text-base font-semibold">{item.title}</h3>
+                <p className="mt-1.5 text-sm text-muted-foreground">{item.desc}</p>
               </motion.div>
             ))}
           </div>
@@ -757,8 +701,7 @@ function SlaPage() {
             Deliverables
           </Badge>
           <h2 className="font-display text-2xl font-bold sm:text-3xl lg:text-4xl">
-            What You Get{" "}
-            <span className="text-gradient">In Every SLA</span>
+            What You Get <span className="text-gradient">In Every SLA</span>
           </h2>
           <p className="mt-3 text-sm text-muted-foreground sm:text-base">
             A complete set of operational and reporting services.
@@ -793,12 +736,10 @@ function SlaPage() {
               Industries
             </Badge>
             <h2 className="font-display text-2xl font-bold sm:text-3xl lg:text-4xl">
-              Enterprises That{" "}
-              <span className="text-gradient">Rely on Our SLA</span>
+              Enterprises That <span className="text-gradient">Rely on Our SLA</span>
             </h2>
             <p className="mt-3 text-sm text-muted-foreground sm:text-base">
-              Sectors where uptime, compliance and rapid response are not
-              optional.
+              Sectors where uptime, compliance and rapid response are not optional.
             </p>
           </div>
 
@@ -815,12 +756,8 @@ function SlaPage() {
                 <span className="inline-flex size-12 items-center justify-center rounded-full bg-primary/10 text-primary">
                   <industry.icon className="size-6" aria-hidden="true" />
                 </span>
-                <h3 className="mt-3 font-display text-base font-semibold">
-                  {industry.title}
-                </h3>
-                <p className="mt-1.5 text-xs text-muted-foreground sm:text-sm">
-                  {industry.desc}
-                </p>
+                <h3 className="mt-3 font-display text-base font-semibold">{industry.title}</h3>
+                <p className="mt-1.5 text-xs text-muted-foreground sm:text-sm">{industry.desc}</p>
               </motion.div>
             ))}
           </div>
@@ -834,12 +771,11 @@ function SlaPage() {
             Coverage
           </Badge>
           <h2 className="font-display text-2xl font-bold sm:text-3xl lg:text-4xl">
-            Onsite SLA Intervention{" "}
-            <span className="text-gradient">Across Pakistan</span>
+            Onsite SLA Intervention <span className="text-gradient">Across Pakistan</span>
           </h2>
           <p className="mt-3 text-sm text-muted-foreground sm:text-base">
-            Head office in Karachi, regional hubs in Islamabad and Lahore,
-            plus field support in key industrial cities.
+            Head office in Karachi, regional hubs in Islamabad and Lahore, plus field support in key
+            industrial cities.
           </p>
         </div>
 
@@ -853,10 +789,7 @@ function SlaPage() {
               transition={{ duration: 0.3, delay: index * 0.04 }}
               className="flex items-start gap-3 rounded-xl border border-border bg-card p-4 shadow-sm"
             >
-              <MapPin
-                className="mt-0.5 size-4 shrink-0 text-primary"
-                aria-hidden="true"
-              />
+              <MapPin className="mt-0.5 size-4 shrink-0 text-primary" aria-hidden="true" />
               <div className="min-w-0">
                 <p className="text-sm font-semibold">{hub.city}</p>
                 <p className="text-xs text-muted-foreground">{hub.role}</p>
@@ -877,8 +810,7 @@ function SlaPage() {
               Multi-Vendor SLA Support
             </h2>
             <p className="mt-2 text-sm text-muted-foreground">
-              We service mission-critical infrastructure across leading
-              enterprise platforms.
+              We service mission-critical infrastructure across leading enterprise platforms.
             </p>
           </div>
 
@@ -906,37 +838,34 @@ function SlaPage() {
         </div>
       </section>
 
+      {/* ═══ HPE PARTNERSHIP BANNER ═══ */}
+      <section className="mx-auto max-w-4xl px-4 py-9 sm:px-6 sm:py-12 lg:px-8">
+        <div className="text-center">
+          <span className="text-xs font-semibold uppercase tracking-widest text-primary">
+            Featured Partnership
+          </span>
+          <h2 className="mt-2 font-display text-xl font-bold sm:text-2xl">
+            HPE With <span className="text-primary">AI Power Enterprises</span>
+          </h2>
+          <p className="mt-2 text-xs text-muted-foreground sm:text-sm">
+            Certified technology alliance — enterprise servers, storage, hybrid cloud, and 24/7
+            SLA-backed support across Pakistan.
+          </p>
+        </div>
 
-{/* ═══ HPE PARTNERSHIP BANNER ═══ */}
-<section className="mx-auto max-w-4xl px-4 py-9 sm:px-6 sm:py-12 lg:px-8">
-  <div className="text-center">
-    <span className="text-xs font-semibold uppercase tracking-widest text-primary">
-      Featured Partnership
-    </span>
-    <h2 className="mt-2 font-display text-xl font-bold sm:text-2xl">
-      HPE With <span className="text-primary">AI Power Enterprises</span>
-    </h2>
-    <p className="mt-2 text-xs text-muted-foreground sm:text-sm">
-      Certified technology alliance — enterprise servers, storage, hybrid cloud, and 24/7 SLA-backed support across Pakistan.
-    </p>
-  </div>
-
-  {/* Image wrapper — narrow + centered */}
-  <div className="mx-auto mt-6 max-w-md sm:max-w-lg">
-    <div className="overflow-hidden rounded-2xl border border-border/60 bg-card shadow-sm transition-all hover:-translate-y-0.5 hover:border-primary/40 hover:shadow-xl">
-      <img
-        src={hpePartnership}
-        alt="Hewlett Packard Enterprise and AI Power Enterprises — Technology Partnership"
-        className="h-auto w-full object-cover"
-        loading="lazy"
-        decoding="async"
-      />
-    </div>
-  </div>
-</section>
-
-
-
+        {/* Image wrapper — narrow + centered */}
+        <div className="mx-auto mt-6 max-w-md sm:max-w-lg">
+          <div className="overflow-hidden rounded-2xl border border-border/60 bg-card shadow-sm transition-all hover:-translate-y-0.5 hover:border-primary/40 hover:shadow-xl">
+            <img
+              src={hpePartnership}
+              alt="Hewlett Packard Enterprise and AI Power Enterprises — Technology Partnership"
+              className="h-auto w-full object-cover"
+              loading="lazy"
+              decoding="async"
+            />
+          </div>
+        </div>
+      </section>
 
       {/* ═══ WHY SLA MATTERS ═══ */}
       <section className="mx-auto max-w-7xl px-4 py-14 sm:px-6 sm:py-16 lg:px-8 lg:py-20">
@@ -945,12 +874,11 @@ function SlaPage() {
             Why It Matters
           </Badge>
           <h2 className="font-display text-2xl font-bold sm:text-3xl lg:text-4xl">
-            <span className="text-gradient">Peace of Mind</span> Through
-            Contractual Guarantees
+            <span className="text-gradient">Peace of Mind</span> Through Contractual Guarantees
           </h2>
           <p className="mt-3 text-sm text-muted-foreground sm:text-base">
-            An SLA isn&apos;t just a document — it&apos;s a promise backed by
-            real operational discipline.
+            An SLA isn&apos;t just a document — it&apos;s a promise backed by real operational
+            discipline.
           </p>
         </div>
 
@@ -983,12 +911,8 @@ function SlaPage() {
               <span className="inline-flex size-12 items-center justify-center rounded-full bg-primary/10 text-primary">
                 <item.icon className="size-6" aria-hidden="true" />
               </span>
-              <h3 className="mt-3 font-display text-lg font-semibold">
-                {item.title}
-              </h3>
-              <p className="mt-1 text-sm text-muted-foreground">
-                {item.desc}
-              </p>
+              <h3 className="mt-3 font-display text-lg font-semibold">{item.title}</h3>
+              <p className="mt-1 text-sm text-muted-foreground">{item.desc}</p>
             </motion.div>
           ))}
         </div>
@@ -1002,8 +926,7 @@ function SlaPage() {
               FAQ
             </Badge>
             <h2 className="font-display text-2xl font-bold sm:text-3xl lg:text-4xl">
-              Frequently Asked{" "}
-              <span className="text-gradient">Questions</span>
+              Frequently Asked <span className="text-gradient">Questions</span>
             </h2>
             <p className="mt-3 text-sm text-muted-foreground sm:text-base">
               Everything you need to know about our SLA-based support model.
@@ -1021,9 +944,7 @@ function SlaPage() {
                 className="group rounded-xl border border-border bg-card shadow-sm transition-all hover:border-primary/30 hover:shadow-md [&_summary::-webkit-details-marker]:hidden"
               >
                 <summary className="flex cursor-pointer items-start justify-between gap-3 p-4 sm:p-5">
-                  <h3 className="text-left text-sm font-semibold sm:text-base">
-                    {faq.question}
-                  </h3>
+                  <h3 className="text-left text-sm font-semibold sm:text-base">{faq.question}</h3>
                   <ChevronRight
                     className="mt-0.5 size-4 shrink-0 text-muted-foreground transition-transform group-open:rotate-90"
                     aria-hidden="true"
@@ -1048,8 +969,7 @@ function SlaPage() {
             Related <span className="text-gradient">Services</span>
           </h2>
           <p className="mt-3 text-sm text-muted-foreground sm:text-base">
-            SLA support is one piece of our end-to-end IT infrastructure
-            portfolio.
+            SLA support is one piece of our end-to-end IT infrastructure portfolio.
           </p>
         </div>
 
@@ -1063,9 +983,7 @@ function SlaPage() {
               <h3 className="font-display text-lg font-semibold group-hover:text-primary">
                 {service.title}
               </h3>
-              <p className="mt-2 line-clamp-3 text-sm text-muted-foreground">
-                {service.summary}
-              </p>
+              <p className="mt-2 line-clamp-3 text-sm text-muted-foreground">{service.summary}</p>
               <span className="mt-4 inline-flex items-center gap-1 text-sm font-medium text-primary">
                 Learn more
                 <ArrowRight
@@ -1090,21 +1008,15 @@ function SlaPage() {
       {/* ═══ FINAL CTA ═══ */}
       <section className="mx-auto max-w-7xl px-4 pb-14 sm:px-6 sm:pb-16 lg:px-8 lg:pb-20">
         <div className="hero-surface relative overflow-hidden rounded-2xl border border-hero-border px-5 py-10 text-center sm:px-10 sm:py-12">
-          <div
-            className="grid-pattern absolute inset-0 opacity-20"
-            aria-hidden="true"
-          />
+          <div className="grid-pattern absolute inset-0 opacity-20" aria-hidden="true" />
           <div className="relative mx-auto max-w-2xl">
-            <Sparkles
-              className="mx-auto size-8 text-hero-accent"
-              aria-hidden="true"
-            />
+            <Sparkles className="mx-auto size-8 text-hero-accent" aria-hidden="true" />
             <h2 className="mt-3 font-display text-xl font-bold text-hero-foreground sm:text-2xl lg:text-3xl xl:text-4xl">
               Ready to Define Your SLA?
             </h2>
             <p className="mt-3 text-sm text-hero-muted sm:text-base">
-              Let&apos;s structure a support model that fits your operational
-              criticality and budget.
+              Let&apos;s structure a support model that fits your operational criticality and
+              budget.
             </p>
 
             <div className="mt-6 flex flex-col justify-center gap-3 sm:flex-row">

@@ -8,13 +8,7 @@ import {
   HeadContent,
   Scripts,
 } from "@tanstack/react-router";
-import {
-  useEffect,
-  useState,
-  lazy,
-  Suspense,
-  type ReactNode,
-} from "react";
+import { useEffect, useState, lazy, Suspense, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
 import { Navbar } from "@/components/Navbar";
@@ -144,13 +138,7 @@ function PremiumLoader() {
 // ═══════════════════════════════════════════════════════════════════
 // Error Boundary Component
 // ═══════════════════════════════════════════════════════════════════
-function ErrorComponent({
-  error,
-  reset,
-}: {
-  error: Error;
-  reset: () => void;
-}) {
+function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
   const router = useRouter();
   const [copied, setCopied] = useState(false);
 
@@ -171,18 +159,14 @@ function ErrorComponent({
         <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-destructive/10 text-3xl">
           ⚠️
         </div>
-        <h1 className="text-2xl font-bold tracking-tight">
-          Unexpected Error
-        </h1>
+        <h1 className="text-2xl font-bold tracking-tight">Unexpected Error</h1>
         <p className="mt-2 text-sm text-muted-foreground">
-          Our systems encountered a technical issue. Please try again or
-          contact support if the problem persists.
+          Our systems encountered a technical issue. Please try again or contact support if the
+          problem persists.
         </p>
         {import.meta.env.DEV && (
           <details className="mt-4 max-h-40 overflow-auto rounded-lg bg-muted/30 p-3 text-left text-xs font-mono">
-            <summary className="cursor-pointer text-primary">
-              View error details
-            </summary>
+            <summary className="cursor-pointer text-primary">View error details</summary>
             <pre className="mt-2 whitespace-pre-wrap text-destructive">
               {error.stack || error.message}
             </pre>
@@ -228,8 +212,7 @@ export const Route = createRootRouteWithContext<{
       { charSet: "utf-8" },
       {
         name: "viewport",
-        content:
-          "width=device-width, initial-scale=1, viewport-fit=cover, maximum-scale=5",
+        content: "width=device-width, initial-scale=1, viewport-fit=cover, maximum-scale=5",
       },
       { name: "theme-color", content: siteConfig.themeColor },
       { title: siteConfig.defaultTitle },
@@ -243,8 +226,7 @@ export const Route = createRootRouteWithContext<{
       { name: "application-name", content: company.name },
       {
         name: "robots",
-        content:
-          "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
+        content: "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
       },
       { name: "googlebot", content: "index, follow" },
       { name: "referrer", content: "strict-origin-when-cross-origin" },
@@ -366,12 +348,7 @@ export const Route = createRootRouteWithContext<{
 // ═══════════════════════════════════════════════════════════════════
 function RootShell({ children }: { children: ReactNode }) {
   return (
-    <html
-      lang="en-PK"
-      dir="ltr"
-      className="scroll-smooth antialiased"
-      suppressHydrationWarning
-    >
+    <html lang="en-PK" dir="ltr" className="scroll-smooth antialiased" suppressHydrationWarning>
       <head>
         <HeadContent />
       </head>
@@ -400,9 +377,7 @@ function RootComponent() {
   useEffect(() => {
     const handleAnchorClick = (e: MouseEvent) => {
       const target = e.target as HTMLElement;
-      const anchor = target.closest(
-        'a[href^="#"]',
-      ) as HTMLAnchorElement | null;
+      const anchor = target.closest('a[href^="#"]') as HTMLAnchorElement | null;
       if (!anchor) return;
 
       const href = anchor.getAttribute("href");
@@ -435,10 +410,7 @@ function RootComponent() {
       const isDark = document.documentElement.classList.contains("dark");
       const meta = document.querySelector('meta[name="theme-color"]');
       if (meta) {
-        meta.setAttribute(
-          "content",
-          isDark ? "#0A192F" : siteConfig.themeColor,
-        );
+        meta.setAttribute("content", isDark ? "#0A192F" : siteConfig.themeColor);
       }
     };
 

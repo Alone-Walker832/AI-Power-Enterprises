@@ -107,9 +107,7 @@ export function PremiumHero({
         >
           {/* ── Copy column ── */}
           <div className="flex flex-col items-center gap-5 text-center lg:items-start lg:text-left">
-            {eyebrow ? (
-              <div className="animate-fade-up">{eyebrow}</div>
-            ) : null}
+            {eyebrow ? <div className="animate-fade-up">{eyebrow}</div> : null}
 
             {/* Single h1 for the page — clamp() keeps it fluid so it never
                 overflows at 320px nor jumps size at each breakpoint. */}

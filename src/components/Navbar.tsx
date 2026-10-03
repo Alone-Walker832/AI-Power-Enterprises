@@ -23,12 +23,7 @@ import {
   MapPin,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import {
-  Sheet,
-  SheetContent,
-  SheetClose,
-  SheetTrigger,
-} from "@/components/ui/sheet";
+import { Sheet, SheetContent, SheetClose, SheetTrigger } from "@/components/ui/sheet";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { cn } from "@/lib/utils";
 import { company, telLink } from "@/data/companyData";
@@ -138,19 +133,19 @@ function Hamburger({ open }: { open: boolean }) {
       <span
         className={cn(
           "absolute left-0 top-0 h-0.5 w-full rounded-full bg-foreground transition-all duration-300 ease-out",
-          open && "top-1/2 rotate-45 -translate-y-1/2"
+          open && "top-1/2 rotate-45 -translate-y-1/2",
         )}
       />
       <span
         className={cn(
           "absolute left-0 top-1/2 h-0.5 w-full -translate-y-1/2 rounded-full bg-foreground transition-all duration-300 ease-out",
-          open && "opacity-0"
+          open && "opacity-0",
         )}
       />
       <span
         className={cn(
           "absolute bottom-0 left-0 h-0.5 w-full rounded-full bg-foreground transition-all duration-300 ease-out",
-          open && "bottom-1/2 -rotate-45 translate-y-1/2"
+          open && "bottom-1/2 -rotate-45 translate-y-1/2",
         )}
       />
     </div>
@@ -187,10 +182,7 @@ function ServicesDropdown({ pathname }: { pathname: string }) {
 
   useEffect(() => {
     const handleClickOutside = (e: MouseEvent) => {
-      if (
-        containerRef.current &&
-        !containerRef.current.contains(e.target as Node)
-      ) {
+      if (containerRef.current && !containerRef.current.contains(e.target as Node)) {
         setIsOpen(false);
       }
     };
@@ -204,7 +196,7 @@ function ServicesDropdown({ pathname }: { pathname: string }) {
     () => () => {
       if (timeoutRef.current) clearTimeout(timeoutRef.current);
     },
-    []
+    [],
   );
 
   const toggleDropdown = useCallback(() => setIsOpen((prev) => !prev), []);
@@ -218,7 +210,7 @@ function ServicesDropdown({ pathname }: { pathname: string }) {
           "flex items-center gap-1 rounded-lg px-3 py-2 text-sm font-medium transition-all duration-300 hover:bg-primary/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50",
           isAnyServiceActive
             ? "bg-primary/10 text-primary"
-            : "text-muted-foreground hover:text-foreground"
+            : "text-muted-foreground hover:text-foreground",
         )}
         onClick={toggleDropdown}
         onMouseEnter={openMenu}
@@ -229,10 +221,7 @@ function ServicesDropdown({ pathname }: { pathname: string }) {
       >
         Services
         <ChevronDown
-          className={cn(
-            "size-3.5 transition-transform duration-300",
-            isOpen && "rotate-180"
-          )}
+          className={cn("size-3.5 transition-transform duration-300", isOpen && "rotate-180")}
         />
       </button>
 
@@ -244,7 +233,7 @@ function ServicesDropdown({ pathname }: { pathname: string }) {
           "w-[min(calc(100vw-2rem),62rem)] overflow-hidden",
           isOpen
             ? "pointer-events-auto opacity-100 scale-100 translate-y-0"
-            : "pointer-events-none opacity-0 scale-[0.98] -translate-y-1"
+            : "pointer-events-none opacity-0 scale-[0.98] -translate-y-1",
         )}
         onMouseEnter={openMenu}
         onMouseLeave={closeMenu}
@@ -269,7 +258,7 @@ function ServicesDropdown({ pathname }: { pathname: string }) {
                           onClick={() => setIsOpen(false)}
                           className={cn(
                             "group/item flex items-start gap-2.5 rounded-lg p-2 transition-all duration-200",
-                            isActive ? "bg-primary/10" : "hover:bg-muted/60"
+                            isActive ? "bg-primary/10" : "hover:bg-muted/60",
                           )}
                         >
                           <span
@@ -277,7 +266,7 @@ function ServicesDropdown({ pathname }: { pathname: string }) {
                               "flex size-8 shrink-0 items-center justify-center rounded-md border transition-all duration-200",
                               isActive
                                 ? "border-primary/40 bg-primary/15 text-primary"
-                                : "border-border bg-muted/50 text-muted-foreground group-hover/item:border-primary/40 group-hover/item:bg-primary/10 group-hover/item:text-primary"
+                                : "border-border bg-muted/50 text-muted-foreground group-hover/item:border-primary/40 group-hover/item:bg-primary/10 group-hover/item:text-primary",
                             )}
                           >
                             <Icon className="size-4" />
@@ -289,7 +278,7 @@ function ServicesDropdown({ pathname }: { pathname: string }) {
                                   "text-sm font-semibold truncate",
                                   isActive
                                     ? "text-primary"
-                                    : "text-foreground group-hover/item:text-primary"
+                                    : "text-foreground group-hover/item:text-primary",
                                 )}
                               >
                                 {item.label}
@@ -327,9 +316,7 @@ function ServicesDropdown({ pathname }: { pathname: string }) {
               <p className="mt-4 font-display text-base font-bold leading-tight">
                 30-minute response.
                 <br />
-                <span className="text-primary-foreground/90">
-                  Nationwide 24/7.
-                </span>
+                <span className="text-primary-foreground/90">Nationwide 24/7.</span>
               </p>
 
               <ul className="mt-3 space-y-1.5 text-[11px] text-primary-foreground/85">
@@ -338,8 +325,7 @@ function ServicesDropdown({ pathname }: { pathname: string }) {
                   Initial response
                 </li>
                 <li className="flex items-center gap-1.5">
-                  <MapPin className="size-3.5 shrink-0" />
-                  8 hubs nationwide
+                  <MapPin className="size-3.5 shrink-0" />8 hubs nationwide
                 </li>
               </ul>
 
@@ -349,11 +335,7 @@ function ServicesDropdown({ pathname }: { pathname: string }) {
                   size="sm"
                   className="w-full bg-primary-foreground text-primary hover:bg-primary-foreground/90 font-semibold shadow-none"
                 >
-                  <Link
-                    to="/contact"
-                    hash="request"
-                    onClick={() => setIsOpen(false)}
-                  >
+                  <Link to="/contact" hash="request" onClick={() => setIsOpen(false)}>
                     Request a Quote
                     <ArrowRight className="ml-1 size-3.5" />
                   </Link>
@@ -414,7 +396,7 @@ export function Navbar() {
     const isActive = pathname === to;
     return cn(
       "relative rounded-lg px-3 py-2 text-sm font-medium transition-all duration-200 hover:bg-primary/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50",
-      isActive ? "text-primary" : "text-muted-foreground hover:text-foreground"
+      isActive ? "text-primary" : "text-muted-foreground hover:text-foreground",
     );
   };
 
@@ -422,7 +404,7 @@ export function Navbar() {
     const isActive = pathname === to;
     return cn(
       "absolute bottom-0 left-1/2 h-0.5 w-6 -translate-x-1/2 rounded-full bg-primary transition-all duration-300",
-      isActive ? "opacity-100 w-6" : "opacity-0 w-0"
+      isActive ? "opacity-100 w-6" : "opacity-0 w-0",
     );
   };
 
@@ -430,9 +412,7 @@ export function Navbar() {
     const isActive = pathname === to;
     return cn(
       "group relative flex items-center gap-3 rounded-lg px-4 py-3 text-sm font-medium transition-all duration-200 hover:bg-primary/10 active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50",
-      isActive
-        ? "bg-primary/10 text-primary"
-        : "text-foreground hover:text-primary"
+      isActive ? "bg-primary/10 text-primary" : "text-foreground hover:text-primary",
     );
   };
 
@@ -448,7 +428,7 @@ export function Navbar() {
         "sticky top-8 z-40 w-full border-b transition-all duration-300",
         scrolled
           ? "border-border/40 bg-background/85 backdrop-blur-xl shadow-lg shadow-primary/5"
-          : "border-transparent bg-background/60 backdrop-blur-md"
+          : "border-transparent bg-background/60 backdrop-blur-md",
       )}
     >
       <nav
@@ -567,9 +547,7 @@ export function Navbar() {
                       >
                         <Home className="size-4 shrink-0" />
                         Home
-                        {pathname === "/" && (
-                          <Sparkles className="ml-auto size-4 text-primary" />
-                        )}
+                        {pathname === "/" && <Sparkles className="ml-auto size-4 text-primary" />}
                       </Link>
                     </li>
 
@@ -591,7 +569,7 @@ export function Navbar() {
                                     "flex items-center gap-3 rounded-lg px-4 py-2.5 text-sm font-medium transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50",
                                     isActive
                                       ? "bg-primary/10 text-primary"
-                                      : "text-muted-foreground hover:bg-primary/10 hover:text-foreground"
+                                      : "text-muted-foreground hover:bg-primary/10 hover:text-foreground",
                                   )}
                                 >
                                   <Icon className="size-4 shrink-0" />
@@ -650,12 +628,8 @@ export function Navbar() {
                         <Phone className="size-4" />
                       </div>
                       <div>
-                        <p className="text-[10px] font-semibold text-foreground">
-                          24/7 Support
-                        </p>
-                        <p className="text-[9px] text-muted-foreground">
-                          Instant response
-                        </p>
+                        <p className="text-[10px] font-semibold text-foreground">24/7 Support</p>
+                        <p className="text-[9px] text-muted-foreground">Instant response</p>
                       </div>
                     </div>
                     <div className="flex items-center gap-2 rounded-xl bg-primary/5 p-2.5 text-sm">
@@ -663,12 +637,8 @@ export function Navbar() {
                         <Headset className="size-4" />
                       </div>
                       <div>
-                        <p className="text-[10px] font-semibold text-foreground">
-                          SLA
-                        </p>
-                        <p className="text-[9px] text-muted-foreground">
-                          30 min response
-                        </p>
+                        <p className="text-[10px] font-semibold text-foreground">SLA</p>
+                        <p className="text-[9px] text-muted-foreground">30 min response</p>
                       </div>
                     </div>
                   </div>
@@ -676,11 +646,7 @@ export function Navbar() {
                     asChild
                     className="w-full h-10 text-sm font-semibold bg-gradient-to-r from-primary to-primary/90 text-primary-foreground shadow-md shadow-primary/30 hover:shadow-lg hover:shadow-primary/40 transition-all group rounded-lg"
                   >
-                    <Link
-                      to="/contact"
-                      hash="request"
-                      onClick={() => setOpen(false)}
-                    >
+                    <Link to="/contact" hash="request" onClick={() => setOpen(false)}>
                       Request Quote
                       <ArrowRight className="size-3.5 transition-transform group-hover:translate-x-1" />
                     </Link>

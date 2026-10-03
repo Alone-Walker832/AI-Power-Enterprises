@@ -1,10 +1,5 @@
 import { MessageCircle } from "lucide-react";
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from "@/components/ui/tooltip";
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import { whatsappLink } from "@/data/companyData";
 
 export function WhatsAppBtn() {
@@ -30,7 +25,10 @@ export function WhatsAppBtn() {
             </span>
 
             {/* Icon */}
-            <MessageCircle className="size-7 transition-transform duration-300 group-hover:rotate-6 group-hover:scale-110" aria-hidden="true" />
+            <MessageCircle
+              className="size-7 transition-transform duration-300 group-hover:rotate-6 group-hover:scale-110"
+              aria-hidden="true"
+            />
           </a>
         </TooltipTrigger>
         <TooltipContent

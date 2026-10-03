@@ -1,11 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import HomePage from "@/components/HomePage";
 
-import {
-  company,
-  siteConfig,
-  services,
-} from "@/data/companyData";
+import { company, siteConfig, services } from "@/data/companyData";
 
 // ─── Hero image preloading ─────────────────────────────────────
 // Only the LCP image gets a preload hint. The other two marquee tiles
@@ -94,8 +90,7 @@ const serviceItemListNode = {
   name: "Enterprise IT Services — AI Power Enterprises",
   description: PAGE_DESCRIPTION,
   numberOfItems: services.length,
-  itemListOrderType:
-    "https://schema.org/ItemListUnordered" as const,
+  itemListOrderType: "https://schema.org/ItemListUnordered" as const,
   itemListElement: services.map((service, index) => ({
     "@type": "ListItem",
     position: index + 1,
@@ -124,12 +119,7 @@ const homeBreadcrumbNode = {
 
 const HOME_PAGE_SCHEMA = {
   "@context": "https://schema.org",
-  "@graph": [
-    websiteNode,
-    homeWebPageNode,
-    serviceItemListNode,
-    homeBreadcrumbNode,
-  ],
+  "@graph": [websiteNode, homeWebPageNode, serviceItemListNode, homeBreadcrumbNode],
 };
 
 // ─── Google Analytics 4 ─────────────────────────────────────────
@@ -178,8 +168,7 @@ export const Route = createFileRoute("/")({
       { name: "author", content: company.name },
       {
         name: "robots",
-        content:
-          "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
+        content: "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
       },
       { name: "referrer", content: "strict-origin-when-cross-origin" },
 

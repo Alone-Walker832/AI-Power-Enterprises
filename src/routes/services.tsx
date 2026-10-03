@@ -155,8 +155,7 @@ export const Route = createFileRoute("/services")({
         { name: "keywords", content: PAGE_KEYWORDS.join(", ") },
         {
           name: "robots",
-          content:
-            "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
+          content: "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
         },
         { property: "og:type", content: "website" },
         { property: "og:site_name", content: company.name },
@@ -221,8 +220,7 @@ const iconMap: Record<string, LucideIcon> = {
   Lock,
 };
 
-const getIcon = (name?: string): LucideIcon =>
-  (name && iconMap[name]) || Settings;
+const getIcon = (name?: string): LucideIcon => (name && iconMap[name]) || Settings;
 
 // ═══════════════════════════════════════════════════════════════════
 // STICKY SUB-NAV SECTIONS
@@ -263,15 +261,10 @@ function ServiceCard({ section }: { section: (typeof serviceSections)[0] }) {
         </span>
         <div className="min-w-0 flex-1">
           <h3 className="font-display text-lg font-semibold">{section.title}</h3>
-          <p className="mt-1 text-sm text-muted-foreground">
-            {section.summary}
-          </p>
+          <p className="mt-1 text-sm text-muted-foreground">{section.summary}</p>
           <ul className="mt-3 space-y-1.5 text-left">
             {section.items.slice(0, 4).map((item) => (
-              <li
-                key={item}
-                className="flex items-start gap-2 text-sm text-muted-foreground"
-              >
+              <li key={item} className="flex items-start gap-2 text-sm text-muted-foreground">
                 <CheckCircle2
                   className="mt-0.5 size-3.5 shrink-0 text-primary"
                   aria-hidden="true"
@@ -354,10 +347,7 @@ function ServicesPage() {
         ref={heroRef}
         className="relative overflow-hidden bg-gradient-to-br from-hero via-hero/95 to-hero/80 py-9 sm:py-12 lg:py-14"
       >
-        <div
-          className="grid-pattern absolute inset-0 opacity-20"
-          aria-hidden="true"
-        />
+        <div className="grid-pattern absolute inset-0 opacity-20" aria-hidden="true" />
         <div
           className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--primary)_0%,_transparent_70%)] opacity-10"
           aria-hidden="true"
@@ -372,13 +362,11 @@ function ServicesPage() {
                 Enterprise IT Services
               </Badge>
               <h1 className="font-display text-3xl font-bold leading-tight text-hero-foreground sm:text-4xl lg:text-5xl xl:text-6xl">
-                Managed IT &{" "}
-                <span className="text-gradient">SLA-Backed Support</span>
+                Managed IT & <span className="text-gradient">SLA-Backed Support</span>
               </h1>
               <p className="mx-auto max-w-xl text-base text-hero-muted sm:text-lg lg:mx-0 lg:text-xl">
-                From mission-critical infrastructure to IP surveillance,
-                networking, and licensing — delivered by certified engineers
-                nationwide with a 30-minute SLA.
+                From mission-critical infrastructure to IP surveillance, networking, and licensing —
+                delivered by certified engineers nationwide with a 30-minute SLA.
               </p>
 
               {/* Trust chips */}
@@ -389,21 +377,14 @@ function ServicesPage() {
                   { icon: MapPin, label: "8 hubs nationwide" },
                 ].map(({ icon: Icon, label }) => (
                   <li key={label} className="inline-flex items-center gap-1.5">
-                    <Icon
-                      className="size-3.5 text-hero-accent"
-                      aria-hidden="true"
-                    />
+                    <Icon className="size-3.5 text-hero-accent" aria-hidden="true" />
                     {label}
                   </li>
                 ))}
               </ul>
 
               <div className="flex flex-col gap-3 pt-2 sm:flex-row sm:flex-wrap sm:justify-center sm:gap-4 lg:justify-start">
-                <Button
-                  asChild
-                  size="lg"
-                  className="glow-ring w-full sm:w-auto"
-                >
+                <Button asChild size="lg" className="glow-ring w-full sm:w-auto">
                   <Link to="/contact" hash="request">
                     Request a Quote
                     <ArrowRight className="ml-2 size-4" aria-hidden="true" />
@@ -430,10 +411,7 @@ function ServicesPage() {
                     whileHover={{ scale: 1.03 }}
                     className="rounded-xl border border-hero-border/60 bg-hero-foreground/5 p-3 backdrop-blur-sm transition-all hover:bg-hero-foreground/10 sm:p-4"
                   >
-                    <Icon
-                      className="size-5 text-hero-accent sm:size-6"
-                      aria-hidden="true"
-                    />
+                    <Icon className="size-5 text-hero-accent sm:size-6" aria-hidden="true" />
                     <h3 className="mt-1.5 text-xs font-semibold text-hero-foreground sm:text-sm">
                       {section.title.split(" ").slice(0, 2).join(" ")}
                     </h3>
@@ -458,12 +436,10 @@ function ServicesPage() {
             SLA Framework
           </Badge>
           <h2 className="font-display text-2xl font-bold sm:text-3xl lg:text-4xl">
-            Clear, Measurable{" "}
-            <span className="text-gradient">Service Parameters</span>
+            Clear, Measurable <span className="text-gradient">Service Parameters</span>
           </h2>
           <p className="mt-3 text-sm text-muted-foreground sm:text-base">
-            Backed by onsite intervention and spare parts availability —
-            always.
+            Backed by onsite intervention and spare parts availability — always.
           </p>
         </div>
 
@@ -480,13 +456,8 @@ function ServicesPage() {
               >
                 <Card className="glass-card h-full border border-border/60 shadow-sm transition-all hover:shadow-lg">
                   <CardHeader>
-                    <Icon
-                      className="size-6 text-primary"
-                      aria-hidden="true"
-                    />
-                    <CardTitle className="text-base font-semibold">
-                      {parameter.label}
-                    </CardTitle>
+                    <Icon className="size-6 text-primary" aria-hidden="true" />
+                    <CardTitle className="text-base font-semibold">{parameter.label}</CardTitle>
                   </CardHeader>
                   <CardContent className="text-sm text-muted-foreground">
                     {parameter.value}
@@ -512,17 +483,12 @@ function ServicesPage() {
                   <Badge className="w-fit border-primary/20 bg-primary/10 text-primary hover:bg-primary/20">
                     {model.coverage}
                   </Badge>
-                  <CardTitle className="font-display text-xl sm:text-2xl">
-                    {model.title}
-                  </CardTitle>
+                  <CardTitle className="font-display text-xl sm:text-2xl">{model.title}</CardTitle>
                 </CardHeader>
                 <CardContent>
                   <ul className="space-y-2">
                     {model.points.map((point) => (
-                      <li
-                        key={point}
-                        className="flex gap-2 text-sm text-muted-foreground"
-                      >
+                      <li key={point} className="flex gap-2 text-sm text-muted-foreground">
                         <CheckCircle2
                           className="mt-0.5 size-4 shrink-0 text-primary"
                           aria-hidden="true"
@@ -552,10 +518,7 @@ function ServicesPage() {
                 transition={{ duration: 0.3 }}
                 className="flex items-center gap-2 rounded-xl border border-border bg-card px-4 py-3 text-sm font-medium shadow-sm transition-all hover:shadow-md"
               >
-                <CheckCircle2
-                  className="size-4 shrink-0 text-primary"
-                  aria-hidden="true"
-                />
+                <CheckCircle2 className="size-4 shrink-0 text-primary" aria-hidden="true" />
                 {deliverable}
               </motion.li>
             ))}
@@ -574,8 +537,7 @@ function ServicesPage() {
               Expertise
             </Badge>
             <h2 className="font-display text-2xl font-bold sm:text-3xl lg:text-4xl">
-              Comprehensive{" "}
-              <span className="text-gradient">Service Portfolio</span>
+              Comprehensive <span className="text-gradient">Service Portfolio</span>
             </h2>
             <p className="mt-3 text-sm text-muted-foreground sm:text-base">
               End-to-end IT solutions from infrastructure to managed support.
@@ -612,8 +574,7 @@ function ServicesPage() {
             Individual <span className="text-gradient">Service Pages</span>
           </h2>
           <p className="mt-3 text-sm text-muted-foreground sm:text-base">
-            Dive deep into each service line — capabilities, deliverables and
-            SLA alignment.
+            Dive deep into each service line — capabilities, deliverables and SLA alignment.
           </p>
         </div>
 
@@ -683,10 +644,7 @@ function ServicesPage() {
                 transition={{ duration: 0.3, delay: idx * 0.02 }}
                 className="flex items-center gap-2 rounded-lg border border-border bg-card px-4 py-3 text-sm font-medium shadow-sm transition-all hover:shadow-md"
               >
-                <CheckCircle2
-                  className="size-3.5 shrink-0 text-primary"
-                  aria-hidden="true"
-                />
+                <CheckCircle2 className="size-3.5 shrink-0 text-primary" aria-hidden="true" />
                 {item}
               </motion.li>
             ))}
@@ -694,194 +652,186 @@ function ServicesPage() {
         </div>
       </section>
 
-{/* ═══ 6. MANAGED SERVICES & CONSULTANCY ═══ */}
-<section
-  id="managed"
-  className="mx-auto max-w-7xl scroll-mt-20 px-4 py-9 sm:px-6 sm:py-12 lg:px-8 lg:py-16"
->
-  {/* Section header */}
-  <div className="mx-auto max-w-2xl text-center">
-    <Badge variant="secondary" className="mb-4">
-      Managed & Consultancy
-    </Badge>
-    <h2 className="font-display text-2xl font-bold sm:text-3xl lg:text-4xl">
-      Operational <span className="text-gradient">& Advisory</span>
-    </h2>
-    <p className="mt-3 text-sm text-muted-foreground sm:text-base">
-      Day-to-day IT operations management and strategic guidance.
-    </p>
-  </div>
-
-  {/* ─── Two Premium Cards ─── */}
-  <div className="mt-8 grid gap-6 sm:mt-10 lg:grid-cols-2 lg:gap-8">
-    {/* Card 1 — Managed Services */}
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.45 }}
-      className="group relative overflow-hidden rounded-2xl border border-border bg-card shadow-sm transition-all hover:-translate-y-0.5 hover:border-primary/40 hover:shadow-xl"
-    >
-      {/* Top gradient accent bar */}
-      <div
-        className="h-1 w-full bg-gradient-to-r from-primary via-primary/60 to-primary/10"
-        aria-hidden="true"
-      />
-      {/* Soft background glow */}
-      <div
-        className="pointer-events-none absolute -top-20 -right-20 h-48 w-48 rounded-full bg-primary/5 blur-3xl"
-        aria-hidden="true"
-      />
-
-      <div className="relative p-6 sm:p-7">
-        {/* Header */}
-        <div className="flex items-start gap-4">
-          <span className="inline-flex size-12 shrink-0 items-center justify-center rounded-xl bg-primary/10 text-primary ring-1 ring-primary/15 transition-all group-hover:bg-primary group-hover:text-primary-foreground">
-            <Settings className="size-6" aria-hidden="true" />
-          </span>
-          <div className="min-w-0">
-            <h3 className="font-display text-xl font-bold sm:text-2xl">
-              Managed Services
-            </h3>
-            <p className="mt-1 text-sm text-muted-foreground">
-              End-to-end IT operations managed by certified engineers.
-            </p>
-          </div>
-        </div>
-
-        {/* Divider */}
-        <div
-          className="mt-5 h-px w-full bg-gradient-to-r from-border via-border/60 to-transparent"
-          aria-hidden="true"
-        />
-
-        {/* Items grid — 1 col mobile, 2 col inside card on lg */}
-        <ul className="mt-5 grid gap-2.5 sm:grid-cols-2">
-          {managedServices.map((item) => (
-            <li
-              key={item}
-              className="group/item flex items-start gap-2.5 rounded-lg border border-transparent px-2 py-2 transition-all hover:border-primary/20 hover:bg-primary/5"
-            >
-              <span className="mt-0.5 inline-flex size-4 shrink-0 items-center justify-center rounded-full bg-primary/15 text-primary transition-all group-hover/item:bg-primary group-hover/item:text-primary-foreground">
-                <CheckCircle2 className="size-3" aria-hidden="true" />
-              </span>
-              <span className="text-sm leading-snug text-muted-foreground">
-                {item}
-              </span>
-            </li>
-          ))}
-        </ul>
-      </div>
-    </motion.div>
-
-    {/* Card 2 — Consultancy */}
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.45, delay: 0.1 }}
-      className="group relative overflow-hidden rounded-2xl border border-border bg-card shadow-sm transition-all hover:-translate-y-0.5 hover:border-primary/40 hover:shadow-xl"
-    >
-      <div
-        className="h-1 w-full bg-gradient-to-r from-primary via-primary/60 to-primary/10"
-        aria-hidden="true"
-      />
-      <div
-        className="pointer-events-none absolute -top-20 -right-20 h-48 w-48 rounded-full bg-primary/5 blur-3xl"
-        aria-hidden="true"
-      />
-
-      <div className="relative p-6 sm:p-7">
-        {/* Header */}
-        <div className="flex items-start gap-4">
-          <span className="inline-flex size-12 shrink-0 items-center justify-center rounded-xl bg-primary/10 text-primary ring-1 ring-primary/15 transition-all group-hover:bg-primary group-hover:text-primary-foreground">
-            <Briefcase className="size-6" aria-hidden="true" />
-          </span>
-          <div className="min-w-0">
-            <h3 className="font-display text-xl font-bold sm:text-2xl">
-              Consultancy
-            </h3>
-            <p className="mt-1 text-sm text-muted-foreground">
-              Strategic planning, architecture and knowledge transfer.
-            </p>
-          </div>
-        </div>
-
-        <div
-          className="mt-5 h-px w-full bg-gradient-to-r from-border via-border/60 to-transparent"
-          aria-hidden="true"
-        />
-
-        <ul className="mt-5 grid gap-2.5 sm:grid-cols-2">
-          {consultancyServices.map((item) => (
-            <li
-              key={item}
-              className="group/item flex items-start gap-2.5 rounded-lg border border-transparent px-2 py-2 transition-all hover:border-primary/20 hover:bg-primary/5"
-            >
-              <span className="mt-0.5 inline-flex size-4 shrink-0 items-center justify-center rounded-full bg-primary/15 text-primary transition-all group-hover/item:bg-primary group-hover/item:text-primary-foreground">
-                <CheckCircle2 className="size-3" aria-hidden="true" />
-              </span>
-              <span className="text-sm leading-snug text-muted-foreground">
-                {item}
-              </span>
-            </li>
-          ))}
-        </ul>
-      </div>
-    </motion.div>
-  </div>
-
-  {/* ─── Disaster Recovery — premium band ─── */}
-  <motion.div
-    initial={{ opacity: 0, y: 20 }}
-    whileInView={{ opacity: 1, y: 0 }}
-    viewport={{ once: true }}
-    transition={{ duration: 0.45, delay: 0.15 }}
-    className="relative mt-6 overflow-hidden rounded-2xl border border-border bg-gradient-to-br from-card via-card to-primary/5 p-6 shadow-sm sm:mt-8 sm:p-8"
-  >
-    <div
-      className="pointer-events-none absolute -top-24 -right-24 h-56 w-56 rounded-full bg-primary/8 blur-3xl"
-      aria-hidden="true"
-    />
-
-    <div className="relative">
-      {/* Header */}
-      <div className="flex flex-col items-center gap-3 text-center sm:flex-row sm:items-start sm:text-left">
-        <span className="inline-flex size-12 shrink-0 items-center justify-center rounded-xl bg-primary/10 text-primary ring-1 ring-primary/15">
-          <Activity className="size-6" aria-hidden="true" />
-        </span>
-        <div className="min-w-0 flex-1">
-          <h3 className="font-display text-xl font-bold sm:text-2xl">
-            Disaster Recovery & Business Continuity
-          </h3>
-          <p className="mt-1 text-sm text-muted-foreground">
-            Keep critical systems running — and recover them fast — with
-            tested continuity plans.
+      {/* ═══ 6. MANAGED SERVICES & CONSULTANCY ═══ */}
+      <section
+        id="managed"
+        className="mx-auto max-w-7xl scroll-mt-20 px-4 py-9 sm:px-6 sm:py-12 lg:px-8 lg:py-16"
+      >
+        {/* Section header */}
+        <div className="mx-auto max-w-2xl text-center">
+          <Badge variant="secondary" className="mb-4">
+            Managed & Consultancy
+          </Badge>
+          <h2 className="font-display text-2xl font-bold sm:text-3xl lg:text-4xl">
+            Operational <span className="text-gradient">& Advisory</span>
+          </h2>
+          <p className="mt-3 text-sm text-muted-foreground sm:text-base">
+            Day-to-day IT operations management and strategic guidance.
           </p>
         </div>
-      </div>
 
-      {/* Items grid */}
-      <ul className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-        {disasterRecovery.map((item, idx) => (
-          <motion.li
-            key={item}
-            initial={{ opacity: 0, y: 10 }}
+        {/* ─── Two Premium Cards ─── */}
+        <div className="mt-8 grid gap-6 sm:mt-10 lg:grid-cols-2 lg:gap-8">
+          {/* Card 1 — Managed Services */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.3, delay: idx * 0.05 }}
-            className="group/dr flex items-start gap-3 rounded-xl border border-border/70 bg-background/50 p-3.5 backdrop-blur-sm transition-all hover:-translate-y-0.5 hover:border-primary/40 hover:bg-primary/5 hover:shadow-md sm:p-4"
+            transition={{ duration: 0.45 }}
+            className="group relative overflow-hidden rounded-2xl border border-border bg-card shadow-sm transition-all hover:-translate-y-0.5 hover:border-primary/40 hover:shadow-xl"
           >
-            <span className="inline-flex size-8 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary transition-all group-hover/dr:bg-primary group-hover/dr:text-primary-foreground">
-              <ShieldCheck className="size-4" aria-hidden="true" />
-            </span>
-            <span className="text-sm font-medium leading-snug">{item}</span>
-          </motion.li>
-        ))}
-      </ul>
-    </div>
-  </motion.div>
-</section>
+            {/* Top gradient accent bar */}
+            <div
+              className="h-1 w-full bg-gradient-to-r from-primary via-primary/60 to-primary/10"
+              aria-hidden="true"
+            />
+            {/* Soft background glow */}
+            <div
+              className="pointer-events-none absolute -top-20 -right-20 h-48 w-48 rounded-full bg-primary/5 blur-3xl"
+              aria-hidden="true"
+            />
+
+            <div className="relative p-6 sm:p-7">
+              {/* Header */}
+              <div className="flex items-start gap-4">
+                <span className="inline-flex size-12 shrink-0 items-center justify-center rounded-xl bg-primary/10 text-primary ring-1 ring-primary/15 transition-all group-hover:bg-primary group-hover:text-primary-foreground">
+                  <Settings className="size-6" aria-hidden="true" />
+                </span>
+                <div className="min-w-0">
+                  <h3 className="font-display text-xl font-bold sm:text-2xl">Managed Services</h3>
+                  <p className="mt-1 text-sm text-muted-foreground">
+                    End-to-end IT operations managed by certified engineers.
+                  </p>
+                </div>
+              </div>
+
+              {/* Divider */}
+              <div
+                className="mt-5 h-px w-full bg-gradient-to-r from-border via-border/60 to-transparent"
+                aria-hidden="true"
+              />
+
+              {/* Items grid — 1 col mobile, 2 col inside card on lg */}
+              <ul className="mt-5 grid gap-2.5 sm:grid-cols-2">
+                {managedServices.map((item) => (
+                  <li
+                    key={item}
+                    className="group/item flex items-start gap-2.5 rounded-lg border border-transparent px-2 py-2 transition-all hover:border-primary/20 hover:bg-primary/5"
+                  >
+                    <span className="mt-0.5 inline-flex size-4 shrink-0 items-center justify-center rounded-full bg-primary/15 text-primary transition-all group-hover/item:bg-primary group-hover/item:text-primary-foreground">
+                      <CheckCircle2 className="size-3" aria-hidden="true" />
+                    </span>
+                    <span className="text-sm leading-snug text-muted-foreground">{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </motion.div>
+
+          {/* Card 2 — Consultancy */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.45, delay: 0.1 }}
+            className="group relative overflow-hidden rounded-2xl border border-border bg-card shadow-sm transition-all hover:-translate-y-0.5 hover:border-primary/40 hover:shadow-xl"
+          >
+            <div
+              className="h-1 w-full bg-gradient-to-r from-primary via-primary/60 to-primary/10"
+              aria-hidden="true"
+            />
+            <div
+              className="pointer-events-none absolute -top-20 -right-20 h-48 w-48 rounded-full bg-primary/5 blur-3xl"
+              aria-hidden="true"
+            />
+
+            <div className="relative p-6 sm:p-7">
+              {/* Header */}
+              <div className="flex items-start gap-4">
+                <span className="inline-flex size-12 shrink-0 items-center justify-center rounded-xl bg-primary/10 text-primary ring-1 ring-primary/15 transition-all group-hover:bg-primary group-hover:text-primary-foreground">
+                  <Briefcase className="size-6" aria-hidden="true" />
+                </span>
+                <div className="min-w-0">
+                  <h3 className="font-display text-xl font-bold sm:text-2xl">Consultancy</h3>
+                  <p className="mt-1 text-sm text-muted-foreground">
+                    Strategic planning, architecture and knowledge transfer.
+                  </p>
+                </div>
+              </div>
+
+              <div
+                className="mt-5 h-px w-full bg-gradient-to-r from-border via-border/60 to-transparent"
+                aria-hidden="true"
+              />
+
+              <ul className="mt-5 grid gap-2.5 sm:grid-cols-2">
+                {consultancyServices.map((item) => (
+                  <li
+                    key={item}
+                    className="group/item flex items-start gap-2.5 rounded-lg border border-transparent px-2 py-2 transition-all hover:border-primary/20 hover:bg-primary/5"
+                  >
+                    <span className="mt-0.5 inline-flex size-4 shrink-0 items-center justify-center rounded-full bg-primary/15 text-primary transition-all group-hover/item:bg-primary group-hover/item:text-primary-foreground">
+                      <CheckCircle2 className="size-3" aria-hidden="true" />
+                    </span>
+                    <span className="text-sm leading-snug text-muted-foreground">{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </motion.div>
+        </div>
+
+        {/* ─── Disaster Recovery — premium band ─── */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.45, delay: 0.15 }}
+          className="relative mt-6 overflow-hidden rounded-2xl border border-border bg-gradient-to-br from-card via-card to-primary/5 p-6 shadow-sm sm:mt-8 sm:p-8"
+        >
+          <div
+            className="pointer-events-none absolute -top-24 -right-24 h-56 w-56 rounded-full bg-primary/8 blur-3xl"
+            aria-hidden="true"
+          />
+
+          <div className="relative">
+            {/* Header */}
+            <div className="flex flex-col items-center gap-3 text-center sm:flex-row sm:items-start sm:text-left">
+              <span className="inline-flex size-12 shrink-0 items-center justify-center rounded-xl bg-primary/10 text-primary ring-1 ring-primary/15">
+                <Activity className="size-6" aria-hidden="true" />
+              </span>
+              <div className="min-w-0 flex-1">
+                <h3 className="font-display text-xl font-bold sm:text-2xl">
+                  Disaster Recovery & Business Continuity
+                </h3>
+                <p className="mt-1 text-sm text-muted-foreground">
+                  Keep critical systems running — and recover them fast — with tested continuity
+                  plans.
+                </p>
+              </div>
+            </div>
+
+            {/* Items grid */}
+            <ul className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+              {disasterRecovery.map((item, idx) => (
+                <motion.li
+                  key={item}
+                  initial={{ opacity: 0, y: 10 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.3, delay: idx * 0.05 }}
+                  className="group/dr flex items-start gap-3 rounded-xl border border-border/70 bg-background/50 p-3.5 backdrop-blur-sm transition-all hover:-translate-y-0.5 hover:border-primary/40 hover:bg-primary/5 hover:shadow-md sm:p-4"
+                >
+                  <span className="inline-flex size-8 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary transition-all group-hover/dr:bg-primary group-hover/dr:text-primary-foreground">
+                    <ShieldCheck className="size-4" aria-hidden="true" />
+                  </span>
+                  <span className="text-sm font-medium leading-snug">{item}</span>
+                </motion.li>
+              ))}
+            </ul>
+          </div>
+        </motion.div>
+      </section>
 
       {/* ═══ 7. PARTNERS (with logos) ═══ */}
       <section
@@ -897,8 +847,7 @@ function ServicesPage() {
               Strategic <span className="text-gradient">Partners</span>
             </h2>
             <p className="mt-3 text-sm text-muted-foreground sm:text-base">
-              Certified alignment with the world&apos;s leading enterprise
-              technology vendors.
+              Certified alignment with the world&apos;s leading enterprise technology vendors.
             </p>
           </div>
 
@@ -933,12 +882,10 @@ function ServicesPage() {
             Why AI Power
           </Badge>
           <h2 className="font-display text-2xl font-bold sm:text-3xl lg:text-4xl">
-            What Sets Us{" "}
-            <span className="text-gradient">Apart</span>
+            What Sets Us <span className="text-gradient">Apart</span>
           </h2>
           <p className="mt-3 text-sm text-muted-foreground sm:text-base">
-            Enterprise engineering discipline combined with nationwide
-            responsiveness.
+            Enterprise engineering discipline combined with nationwide responsiveness.
           </p>
         </div>
 
@@ -976,12 +923,8 @@ function ServicesPage() {
               <span className="inline-flex size-12 items-center justify-center rounded-full bg-primary/10 text-primary">
                 <item.icon className="size-6" aria-hidden="true" />
               </span>
-              <h3 className="mt-3 font-display text-base font-semibold sm:text-lg">
-                {item.title}
-              </h3>
-              <p className="mt-1.5 text-xs text-muted-foreground sm:text-sm">
-                {item.desc}
-              </p>
+              <h3 className="mt-3 font-display text-base font-semibold sm:text-lg">{item.title}</h3>
+              <p className="mt-1.5 text-xs text-muted-foreground sm:text-sm">{item.desc}</p>
             </motion.div>
           ))}
         </div>
@@ -995,8 +938,7 @@ function ServicesPage() {
               FAQ
             </Badge>
             <h2 className="font-display text-2xl font-bold sm:text-3xl lg:text-4xl">
-              Frequently Asked{" "}
-              <span className="text-gradient">Questions</span>
+              Frequently Asked <span className="text-gradient">Questions</span>
             </h2>
             <p className="mt-3 text-sm text-muted-foreground sm:text-base">
               Common questions about our services, SLA, and coverage.
@@ -1014,9 +956,7 @@ function ServicesPage() {
                 className="group rounded-xl border border-border bg-card shadow-sm transition-all hover:border-primary/30 hover:shadow-md [&_summary::-webkit-details-marker]:hidden"
               >
                 <summary className="flex cursor-pointer items-start justify-between gap-3 p-4 sm:p-5">
-                  <h3 className="text-left text-sm font-semibold sm:text-base">
-                    {faq.question}
-                  </h3>
+                  <h3 className="text-left text-sm font-semibold sm:text-base">{faq.question}</h3>
                   <span
                     className="mt-0.5 inline-flex size-5 shrink-0 items-center justify-center rounded-full border border-border text-muted-foreground transition-transform group-open:rotate-90"
                     aria-hidden="true"
@@ -1046,29 +986,19 @@ function ServicesPage() {
       {/* ═══ 10. FINAL CTA + CONTACT STRIP ═══ */}
       <section className="mx-auto max-w-7xl px-4 py-9 sm:px-6 sm:py-12 lg:px-8 lg:py-16">
         <div className="hero-surface relative overflow-hidden rounded-2xl border border-hero-border px-5 py-10 text-center sm:px-10 sm:py-12">
-          <div
-            className="grid-pattern absolute inset-0 opacity-20"
-            aria-hidden="true"
-          />
+          <div className="grid-pattern absolute inset-0 opacity-20" aria-hidden="true" />
           <div className="relative mx-auto max-w-2xl">
-            <Sparkles
-              className="mx-auto size-8 text-hero-accent"
-              aria-hidden="true"
-            />
+            <Sparkles className="mx-auto size-8 text-hero-accent" aria-hidden="true" />
             <h2 className="mt-3 font-display text-xl font-bold text-hero-foreground sm:text-2xl lg:text-3xl xl:text-4xl">
               Ready to Secure Your Infrastructure?
             </h2>
             <p className="mt-3 text-sm text-hero-muted sm:text-base">
-              Talk to our engineering team about servers, CCTV, networking,
-              licensing and 30-minute SLA support — nationwide across Pakistan.
+              Talk to our engineering team about servers, CCTV, networking, licensing and 30-minute
+              SLA support — nationwide across Pakistan.
             </p>
 
             <div className="mt-6 flex flex-col justify-center gap-3 sm:flex-row">
-              <Button
-                asChild
-                size="lg"
-                className="glow-ring w-full sm:w-auto"
-              >
+              <Button asChild size="lg" className="glow-ring w-full sm:w-auto">
                 <Link to="/contact" hash="request">
                   Request a Quote
                   <ArrowRight className="ml-2 size-4" aria-hidden="true" />

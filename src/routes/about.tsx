@@ -52,10 +52,9 @@ import {
 // ═══════════════════════════════════════════════════════════════════
 const PAGE_PATH = "/about";
 const PAGE_URL = `${siteConfig.url}${PAGE_PATH}`;
-const PAGE_TITLE =
-  "About AI Power Enterprises | Enterprise IT Partner in Pakistan";
+const PAGE_TITLE = "About AI Power Enterprises | Enterprise IT Partner in Pakistan";
 const PAGE_DESCRIPTION =
-  "AI Power Enterprises is a Karachi-based technology company delivering enterprise IT infrastructure, systems integration, managed services and 24/7 SLA support across Pakistan.";
+  "Karachi-based AI Power Enterprises delivers enterprise IT infrastructure, systems integration, managed services and 24/7 SLA support across Pakistan.";
 const PAGE_KEYWORDS = [
   "about AI Power Enterprises",
   "enterprise IT company Pakistan",
@@ -145,8 +144,7 @@ export const Route = createFileRoute("/about")({
         { name: "keywords", content: PAGE_KEYWORDS.join(", ") },
         {
           name: "robots",
-          content:
-            "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
+          content: "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
         },
         { property: "og:type", content: "website" },
         { property: "og:site_name", content: company.name },
@@ -218,10 +216,7 @@ function AboutPage() {
         ref={heroRef}
         className="relative overflow-hidden bg-gradient-to-br from-hero via-hero/95 to-hero/80 py-9 sm:py-12 lg:py-11"
       >
-        <div
-          className="grid-pattern absolute inset-0 opacity-25"
-          aria-hidden="true"
-        />
+        <div className="grid-pattern absolute inset-0 opacity-25" aria-hidden="true" />
         <div
           className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--primary)_0%,_transparent_70%)] opacity-10"
           aria-hidden="true"
@@ -238,8 +233,7 @@ function AboutPage() {
                 About Us
               </Badge>
               <h1 className="font-display text-3xl font-bold leading-tight text-hero-foreground sm:text-4xl lg:text-5xl xl:text-6xl">
-                A Technology-Driven{" "}
-                <span className="text-gradient">Enterprise Partner</span>
+                A Technology-Driven <span className="text-gradient">Enterprise Partner</span>
               </h1>
               <p className="mx-auto max-w-xl text-base text-hero-muted sm:text-lg lg:mx-0 lg:text-xl">
                 {company.overview}
@@ -253,21 +247,14 @@ function AboutPage() {
                   { icon: MapPin, label: "8 hubs nationwide" },
                 ].map(({ icon: Icon, label }) => (
                   <li key={label} className="inline-flex items-center gap-1.5">
-                    <Icon
-                      className="size-3.5 text-hero-accent"
-                      aria-hidden="true"
-                    />
+                    <Icon className="size-3.5 text-hero-accent" aria-hidden="true" />
                     {label}
                   </li>
                 ))}
               </ul>
 
               <div className="flex flex-col gap-3 pt-2 sm:flex-row sm:flex-wrap sm:justify-center sm:gap-4 lg:justify-start">
-                <Button
-                  asChild
-                  size="lg"
-                  className="glow-ring w-full sm:w-auto"
-                >
+                <Button asChild size="lg" className="glow-ring w-full sm:w-auto">
                   <Link to="/contact" hash="request">
                     Get in Touch
                     <ArrowRight className="ml-2 size-4" aria-hidden="true" />
@@ -330,12 +317,10 @@ function AboutPage() {
             Mission & Vision
           </Badge>
           <h2 className="font-display text-2xl font-bold sm:text-3xl lg:text-4xl">
-            What Drives{" "}
-            <span className="text-gradient">Our Work</span>
+            What Drives <span className="text-gradient">Our Work</span>
           </h2>
           <p className="mt-3 text-sm text-muted-foreground sm:text-base">
-            The principles that shape every engagement, project and support
-            relationship.
+            The principles that shape every engagement, project and support relationship.
           </p>
         </div>
 
@@ -360,9 +345,7 @@ function AboutPage() {
               <span className="inline-flex size-14 items-center justify-center rounded-2xl bg-primary/10 text-primary ring-1 ring-primary/15 transition-all group-hover:bg-primary group-hover:text-primary-foreground">
                 <Target className="size-7" aria-hidden="true" />
               </span>
-              <h3 className="mt-4 font-display text-xl font-bold sm:text-2xl">
-                Our Mission
-              </h3>
+              <h3 className="mt-4 font-display text-xl font-bold sm:text-2xl">Our Mission</h3>
               <p className="mt-3 text-sm leading-relaxed text-muted-foreground sm:text-base">
                 {mission}
               </p>
@@ -389,9 +372,7 @@ function AboutPage() {
               <span className="inline-flex size-14 items-center justify-center rounded-2xl bg-primary/10 text-primary ring-1 ring-primary/15 transition-all group-hover:bg-primary group-hover:text-primary-foreground">
                 <Eye className="size-7" aria-hidden="true" />
               </span>
-              <h3 className="mt-4 font-display text-xl font-bold sm:text-2xl">
-                Our Vision
-              </h3>
+              <h3 className="mt-4 font-display text-xl font-bold sm:text-2xl">Our Vision</h3>
               <p className="mt-3 text-sm leading-relaxed text-muted-foreground sm:text-base">
                 {vision}
               </p>
@@ -408,12 +389,11 @@ function AboutPage() {
               Capability Model
             </Badge>
             <h2 className="font-display text-2xl font-bold sm:text-3xl lg:text-4xl">
-              Our {pillars.length} Core{" "}
-              <span className="text-gradient">Pillars</span>
+              Our {pillars.length} Core <span className="text-gradient">Pillars</span>
             </h2>
             <p className="mt-3 text-sm text-muted-foreground sm:text-base">
-              A complete lifecycle model — from infrastructure design to
-              continuous SLA-backed support.
+              A complete lifecycle model — from infrastructure design to continuous SLA-backed
+              support.
             </p>
           </div>
 
@@ -460,12 +440,10 @@ function AboutPage() {
             Why AI Power
           </Badge>
           <h2 className="font-display text-2xl font-bold sm:text-3xl lg:text-4xl">
-            Our{" "}
-            <span className="text-gradient">Value Proposition</span>
+            Our <span className="text-gradient">Value Proposition</span>
           </h2>
           <p className="mt-3 text-sm text-muted-foreground sm:text-base">
-            What sets us apart — and why organisations trust us with their
-            critical IT environments.
+            What sets us apart — and why organisations trust us with their critical IT environments.
           </p>
         </div>
 
@@ -500,8 +478,7 @@ function AboutPage() {
               <span className="text-gradient">Implementation Approach</span>
             </h2>
             <p className="mt-3 text-sm text-muted-foreground sm:text-base">
-              A disciplined delivery method that de-risks every enterprise
-              rollout.
+              A disciplined delivery method that de-risks every enterprise rollout.
             </p>
           </div>
 
@@ -521,9 +498,7 @@ function AboutPage() {
                 <h3 className="mt-3 font-display text-base font-semibold sm:text-lg">
                   {step.title}
                 </h3>
-                <p className="mt-1.5 text-sm text-muted-foreground">
-                  {step.description}
-                </p>
+                <p className="mt-1.5 text-sm text-muted-foreground">{step.description}</p>
               </motion.li>
             ))}
           </ol>
@@ -537,12 +512,10 @@ function AboutPage() {
             Nationwide Footprint
           </Badge>
           <h2 className="font-display text-2xl font-bold sm:text-3xl lg:text-4xl">
-            <span className="text-gradient">8 Technical Hubs</span> Across
-            Pakistan
+            <span className="text-gradient">8 Technical Hubs</span> Across Pakistan
           </h2>
           <p className="mt-3 text-sm text-muted-foreground sm:text-base">
-            Onsite intervention and field support wherever your operations are
-            located.
+            Onsite intervention and field support wherever your operations are located.
           </p>
         </div>
 
@@ -560,12 +533,8 @@ function AboutPage() {
                 <MapPin className="size-4" aria-hidden="true" />
               </span>
               <div className="min-w-0">
-                <p className="font-display text-sm font-semibold sm:text-base">
-                  {hub.city}
-                </p>
-                <p className="text-xs text-muted-foreground sm:text-sm">
-                  {hub.role}
-                </p>
+                <p className="font-display text-sm font-semibold sm:text-base">{hub.city}</p>
+                <p className="text-xs text-muted-foreground sm:text-sm">{hub.role}</p>
               </div>
             </motion.div>
           ))}
@@ -580,12 +549,10 @@ function AboutPage() {
               Technology Alliances
             </Badge>
             <h2 className="font-display text-2xl font-bold sm:text-3xl lg:text-4xl">
-              Certified{" "}
-              <span className="text-gradient">Technology Partners</span>
+              Certified <span className="text-gradient">Technology Partners</span>
             </h2>
             <p className="mt-3 text-sm text-muted-foreground sm:text-base">
-              Aligned with the world&apos;s leading enterprise technology
-              vendors.
+              Aligned with the world&apos;s leading enterprise technology vendors.
             </p>
           </div>
 
@@ -617,38 +584,34 @@ function AboutPage() {
         </div>
       </section>
 
+      {/* ═══ HPE PARTNERSHIP BANNER ═══ */}
+      <section className="mx-auto max-w-4xl px-4 py-9 sm:px-6 sm:py-12 lg:px-8">
+        <div className="text-center">
+          <span className="text-xs font-semibold uppercase tracking-widest text-primary">
+            Featured Partnership
+          </span>
+          <h2 className="mt-2 font-display text-xl font-bold sm:text-2xl">
+            HPE With <span className="text-primary">AI Power Enterprises</span>
+          </h2>
+          <p className="mt-2 text-xs text-muted-foreground sm:text-sm">
+            Certified technology alliance — enterprise servers, storage, hybrid cloud, and 24/7
+            SLA-backed support across Pakistan.
+          </p>
+        </div>
 
-
-{/* ═══ HPE PARTNERSHIP BANNER ═══ */}
-<section className="mx-auto max-w-4xl px-4 py-9 sm:px-6 sm:py-12 lg:px-8">
-  <div className="text-center">
-    <span className="text-xs font-semibold uppercase tracking-widest text-primary">
-      Featured Partnership
-    </span>
-    <h2 className="mt-2 font-display text-xl font-bold sm:text-2xl">
-      HPE With <span className="text-primary">AI Power Enterprises</span>
-    </h2>
-    <p className="mt-2 text-xs text-muted-foreground sm:text-sm">
-      Certified technology alliance — enterprise servers, storage, hybrid cloud, and 24/7 SLA-backed support across Pakistan.
-    </p>
-  </div>
-
-  {/* Image wrapper — narrow + centered */}
-  <div className="mx-auto mt-6 max-w-md sm:max-w-lg">
-    <div className="overflow-hidden rounded-2xl border border-border/60 bg-card shadow-sm transition-all hover:-translate-y-0.5 hover:border-primary/40 hover:shadow-xl">
-      <img
-        src={hpePartnership}
-        alt="Hewlett Packard Enterprise and AI Power Enterprises — Technology Partnership"
-        className="h-auto w-full object-cover"
-        loading="lazy"
-        decoding="async"
-      />
-    </div>
-  </div>
-</section>
-
-
-
+        {/* Image wrapper — narrow + centered */}
+        <div className="mx-auto mt-6 max-w-md sm:max-w-lg">
+          <div className="overflow-hidden rounded-2xl border border-border/60 bg-card shadow-sm transition-all hover:-translate-y-0.5 hover:border-primary/40 hover:shadow-xl">
+            <img
+              src={hpePartnership}
+              alt="Hewlett Packard Enterprise and AI Power Enterprises — Technology Partnership"
+              className="h-auto w-full object-cover"
+              loading="lazy"
+              decoding="async"
+            />
+          </div>
+        </div>
+      </section>
 
       {/* ═══ FAQ ═══ */}
       <section className="mx-auto max-w-4xl px-4 py-9 sm:px-6 sm:py-12 lg:px-8 lg:py-16">
@@ -657,8 +620,7 @@ function AboutPage() {
             FAQ
           </Badge>
           <h2 className="font-display text-2xl font-bold sm:text-3xl lg:text-4xl">
-            Frequently Asked{" "}
-            <span className="text-gradient">Questions</span>
+            Frequently Asked <span className="text-gradient">Questions</span>
           </h2>
           <p className="mt-3 text-sm text-muted-foreground sm:text-base">
             Common questions about who we are, what we do and how we work.
@@ -676,9 +638,7 @@ function AboutPage() {
               className="group rounded-xl border border-border bg-card shadow-sm transition-all hover:border-primary/30 hover:shadow-md [&_summary::-webkit-details-marker]:hidden"
             >
               <summary className="flex cursor-pointer items-start justify-between gap-3 p-4 sm:p-5">
-                <h3 className="text-left text-sm font-semibold sm:text-base">
-                  {faq.question}
-                </h3>
+                <h3 className="text-left text-sm font-semibold sm:text-base">{faq.question}</h3>
                 <span
                   className="mt-0.5 inline-flex size-5 shrink-0 items-center justify-center rounded-full border border-border text-muted-foreground transition-transform group-open:rotate-90"
                   aria-hidden="true"
@@ -707,29 +667,19 @@ function AboutPage() {
       {/* ═══ FINAL CTA + CONTACT STRIP ═══ */}
       <section className="mx-auto max-w-7xl px-4 pb-9 sm:px-6 sm:pb-12 lg:px-8 lg:pb-16">
         <div className="hero-surface relative overflow-hidden rounded-2xl border border-hero-border px-5 py-10 text-center sm:px-10 sm:py-12">
-          <div
-            className="grid-pattern absolute inset-0 opacity-20"
-            aria-hidden="true"
-          />
+          <div className="grid-pattern absolute inset-0 opacity-20" aria-hidden="true" />
           <div className="relative mx-auto max-w-2xl">
-            <Sparkles
-              className="mx-auto size-8 text-hero-accent"
-              aria-hidden="true"
-            />
+            <Sparkles className="mx-auto size-8 text-hero-accent" aria-hidden="true" />
             <h2 className="mt-3 font-display text-xl font-bold text-hero-foreground sm:text-2xl lg:text-3xl xl:text-4xl">
               Ready to Build a Reliable IT Future?
             </h2>
             <p className="mt-3 text-sm text-hero-muted sm:text-base">
-              Let&apos;s talk about how we can support your organisation with
-              enterprise-grade IT infrastructure and managed services.
+              Let&apos;s talk about how we can support your organisation with enterprise-grade IT
+              infrastructure and managed services.
             </p>
 
             <div className="mt-6 flex flex-col justify-center gap-3 sm:flex-row">
-              <Button
-                asChild
-                size="lg"
-                className="glow-ring w-full sm:w-auto"
-              >
+              <Button asChild size="lg" className="glow-ring w-full sm:w-auto">
                 <Link to="/contact" hash="request">
                   Contact Us
                   <ArrowRight className="ml-2 size-4" aria-hidden="true" />

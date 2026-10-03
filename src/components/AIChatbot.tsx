@@ -67,18 +67,29 @@ export function AIChatbot() {
       const matchedFaq = chatbotFaqs.find(
         (faq) =>
           faq.question.toLowerCase().includes(lowerQuery) ||
-          lowerQuery.includes(faq.question.toLowerCase())
+          lowerQuery.includes(faq.question.toLowerCase()),
       );
 
       let botResponse = "";
       if (matchedFaq) {
         botResponse = matchedFaq.answer;
-      } else if (lowerQuery.includes("contact") || lowerQuery.includes("phone") || lowerQuery.includes("email")) {
-        botResponse = "You can reach our enterprise support team 24/7 at support@aipower.com or message us directly on WhatsApp below!";
-      } else if (lowerQuery.includes("quote") || lowerQuery.includes("price") || lowerQuery.includes("cost")) {
-        botResponse = "For enterprise quotes and custom SLA pricing, please visit our Request Quote section or chat with us on WhatsApp.";
+      } else if (
+        lowerQuery.includes("contact") ||
+        lowerQuery.includes("phone") ||
+        lowerQuery.includes("email")
+      ) {
+        botResponse =
+          "You can reach our enterprise support team 24/7 at support@aipower.com or message us directly on WhatsApp below!";
+      } else if (
+        lowerQuery.includes("quote") ||
+        lowerQuery.includes("price") ||
+        lowerQuery.includes("cost")
+      ) {
+        botResponse =
+          "For enterprise quotes and custom SLA pricing, please visit our Request Quote section or chat with us on WhatsApp.";
       } else {
-        botResponse = "Thank you! For custom IT architecture or hardware SLA queries, our support team is online 24/7. Connect via WhatsApp for an immediate response.";
+        botResponse =
+          "Thank you! For custom IT architecture or hardware SLA queries, our support team is online 24/7. Connect via WhatsApp for an immediate response.";
       }
 
       const botMsg: Message = {
@@ -136,7 +147,6 @@ export function AIChatbot() {
           {/* Animated Border Wrapper */}
           <div className="relative h-full w-full rounded-2xl p-[2px] bg-gradient-to-r from-primary via-purple-500 to-primary bg-[length:300%_300%] animate-border-spin">
             <div className="flex h-full w-full flex-col overflow-hidden rounded-2xl bg-background/95 backdrop-blur-xl dark:bg-card/95 shadow-2xl shadow-primary/20">
-              
               {/* ─── Header (with Logo) ─── */}
               <div className="flex items-center justify-between border-b border-primary/20 bg-gradient-to-r from-primary/5 via-background to-primary/5 px-4 py-3 backdrop-blur-sm shrink-0">
                 <div className="flex items-center gap-3">
@@ -150,7 +160,9 @@ export function AIChatbot() {
                   </div>
                   <div>
                     <div className="flex items-center gap-1.5">
-                      <span className="font-display text-sm font-bold text-foreground">AI Power Support</span>
+                      <span className="font-display text-sm font-bold text-foreground">
+                        AI Power Support
+                      </span>
                       <Sparkles className="size-3 text-primary animate-pulse" />
                     </div>
                     <p className="text-[9px] font-medium uppercase tracking-wider text-muted-foreground">
@@ -189,7 +201,7 @@ export function AIChatbot() {
                       key={message.id}
                       className={cn(
                         "flex flex-col gap-1 max-w-[88%]",
-                        message.role === "user" ? "ml-auto items-end" : "items-start"
+                        message.role === "user" ? "ml-auto items-end" : "items-start",
                       )}
                     >
                       <div
@@ -197,7 +209,7 @@ export function AIChatbot() {
                           "rounded-2xl px-4 py-2.5 text-sm font-normal leading-relaxed shadow-sm",
                           message.role === "user"
                             ? "rounded-tr-xs bg-primary text-primary-foreground" // Solid primary
-                            : "rounded-tl-xs border border-primary/10 bg-muted/50 text-foreground backdrop-blur-sm"
+                            : "rounded-tl-xs border border-primary/10 bg-muted/50 text-foreground backdrop-blur-sm",
                         )}
                       >
                         {message.text}

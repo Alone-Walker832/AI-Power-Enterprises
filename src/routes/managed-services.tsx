@@ -49,8 +49,7 @@ import {
 // ═══════════════════════════════════════════════════════════════════
 const PAGE_PATH = "/managed-services";
 const PAGE_URL = `${siteConfig.url}${PAGE_PATH}`;
-const PAGE_TITLE =
-  "Managed IT Services in Pakistan | 24/7 Helpdesk & Support";
+const PAGE_TITLE = "Managed IT Services in Pakistan | 24/7 Helpdesk & Support";
 const PAGE_DESCRIPTION =
   "Managed IT services in Pakistan — 24/7 helpdesk, incident management, preventive maintenance, resident engineering and SLA-backed support.";
 const PAGE_KEYWORDS = [
@@ -124,8 +123,7 @@ export const Route = createFileRoute("/managed-services")({
         { name: "keywords", content: PAGE_KEYWORDS.join(", ") },
         {
           name: "robots",
-          content:
-            "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
+          content: "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
         },
         { property: "og:type", content: "website" },
         { property: "og:site_name", content: company.name },
@@ -269,12 +267,7 @@ const implementationSteps = [
 ];
 
 const managedPartners = partners.filter((p) =>
-  [
-    "Microsoft",
-    "Red Hat",
-    "Hewlett Packard Enterprise",
-    "Dell Technologies",
-  ].includes(p.name),
+  ["Microsoft", "Red Hat", "Hewlett Packard Enterprise", "Dell Technologies"].includes(p.name),
 );
 
 // ═══════════════════════════════════════════════════════════════════
@@ -288,9 +281,7 @@ function ManagedServicesPage() {
   });
   const opacity = useTransform(scrollYProgress, [0, 0.3], [1, 0.6]);
 
-  const relatedServices = services
-    .filter((s) => s.slug !== "managed-services")
-    .slice(0, 3);
+  const relatedServices = services.filter((s) => s.slug !== "managed-services").slice(0, 3);
 
   return (
     <>
@@ -299,10 +290,7 @@ function ManagedServicesPage() {
         ref={heroRef}
         className="relative overflow-hidden bg-gradient-to-br from-hero via-hero/95 to-hero/80 py-9 sm:py-12 lg:py-7"
       >
-        <div
-          className="grid-pattern absolute inset-0 opacity-25"
-          aria-hidden="true"
-        />
+        <div className="grid-pattern absolute inset-0 opacity-25" aria-hidden="true" />
         <div
           className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_center,_var(--primary)_0%,_transparent_60%)] opacity-10"
           aria-hidden="true"
@@ -323,9 +311,8 @@ function ManagedServicesPage() {
                 <span className="text-gradient">Technical Operations</span>
               </h1>
               <p className="mx-auto max-w-xl text-base text-hero-muted sm:text-lg lg:mx-0 lg:text-xl">
-                24/7 helpdesk, incident management, preventive maintenance, and
-                resident engineering — backed by a contractual SLA and
-                delivered nationwide.
+                24/7 helpdesk, incident management, preventive maintenance, and resident engineering
+                — backed by a contractual SLA and delivered nationwide.
               </p>
 
               {/* Trust chips */}
@@ -336,21 +323,14 @@ function ManagedServicesPage() {
                   { icon: MapPin, label: "8 hubs nationwide" },
                 ].map(({ icon: Icon, label }) => (
                   <li key={label} className="inline-flex items-center gap-1.5">
-                    <Icon
-                      className="size-3.5 text-hero-accent"
-                      aria-hidden="true"
-                    />
+                    <Icon className="size-3.5 text-hero-accent" aria-hidden="true" />
                     {label}
                   </li>
                 ))}
               </ul>
 
               <div className="flex flex-col gap-3 pt-2 sm:flex-row sm:flex-wrap sm:justify-center sm:gap-4 lg:justify-start">
-                <Button
-                  asChild
-                  size="lg"
-                  className="glow-ring w-full sm:w-auto"
-                >
+                <Button asChild size="lg" className="glow-ring w-full sm:w-auto">
                   <Link to="/contact" hash="request">
                     Request Managed Services Quote
                     <ArrowRight className="ml-2 size-4" aria-hidden="true" />
@@ -387,10 +367,7 @@ function ManagedServicesPage() {
                   transition={{ duration: 0.45 }}
                   className="flex flex-col items-center rounded-2xl border border-hero-border bg-hero-foreground/5 p-4 backdrop-blur-sm sm:p-6"
                 >
-                  <stat.icon
-                    className="size-6 text-hero-accent sm:size-8"
-                    aria-hidden="true"
-                  />
+                  <stat.icon className="size-6 text-hero-accent sm:size-8" aria-hidden="true" />
                   <p className="mt-2 font-display text-lg font-bold text-hero-foreground sm:mt-3 sm:text-2xl lg:text-3xl">
                     {stat.value}
                   </p>
@@ -423,8 +400,7 @@ function ManagedServicesPage() {
             Complete <span className="text-gradient">Service Portfolio</span>
           </h2>
           <p className="mt-3 text-sm text-muted-foreground sm:text-base">
-            From helpdesk to resident engineering — we cover your entire IT
-            operations.
+            From helpdesk to resident engineering — we cover your entire IT operations.
           </p>
         </div>
 
@@ -442,9 +418,7 @@ function ManagedServicesPage() {
                   <span className="inline-flex size-11 items-center justify-center rounded-lg bg-primary/10 text-primary">
                     <item.icon className="size-5" aria-hidden="true" />
                   </span>
-                  <CardTitle className="font-display text-base sm:text-lg">
-                    {item.title}
-                  </CardTitle>
+                  <CardTitle className="font-display text-base sm:text-lg">{item.title}</CardTitle>
                 </CardHeader>
                 <CardContent className="text-sm text-muted-foreground">
                   {item.description}
@@ -483,12 +457,8 @@ function ManagedServicesPage() {
                 <span className="inline-flex size-10 items-center justify-center rounded-lg bg-primary/10 text-primary">
                   <item.icon className="size-5" aria-hidden="true" />
                 </span>
-                <h3 className="mt-3 font-display text-base font-semibold">
-                  {item.title}
-                </h3>
-                <p className="mt-1.5 text-sm text-muted-foreground">
-                  {item.desc}
-                </p>
+                <h3 className="mt-3 font-display text-base font-semibold">{item.title}</h3>
+                <p className="mt-1.5 text-sm text-muted-foreground">{item.desc}</p>
               </motion.div>
             ))}
           </div>
@@ -505,8 +475,7 @@ function ManagedServicesPage() {
             What We <span className="text-gradient">Deliver</span>
           </h2>
           <p className="mt-3 text-sm text-muted-foreground sm:text-base">
-            A comprehensive list of managed services available under our
-            support framework.
+            A comprehensive list of managed services available under our support framework.
           </p>
         </div>
 
@@ -520,10 +489,7 @@ function ManagedServicesPage() {
               transition={{ duration: 0.3, delay: idx * 0.02 }}
               className="flex items-center gap-2 rounded-lg border border-border bg-card px-4 py-3 text-sm font-medium shadow-sm transition-all hover:-translate-y-0.5 hover:border-primary/30 hover:shadow-md"
             >
-              <CheckCircle2
-                className="size-3.5 shrink-0 text-primary"
-                aria-hidden="true"
-              />
+              <CheckCircle2 className="size-3.5 shrink-0 text-primary" aria-hidden="true" />
               {service}
             </motion.li>
           ))}
@@ -541,8 +507,7 @@ function ManagedServicesPage() {
               Support <span className="text-gradient">Commitments</span>
             </h2>
             <p className="mt-3 text-sm text-muted-foreground sm:text-base">
-              Contractual response and resolution times for your managed
-              services.
+              Contractual response and resolution times for your managed services.
             </p>
           </div>
 
@@ -569,13 +534,8 @@ function ManagedServicesPage() {
                 transition={{ duration: 0.3, delay: idx * 0.05 }}
                 className="rounded-xl border border-border bg-card p-5 text-center shadow-sm transition-all hover:-translate-y-0.5 hover:shadow-md"
               >
-                <item.icon
-                  className="mx-auto size-6 text-primary"
-                  aria-hidden="true"
-                />
-                <p className="mt-2 font-display text-xl font-bold sm:text-2xl">
-                  {item.value}
-                </p>
+                <item.icon className="mx-auto size-6 text-primary" aria-hidden="true" />
+                <p className="mt-2 font-display text-xl font-bold sm:text-2xl">{item.value}</p>
                 <p className="text-[10px] font-medium uppercase tracking-wider text-muted-foreground sm:text-xs">
                   {item.label}
                 </p>
@@ -601,8 +561,7 @@ function ManagedServicesPage() {
             Onboarding Process
           </Badge>
           <h2 className="font-display text-2xl font-bold sm:text-3xl lg:text-4xl">
-            From Assessment to{" "}
-            <span className="text-gradient">Continuous Improvement</span>
+            From Assessment to <span className="text-gradient">Continuous Improvement</span>
           </h2>
           <p className="mt-3 text-sm text-muted-foreground sm:text-base">
             A structured journey to get your IT operations managed effectively.
@@ -622,12 +581,8 @@ function ManagedServicesPage() {
               <span className="inline-flex size-10 items-center justify-center rounded-full bg-primary/10 font-display text-sm font-bold text-primary">
                 {item.step}
               </span>
-              <h3 className="mt-3 font-display text-base font-semibold sm:text-lg">
-                {item.title}
-              </h3>
-              <p className="mt-1.5 text-sm text-muted-foreground">
-                {item.text}
-              </p>
+              <h3 className="mt-3 font-display text-base font-semibold sm:text-lg">{item.title}</h3>
+              <p className="mt-1.5 text-sm text-muted-foreground">{item.text}</p>
             </motion.div>
           ))}
         </div>
@@ -720,12 +675,8 @@ function ManagedServicesPage() {
               <span className="inline-flex size-12 items-center justify-center rounded-full bg-primary/10 text-primary">
                 <item.icon className="size-6" aria-hidden="true" />
               </span>
-              <h3 className="mt-3 font-display text-base font-semibold sm:text-lg">
-                {item.title}
-              </h3>
-              <p className="mt-1.5 text-xs text-muted-foreground sm:text-sm">
-                {item.desc}
-              </p>
+              <h3 className="mt-3 font-display text-base font-semibold sm:text-lg">{item.title}</h3>
+              <p className="mt-1.5 text-xs text-muted-foreground sm:text-sm">{item.desc}</p>
             </motion.div>
           ))}
         </div>
@@ -739,12 +690,10 @@ function ManagedServicesPage() {
               FAQ
             </Badge>
             <h2 className="font-display text-2xl font-bold sm:text-3xl lg:text-4xl">
-              Frequently Asked{" "}
-              <span className="text-gradient">Questions</span>
+              Frequently Asked <span className="text-gradient">Questions</span>
             </h2>
             <p className="mt-3 text-sm text-muted-foreground sm:text-base">
-              Common questions about managed services, helpdesk and SLA
-              coverage.
+              Common questions about managed services, helpdesk and SLA coverage.
             </p>
           </div>
 
@@ -759,9 +708,7 @@ function ManagedServicesPage() {
                 className="group rounded-xl border border-border bg-card shadow-sm transition-all hover:border-primary/30 hover:shadow-md [&_summary::-webkit-details-marker]:hidden"
               >
                 <summary className="flex cursor-pointer items-start justify-between gap-3 p-4 sm:p-5">
-                  <h3 className="text-left text-sm font-semibold sm:text-base">
-                    {faq.question}
-                  </h3>
+                  <h3 className="text-left text-sm font-semibold sm:text-base">{faq.question}</h3>
                   <span
                     className="mt-0.5 inline-flex size-5 shrink-0 items-center justify-center rounded-full border border-border text-muted-foreground transition-transform group-open:rotate-90"
                     aria-hidden="true"
@@ -798,8 +745,7 @@ function ManagedServicesPage() {
             Related <span className="text-gradient">Services</span>
           </h2>
           <p className="mt-3 text-sm text-muted-foreground sm:text-base">
-            Managed services is one piece of our end-to-end IT infrastructure
-            portfolio.
+            Managed services is one piece of our end-to-end IT infrastructure portfolio.
           </p>
         </div>
 
@@ -813,9 +759,7 @@ function ManagedServicesPage() {
               <h3 className="font-display text-lg font-semibold group-hover:text-primary">
                 {service.title}
               </h3>
-              <p className="mt-2 line-clamp-3 text-sm text-muted-foreground">
-                {service.summary}
-              </p>
+              <p className="mt-2 line-clamp-3 text-sm text-muted-foreground">{service.summary}</p>
               <span className="mt-4 inline-flex items-center gap-1 text-sm font-medium text-primary">
                 Learn more
                 <ArrowRight
@@ -840,29 +784,19 @@ function ManagedServicesPage() {
       {/* ═══ FINAL CTA + CONTACT STRIP ═══ */}
       <section className="mx-auto max-w-7xl px-4 pb-9 sm:px-6 sm:pb-12 lg:px-8 lg:pb-16">
         <div className="hero-surface relative overflow-hidden rounded-2xl border border-hero-border px-5 py-10 text-center sm:px-10 sm:py-12">
-          <div
-            className="grid-pattern absolute inset-0 opacity-20"
-            aria-hidden="true"
-          />
+          <div className="grid-pattern absolute inset-0 opacity-20" aria-hidden="true" />
           <div className="relative mx-auto max-w-2xl">
-            <Sparkles
-              className="mx-auto size-8 text-hero-accent"
-              aria-hidden="true"
-            />
+            <Sparkles className="mx-auto size-8 text-hero-accent" aria-hidden="true" />
             <h2 className="mt-3 font-display text-xl font-bold text-hero-foreground sm:text-2xl lg:text-3xl xl:text-4xl">
               Ready to Outsource Your IT Operations?
             </h2>
             <p className="mt-3 text-sm text-hero-muted sm:text-base">
-              Let&apos;s define a managed services package that fits your
-              operational needs and budget — with a 30-minute SLA guarantee.
+              Let&apos;s define a managed services package that fits your operational needs and
+              budget — with a 30-minute SLA guarantee.
             </p>
 
             <div className="mt-6 flex flex-col justify-center gap-3 sm:flex-row">
-              <Button
-                asChild
-                size="lg"
-                className="glow-ring w-full sm:w-auto"
-              >
+              <Button asChild size="lg" className="glow-ring w-full sm:w-auto">
                 <Link to="/contact" hash="request">
                   Get a Managed Services Quote
                   <ArrowRight className="ml-2 size-4" aria-hidden="true" />

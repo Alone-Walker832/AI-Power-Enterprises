@@ -3,6 +3,7 @@
 Create a modern, ultra-professional responsive Next.js 14 static website template for "AI Power Enterprises - IT Services".
 
 Requirements:
+
 1. Tech Stack: Next.js (App Router), Tailwind CSS, Shadcn UI components, Lucide icons, Framer Motion animations.
 2. Dark / Light Mode: Included via next-themes with a sleek toggle button in the Header.
 3. Folder Structure (Developer Friendly):
@@ -85,15 +86,15 @@ Content Details to Include:
 
    - Service Parameter Table / Interactive Cards:
 
-     * Coverage: 24/7 x 365 [cite: 449]
+     - Coverage: 24/7 x 365 [cite: 449]
 
-     * Initial Response Commitment: Within 30 minutes [cite: 449]
+     - Initial Response Commitment: Within 30 minutes [cite: 449]
 
-     * Part Replacement Commitment: Within 4 working hours [cite: 449]
+     - Part Replacement Commitment: Within 4 working hours [cite: 449]
 
-     * Intervention: Onsite support with spare parts availability [cite: 449]
+     - Intervention: Onsite support with spare parts availability [cite: 449]
 
-     * Models: Mission-Critical (24/7 support) [cite: 451] & Business-Critical (8/5 support)[cite: 452].
+     - Models: Mission-Critical (24/7 support) [cite: 451] & Business-Critical (8/5 support)[cite: 452].
 
    - Core Deliverables: 24/7 Call Management, Problem Diagnosis, Onsite Hardware Intervention, Spare Parts Provision, Preventive Maintenance, Quarterly Reporting [cite: 441-449].
 
@@ -153,15 +154,15 @@ Requirements:
 
    - Tab 1: Banking & Financial Services (BFSI)
 
-     * Logos / Cards: Habib Bank Limited (HBL), United Bank Limited (UBL), MCB Bank, Meezan Bank, Bank of Punjab (BOP), Standard Chartered Bank, Askari Bank, Allied Bank, Bank Alfalah, Faysal Bank, National Bank of Pakistan (NBP), Dubai Islamic Bank, Citibank N.A., Bank of China, Easypaisa, JazzCash[cite: 189, 194, 219, 222, 224, 226, 229, 232, 235, 244, 246, 248, 254, 258, 267, 271, 276, 277].
+     - Logos / Cards: Habib Bank Limited (HBL), United Bank Limited (UBL), MCB Bank, Meezan Bank, Bank of Punjab (BOP), Standard Chartered Bank, Askari Bank, Allied Bank, Bank Alfalah, Faysal Bank, National Bank of Pakistan (NBP), Dubai Islamic Bank, Citibank N.A., Bank of China, Easypaisa, JazzCash[cite: 189, 194, 219, 222, 224, 226, 229, 232, 235, 244, 246, 248, 254, 258, 267, 271, 276, 277].
 
    - Tab 2: Industrial, Oil & Gas, FMCG & Commercial
 
-     * Logos / Cards: Fauji Fertilizer (FFC), Fatima Group, MOL Group, DG Cement, Lucky Cement, OGDCL, PPL, Pakistan State Oil (PSO), Packages Limited, Nishat Group, Systems Limited, NetSol Technologies, Interloop, Indus Motor Company (IMC), Unilever Pakistan, Nestlé Pakistan, Coca-Cola, PepsiCo[cite: 286, 294, 297, 300, 303, 305, 308, 315, 320, 321, 326, 333, 336, 348, 350, 354, 357, 362, 364].
+     - Logos / Cards: Fauji Fertilizer (FFC), Fatima Group, MOL Group, DG Cement, Lucky Cement, OGDCL, PPL, Pakistan State Oil (PSO), Packages Limited, Nishat Group, Systems Limited, NetSol Technologies, Interloop, Indus Motor Company (IMC), Unilever Pakistan, Nestlé Pakistan, Coca-Cola, PepsiCo[cite: 286, 294, 297, 300, 303, 305, 308, 315, 320, 321, 326, 333, 336, 348, 350, 354, 357, 362, 364].
 
    - Tab 3: Healthcare, Education & Telecommunications
 
-     * Logos / Cards: Aga Khan University Hospital, Indus Hospital, Liaquat National Hospital, LUMS, NUST, IBA Karachi, COMSATS, Jazz, Ufone, Zong 4G, PTCL[cite: 189, 375, 377, 380, 382, 389, 391, 402, 405, 408].
+     - Logos / Cards: Aga Khan University Hospital, Indus Hospital, Liaquat National Hospital, LUMS, NUST, IBA Karachi, COMSATS, Jazz, Ufone, Zong 4G, PTCL[cite: 189, 375, 377, 380, 382, 389, 391, 402, 405, 408].
 
 4. Nationwide Footprint Map Component:
 
@@ -169,10 +170,10 @@ Requirements:
 
 Add client search filter bar and smooth filter transition animations.
 
-
 Build a clean, high-converting Contact Us Page (app/contact/page.tsx) with instant direct communication tools for AI Power Enterprises.
 
 Page Elements:
+
 1. Contact Information Cards:
    - Headquarters: Office #516, Anum Blessings, Plot No. ZCC KECHSU Block 7/8, Shahrah-e-Faisal, Karachi, Pakistan[cite: 127].
    - Official Email: info@aipowerent.net [cite: 127]

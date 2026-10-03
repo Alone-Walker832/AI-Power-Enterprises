@@ -47,8 +47,7 @@ import {
 // ═══════════════════════════════════════════════════════════════════
 const PAGE_PATH = "/storage";
 const PAGE_URL = `${siteConfig.url}${PAGE_PATH}`;
-const PAGE_TITLE =
-  "Enterprise Storage & Backup Solutions in Pakistan | SAN, NAS";
+const PAGE_TITLE = "Enterprise Storage & Backup Solutions in Pakistan | SAN, NAS";
 const PAGE_DESCRIPTION =
   "Enterprise storage & backup in Pakistan — SAN, NAS, all-flash arrays, tape archival, replication and disaster recovery. Deployed and supported 24/7 nationwide.";
 const PAGE_KEYWORDS = [
@@ -122,8 +121,7 @@ export const Route = createFileRoute("/storage")({
         { name: "keywords", content: PAGE_KEYWORDS.join(", ") },
         {
           name: "robots",
-          content:
-            "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
+          content: "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
         },
         { property: "og:type", content: "website" },
         { property: "og:site_name", content: company.name },
@@ -279,10 +277,7 @@ function StoragePage() {
         ref={heroRef}
         className="relative overflow-hidden bg-gradient-to-br from-hero via-hero/95 to-hero/80 py-9 sm:py-12 lg:py-7"
       >
-        <div
-          className="grid-pattern absolute inset-0 opacity-25"
-          aria-hidden="true"
-        />
+        <div className="grid-pattern absolute inset-0 opacity-25" aria-hidden="true" />
         <div
           className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_left,_var(--primary)_0%,_transparent_60%)] opacity-10"
           aria-hidden="true"
@@ -303,9 +298,8 @@ function StoragePage() {
                 <span className="text-gradient">Performance & Resilience</span>
               </h1>
               <p className="mx-auto max-w-xl text-base text-hero-muted sm:text-lg lg:mx-0 lg:text-xl">
-                SAN, NAS, all-flash arrays and backup infrastructure —
-                engineered for data integrity, disaster recovery and 24/7
-                operations.
+                SAN, NAS, all-flash arrays and backup infrastructure — engineered for data
+                integrity, disaster recovery and 24/7 operations.
               </p>
 
               {/* Trust chips */}
@@ -316,21 +310,14 @@ function StoragePage() {
                   { icon: MapPin, label: "8 hubs nationwide" },
                 ].map(({ icon: Icon, label }) => (
                   <li key={label} className="inline-flex items-center gap-1.5">
-                    <Icon
-                      className="size-3.5 text-hero-accent"
-                      aria-hidden="true"
-                    />
+                    <Icon className="size-3.5 text-hero-accent" aria-hidden="true" />
                     {label}
                   </li>
                 ))}
               </ul>
 
               <div className="flex flex-col gap-3 pt-2 sm:flex-row sm:flex-wrap sm:justify-center sm:gap-4 lg:justify-start">
-                <Button
-                  asChild
-                  size="lg"
-                  className="glow-ring w-full sm:w-auto"
-                >
+                <Button asChild size="lg" className="glow-ring w-full sm:w-auto">
                   <Link to="/contact" hash="request">
                     Request Storage Assessment
                     <ArrowRight className="ml-2 size-4" aria-hidden="true" />
@@ -371,10 +358,7 @@ function StoragePage() {
                   transition={{ duration: 0.45 }}
                   className="flex flex-col items-center rounded-2xl border border-hero-border bg-hero-foreground/5 p-4 backdrop-blur-sm sm:p-6"
                 >
-                  <stat.icon
-                    className="size-6 text-hero-accent sm:size-8"
-                    aria-hidden="true"
-                  />
+                  <stat.icon className="size-6 text-hero-accent sm:size-8" aria-hidden="true" />
                   <p className="mt-2 font-display text-lg font-bold text-hero-foreground sm:mt-3 sm:text-2xl lg:text-3xl">
                     {stat.value}
                   </p>
@@ -407,8 +391,7 @@ function StoragePage() {
             End-to-End <span className="text-gradient">Storage Portfolio</span>
           </h2>
           <p className="mt-3 text-sm text-muted-foreground sm:text-base">
-            From IOPS-intensive databases to long-term archives — every
-            workload covered.
+            From IOPS-intensive databases to long-term archives — every workload covered.
           </p>
         </div>
 
@@ -426,9 +409,7 @@ function StoragePage() {
                   <span className="inline-flex size-11 items-center justify-center rounded-lg bg-primary/10 text-primary">
                     <item.icon className="size-5" aria-hidden="true" />
                   </span>
-                  <CardTitle className="font-display text-base sm:text-lg">
-                    {item.title}
-                  </CardTitle>
+                  <CardTitle className="font-display text-base sm:text-lg">{item.title}</CardTitle>
                 </CardHeader>
                 <CardContent className="text-sm text-muted-foreground">
                   {item.description}
@@ -447,12 +428,10 @@ function StoragePage() {
               Storage Tiers
             </Badge>
             <h2 className="font-display text-2xl font-bold sm:text-3xl lg:text-4xl">
-              Right Tier for{" "}
-              <span className="text-gradient">Every Workload</span>
+              Right Tier for <span className="text-gradient">Every Workload</span>
             </h2>
             <p className="mt-3 text-sm text-muted-foreground sm:text-base">
-              Cost-optimised tiering matched to performance, capacity and
-              retention needs.
+              Cost-optimised tiering matched to performance, capacity and retention needs.
             </p>
           </div>
 
@@ -466,12 +445,8 @@ function StoragePage() {
                 transition={{ duration: 0.3, delay: idx * 0.05 }}
                 className="rounded-xl border border-border bg-card p-5 shadow-sm transition-all hover:-translate-y-0.5 hover:border-primary/30 hover:shadow-lg"
               >
-                <h3 className="font-display text-base font-semibold">
-                  {item.title}
-                </h3>
-                <p className="mt-1.5 text-sm text-muted-foreground">
-                  {item.desc}
-                </p>
+                <h3 className="font-display text-base font-semibold">{item.title}</h3>
+                <p className="mt-1.5 text-sm text-muted-foreground">{item.desc}</p>
               </motion.div>
             ))}
           </div>
@@ -485,12 +460,10 @@ function StoragePage() {
             Backup & DR
           </Badge>
           <h2 className="font-display text-2xl font-bold sm:text-3xl lg:text-4xl">
-            Backup, Recover &{" "}
-            <span className="text-gradient">Survive</span>
+            Backup, Recover & <span className="text-gradient">Survive</span>
           </h2>
           <p className="mt-3 text-sm text-muted-foreground sm:text-base">
-            Ransomware-resistant backup, verified restores and disaster
-            recovery orchestration.
+            Ransomware-resistant backup, verified restores and disaster recovery orchestration.
           </p>
         </div>
 
@@ -504,12 +477,8 @@ function StoragePage() {
               transition={{ duration: 0.3, delay: idx * 0.05 }}
               className="rounded-xl border border-border bg-card p-5 shadow-sm transition-all hover:-translate-y-0.5 hover:border-primary/30 hover:shadow-lg"
             >
-              <h3 className="font-display text-base font-semibold">
-                {item.title}
-              </h3>
-              <p className="mt-1.5 text-sm text-muted-foreground">
-                {item.desc}
-              </p>
+              <h3 className="font-display text-base font-semibold">{item.title}</h3>
+              <p className="mt-1.5 text-sm text-muted-foreground">{item.desc}</p>
             </motion.div>
           ))}
         </div>
@@ -523,12 +492,10 @@ function StoragePage() {
               SLA Cover
             </Badge>
             <h2 className="font-display text-2xl font-bold sm:text-3xl lg:text-4xl">
-              Storage{" "}
-              <span className="text-gradient">Support Commitments</span>
+              Storage <span className="text-gradient">Support Commitments</span>
             </h2>
             <p className="mt-3 text-sm text-muted-foreground sm:text-base">
-              Contractual response and resolution times for your critical
-              storage infrastructure.
+              Contractual response and resolution times for your critical storage infrastructure.
             </p>
           </div>
 
@@ -551,13 +518,8 @@ function StoragePage() {
                 transition={{ duration: 0.3, delay: idx * 0.05 }}
                 className="rounded-xl border border-border bg-card p-5 text-center shadow-sm transition-all hover:-translate-y-0.5 hover:shadow-md"
               >
-                <item.icon
-                  className="mx-auto size-6 text-primary"
-                  aria-hidden="true"
-                />
-                <p className="mt-2 font-display text-xl font-bold sm:text-2xl">
-                  {item.value}
-                </p>
+                <item.icon className="mx-auto size-6 text-primary" aria-hidden="true" />
+                <p className="mt-2 font-display text-xl font-bold sm:text-2xl">{item.value}</p>
                 <p className="text-[10px] font-medium uppercase tracking-wider text-muted-foreground sm:text-xs">
                   {item.label}
                 </p>
@@ -638,8 +600,7 @@ function StoragePage() {
               What Sets Us <span className="text-gradient">Apart</span>
             </h2>
             <p className="mt-3 text-sm text-muted-foreground sm:text-base">
-              Workload-aligned design, vendor-neutral sizing, and SLA-backed
-              operations.
+              Workload-aligned design, vendor-neutral sizing, and SLA-backed operations.
             </p>
           </div>
 
@@ -680,9 +641,7 @@ function StoragePage() {
                 <h3 className="mt-3 font-display text-base font-semibold sm:text-lg">
                   {item.title}
                 </h3>
-                <p className="mt-1.5 text-xs text-muted-foreground sm:text-sm">
-                  {item.desc}
-                </p>
+                <p className="mt-1.5 text-xs text-muted-foreground sm:text-sm">{item.desc}</p>
               </motion.div>
             ))}
           </div>
@@ -696,8 +655,7 @@ function StoragePage() {
             FAQ
           </Badge>
           <h2 className="font-display text-2xl font-bold sm:text-3xl lg:text-4xl">
-            Frequently Asked{" "}
-            <span className="text-gradient">Questions</span>
+            Frequently Asked <span className="text-gradient">Questions</span>
           </h2>
           <p className="mt-3 text-sm text-muted-foreground sm:text-base">
             Common questions about SAN, NAS, backup and disaster recovery.
@@ -715,9 +673,7 @@ function StoragePage() {
               className="group rounded-xl border border-border bg-card shadow-sm transition-all hover:border-primary/30 hover:shadow-md [&_summary::-webkit-details-marker]:hidden"
             >
               <summary className="flex cursor-pointer items-start justify-between gap-3 p-4 sm:p-5">
-                <h3 className="text-left text-sm font-semibold sm:text-base">
-                  {faq.question}
-                </h3>
+                <h3 className="text-left text-sm font-semibold sm:text-base">{faq.question}</h3>
                 <span
                   className="mt-0.5 inline-flex size-5 shrink-0 items-center justify-center rounded-full border border-border text-muted-foreground transition-transform group-open:rotate-90"
                   aria-hidden="true"
@@ -751,12 +707,11 @@ function StoragePage() {
               Explore More
             </Badge>
             <h2 className="font-display text-2xl font-bold sm:text-3xl lg:text-4xl">
-              Complete Your{" "}
-              <span className="text-gradient">Infrastructure</span>
+              Complete Your <span className="text-gradient">Infrastructure</span>
             </h2>
             <p className="mt-3 text-sm text-muted-foreground sm:text-base">
-              Storage works best with the right compute, data centre and
-              managed services — explore all.
+              Storage works best with the right compute, data centre and managed services — explore
+              all.
             </p>
           </div>
 
@@ -770,9 +725,7 @@ function StoragePage() {
                 <h3 className="font-display text-lg font-semibold group-hover:text-primary">
                   {service.title}
                 </h3>
-                <p className="mt-2 line-clamp-3 text-sm text-muted-foreground">
-                  {service.summary}
-                </p>
+                <p className="mt-2 line-clamp-3 text-sm text-muted-foreground">{service.summary}</p>
                 <span className="mt-4 inline-flex items-center gap-1 text-sm font-medium text-primary">
                   Learn more
                   <ArrowRight
@@ -798,29 +751,19 @@ function StoragePage() {
       {/* ═══ FINAL CTA + CONTACT STRIP ═══ */}
       <section className="mx-auto max-w-7xl px-4 py-9 sm:px-6 sm:py-12 lg:px-8 lg:py-16">
         <div className="hero-surface relative overflow-hidden rounded-2xl border border-hero-border px-5 py-10 text-center sm:px-10 sm:py-12">
-          <div
-            className="grid-pattern absolute inset-0 opacity-20"
-            aria-hidden="true"
-          />
+          <div className="grid-pattern absolute inset-0 opacity-20" aria-hidden="true" />
           <div className="relative mx-auto max-w-2xl">
-            <Sparkles
-              className="mx-auto size-8 text-hero-accent"
-              aria-hidden="true"
-            />
+            <Sparkles className="mx-auto size-8 text-hero-accent" aria-hidden="true" />
             <h2 className="mt-3 font-display text-xl font-bold text-hero-foreground sm:text-2xl lg:text-3xl xl:text-4xl">
               Ready to Modernise Your Storage?
             </h2>
             <p className="mt-3 text-sm text-hero-muted sm:text-base">
-              Get a storage assessment covering capacity, performance, backup
-              and disaster recovery — with SLA-backed support.
+              Get a storage assessment covering capacity, performance, backup and disaster recovery
+              — with SLA-backed support.
             </p>
 
             <div className="mt-6 flex flex-col justify-center gap-3 sm:flex-row">
-              <Button
-                asChild
-                size="lg"
-                className="glow-ring w-full sm:w-auto"
-              >
+              <Button asChild size="lg" className="glow-ring w-full sm:w-auto">
                 <Link to="/contact" hash="request">
                   Request Storage Assessment
                   <ArrowRight className="ml-2 size-4" aria-hidden="true" />
