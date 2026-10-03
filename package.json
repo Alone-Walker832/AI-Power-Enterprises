@@ -8,7 +8,9 @@
     "node": ">=20.0.0"
   },
   "scripts": {
-    "dev": "vite dev",
+    "dev": "node scripts/generate-sitemap.mjs && vite dev",
+    "sitemap": "node scripts/generate-sitemap.mjs",
+    "prebuild": "node scripts/generate-sitemap.mjs",
     "build": "vite build",
     "build:dev": "vite build --mode development",
     "preview": "vite preview",

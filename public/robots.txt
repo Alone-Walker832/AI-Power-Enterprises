@@ -1,20 +1,45 @@
-User-agent: Googlebot
-Allow: /
-
-User-agent: Bingbot
-Allow: /
-
-User-agent: Twitterbot
-Allow: /
-
-User-agent: facebookexternalhit
-Allow: /
+# robots.txt — AI Power Enterprises
+# Canonical host: https://www.aipowerent.net
+#
+# IMPORTANT: the apex domain (aipowerent.net) 308-redirects to the www
+# host at the edge. Every canonical tag, the sitemap below and this file
+# all use the www host so crawlers never bounce between two versions.
 
 User-agent: *
 Allow: /
 
-# Sitemap location
-Sitemap: https://www.aipowerent.net/sitemap.xml
+# ── Block non-content / infrastructure paths ───────────────────
+# Nothing here blocks CSS, JS or images, so page rendering, Core Web
+# Vitals measurement and image search all keep working.
+Disallow: /.vercel/
+Disallow: /api/
+Disallow: /_serverFn/
+Disallow: /node_modules/
 
-# Host preference (Google ko batao primary domain)
-Host: www.aipowerent.net
+# ── AI / answer-engine crawlers ────────────────────────────────
+# Explicitly allowed. Your on-page FAQ and schema markup is what
+# these engines quote, so blocking them forfeits AI Overviews and
+# AI-assistant citations.
+User-agent: GPTBot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+# ── Sitemap ────────────────────────────────────────────────────
+Sitemap: https://www.aipowerent.net/sitemap.xml

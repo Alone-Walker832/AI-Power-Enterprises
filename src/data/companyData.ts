@@ -76,7 +76,21 @@ export const company = {
     supportNote:
       "24/7 SLA support desk available for mission-critical contracts.",
   },
-  website: "https://aipowerent.net",
+  // ═══════════════════════════════════════════════════════════════
+  // CANONICAL HOST — single source of truth for EVERY url in the app
+  // (canonical tags, og:url, twitter:image, all JSON-LD @id/url values)
+  //
+  // WHY www: Vercel already serves 308 redirects from the apex domain to
+  // the www host, and https://www.aipowerent.net/ is what returns 200.
+  // Declaring www here means every canonical is a self-referencing 200 —
+  // zero redirect hops. Declaring the apex instead creates an infinite
+  // canonical redirect loop, which is exactly what caused the
+  // "Duplicate without user-selected canonical" error in Search Console.
+  //
+  // DO NOT add/remove "www." here without also checking:
+  //   public/robots.txt  +  public/sitemap.xml
+  // ═══════════════════════════════════════════════════════════════
+  website: "https://www.aipowerent.net",
   founded: "2025",
   whatsappMessage:
     "Hello AI Power Enterprises, I would like to discuss enterprise IT services and SLA support.",

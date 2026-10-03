@@ -20,6 +20,7 @@ import appCss from "../styles.css?url";
 import { Navbar } from "@/components/Navbar";
 import { TopHeader } from "@/components/TopHeader";
 import { Footer } from "@/components/Footer";
+import { NotFound } from "@/components/NotFound";
 
 // ─── Lazy loaded — alag chunk, first paint fast ──────────────────
 const WhatsAppBtn = lazy(() =>
@@ -136,43 +137,6 @@ function PremiumLoader() {
         <div className="z-10 h-6 w-6 rounded-full bg-primary shadow-lg shadow-primary/30 animate-pulse" />
       </div>
       <span className="sr-only">Loading…</span>
-    </div>
-  );
-}
-
-// ═══════════════════════════════════════════════════════════════════
-// 404 — Not Found
-// ═══════════════════════════════════════════════════════════════════
-function NotFoundComponent() {
-  return (
-    <div className="relative flex min-h-[80vh] items-center justify-center overflow-hidden bg-background px-4 py-16">
-      <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:60px_60px] [mask-image:radial-gradient(ellipse_at_center,white,transparent_70%)]" />
-      <div className="glass-card relative z-10 w-full max-w-md rounded-3xl border border-primary/20 bg-background/80 p-8 md:p-10 text-center shadow-2xl backdrop-blur-xl animate-in fade-in zoom-in-95 duration-700">
-        <div className="text-7xl md:text-9xl font-black tracking-tight bg-gradient-to-br from-primary via-purple-500 to-blue-400 bg-clip-text text-transparent drop-shadow-xl">
-          404
-        </div>
-        <h1 className="mt-2 text-2xl md:text-3xl font-bold tracking-tight">
-          Page not found
-        </h1>
-        <p className="mt-2 text-sm text-muted-foreground">
-          The page you&apos;re looking for doesn&apos;t exist or has been
-          moved.
-        </p>
-        <div className="mt-6 flex flex-wrap justify-center gap-3">
-          <Link
-            to="/"
-            className="inline-flex items-center gap-2 rounded-xl bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground shadow-lg shadow-primary/30 transition-all hover:bg-primary/90 hover:scale-105 active:scale-95"
-          >
-            <span aria-hidden="true">←</span> Go back home
-          </Link>
-          <Link
-            to="/contact"
-            className="inline-flex items-center rounded-xl border border-input bg-background px-6 py-3 text-sm font-medium text-foreground transition-all hover:bg-accent hover:scale-105"
-          >
-            Contact us
-          </Link>
-        </div>
-      </div>
     </div>
   );
 }
@@ -344,7 +308,19 @@ export const Route = createRootRouteWithContext<{
       { name: "color-scheme", content: "light dark" },
     ],
     links: [
-      { rel: "canonical", href: siteConfig.url },
+      // ⚠️ NO `rel: "canonical"` HERE — ON PURPOSE.
+      //
+      // TanStack Router merges head tags from the matched route chain,
+      // root-first. `appendUniqueUserTags` de-duplicates by tag name, so a
+      // canonical declared here would WIN and discard the per-page
+      // canonical from every route's own head(). That produced
+      // `<link rel="canonical" href="https://www.aipowerent.net">` on
+      // /services, /cctv, /sla ... — i.e. every inner page telling Google
+      // it is a duplicate of the homepage. It is a direct cause of the
+      // "Duplicate without user-selected canonical" report.
+      //
+      // Every route now declares its own self-referencing canonical, so
+      // this list is intentionally left without one.
       { rel: "icon", href: "/favicon.svg", type: "image/svg+xml" },
       { rel: "apple-touch-icon", href: "/apple-touch-icon.png" },
       { rel: "manifest", href: "/site.webmanifest" },
@@ -381,7 +357,7 @@ export const Route = createRootRouteWithContext<{
   }),
   shellComponent: RootShell,
   component: RootComponent,
-  notFoundComponent: NotFoundComponent,
+  notFoundComponent: NotFound,
   errorComponent: ErrorComponent,
 });
 
